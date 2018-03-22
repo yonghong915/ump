@@ -1,0 +1,14 @@
+set echo off;
+set feedback on;
+set verify off;
+set heading off;
+set term on;
+set trimspool on;
+set trimout on;
+set linesize 200;
+set pagesize 0;
+set termout on;
+set serveroutput off;
+set timing on;
+set autotrace off;¡¡¡¡
+SET newpage none;

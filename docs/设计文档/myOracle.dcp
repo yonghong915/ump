@@ -1,0 +1,11 @@
+[ConnectionProfile]
+ConnectionType=JDBC
+Dbms=Oracle
+Description=myOracle
+DisableBind=0
+Driver=oracle.jdbc.driver.OracleDriver
+JarFiles=D:\software\maven\m2\repository\com\oracle\ojdbc14\10.2.0.4.0\ojdbc14-10.2.0.4.0.jar
+LogId=webapp
+MapDateToDateTime=1
+TrimSpaces=0
+URL=jdbc:oracle:thin:127.0.0.1:1521:ORCL
