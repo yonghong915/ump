@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.ump.sysmgr.log.dao.LogDao">
+	<resultMap type="com.ump.sysmgr.log.model.Log" id="resultMapObj" extends="com.ump.core.base.dao.IBaseDao.baseResultMap">
+		<result column="log_type" property="logType" jdbcType="VARCHAR" />
+		<result column="log_desc" property="logDesc" jdbcType="VARCHAR" />
+		<result column="oper_method" property="operMethod" jdbcType="VARCHAR" />
+		<result column="ip_addr" property="ipAddr" jdbcType="VARCHAR" />
+		<result column="params" property="params" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="sql_select">
+		SELECT id,ip_addr,
+		status,
+		creator,
+		create_date
+
+	</sql>
+	<sql id="base_column_list">
+		user_name
+	</sql>
+
+
+	<insert id="insert">
+		INSERT INTO
+		sys_log(id,log_type,log_desc,oper_method,ip_addr,params,status,create_date,creator)
+		VALUES(#{id},#{logType},#{logDesc},#{operMethod},#{ipAddr},#{params},'1',NOW(),#{creator})
+	</insert>
+
+	<select id="findByPage" resultMap="resultMapObj" parameterType="java.lang.String">
+		<include refid="sql_select" />
+		FROM sys_log
+		WHERE status = '1'
+		<if test="param.beginTime != null and param.beginTime !=''  ">
+       <![CDATA[
+        	AND DATE_FORMAT(create_date, '%Y-%m-%d') >=  DATE_FORMAT(#{param.beginTime}, '%Y-%m-%d')
+       ]]>
+		</if>
+		<if test="param.endTime != null and param.endTime !=''  ">
+       <![CDATA[
+        	AND DATE_FORMAT(create_date, '%Y-%m-%d') <=  DATE_FORMAT(#{param.endTime}, '%Y-%m-%d')
+       ]]>
+		</if>
+		ORDER BY create_date DESC
+	</select>
+
+
+</mapper>

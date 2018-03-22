@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.ump.tools.code.dao.CodeDao">
+	<resultMap type="com.ump.tools.code.model.CodeType" id="codeTypeResultMap" extends="com.ump.core.base.dao.IBaseDao.baseResultMap">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="type_code" property="typeCode" jdbcType="VARCHAR" />
+		<result column="type_name" property="typeName" jdbcType="VARCHAR" />
+		<result column="type_desc" property="typeDesc" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap type="com.ump.tools.code.model.CodeInfo" id="codeInfoResultMap" extends="com.ump.core.base.dao.IBaseDao.baseResultMap">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="code_type_id" property="codeTypeId" jdbcType="VARCHAR" />
+		<result column="code_info_code" property="codeInfoCode" jdbcType="VARCHAR" />
+		<result column="code_info_value" property="codeInfoValue" jdbcType="VARCHAR" />
+		<result column="code_info_desc" property="codeInfoDesc" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- <resultMap id="orgFieldResultMap" type="com.ump.model.OrgField"> <id column="field_id" property="fieldId" jdbcType="VARCHAR" 
+		/> <result column="field_code" property="fieldCode" jdbcType="VARCHAR" /> <result column="field_name" property="fieldName" 
+		jdbcType="VARCHAR" /> <result column="status" property="status" jdbcType="CHAR" /> <result column="data_type" property="dataType" 
+		jdbcType="VARCHAR" /> <result column="data_type_length" property="dataTypeLength" jdbcType="INTEGER" /> <result column="order_id" 
+		property="orderId" jdbcType="INTEGER" /> <result column="group_id" property="groupId" jdbcType="VARCHAR" /> <result column="create_date" 
+		property="createDate" jdbcType="DATE" /> <result column="creator" property="creator" jdbcType="VARCHAR" /> <result column="update_date" 
+		property="updateDate" jdbcType="DATE" /> <result column="updator" property="updator" jdbcType="VARCHAR" /> </resultMap> <select 
+		id="queryOrgField" resultMap="orgFieldResultMap" parameterType="com.ump.model.OrgField"> SELECT * FROM biz_org_field WHERE 
+		status = '1' <if test="fieldCode !=null and fieldCode !='' "> AND field_code = #{fieldCode} </if> </select> <select id="queryOrgFieldCount" 
+		resultType="int" parameterType="com.ump.model.OrgField"> SELECT count(field_id) cnt FROM biz_org_field WHERE status = '1' 
+		<if test="fieldCode !=null and fieldCode !='' "> AND field_code = #{fieldCode} </if> </select> <insert id="addOrgField" parameterType="com.ump.model.OrgField"> 
+		INSERT INTO biz_org_field(field_id,field_code,field_name,status) VALUES(#{fieldId,jdbcType=VARCHAR},#{fieldCode,jdbcType=VARCHAR},#{fieldName,jdbcType=VARCHAR},'1') 
+		</insert> <update id="updateOrgField" parameterType="com.ump.model.OrgField"> UPDATE biz_org_field <trim prefix="SET" suffixOverrides=","> 
+		<if test="fieldCode !=null and fieldCode != '' "> field_code = #{fieldCode}, </if> <if test="fieldName !=null and fieldName 
+		!= '' "> field_name = #{fieldName}, </if> <if test="status !=null and status != '' "> status = #{status}, </if> </trim> WHERE 
+		field_id = #{fieldId} </update> <delete id="deleteOrgField" parameterType="com.ump.model.OrgField"> DELETE FROM biz_org_field 
+		WHERE field_id = #{fieldId} </delete> -->
+	<select id="getCodeTypeList" resultMap="codeTypeResultMap" parameterType="com.ump.tools.code.model.CodeType">
+		select * from SYS_CODE_TYPE
+
+	</select>
+
+	<select id="getCodeInfoList" parameterType="com.ump.tools.code.model.CodeInfo" resultMap="codeInfoResultMap">
+		select * from SYS_CODE_INFO
+		<where>
+			<if test="codeTypeId !=null and codeTypeId !='' ">
+				CODE_TYPE_ID = #{codeTypeId}
+			</if>
+
+		</where>
+	</select>
+</mapper>

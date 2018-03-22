@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.ump.mall.comment.dao.CommentDao">
+	<resultMap type="com.ump.mall.comment.model.Comment" id="commentResultMap" extends="com.ump.core.base.dao.IBaseDao.baseResultMap">
+		<result column="user_code" property="userCode" jdbcType="VARCHAR" />
+		<result column="order_id" property="orderId" jdbcType="VARCHAR" />
+		<result column="product_id" property="productId" jdbcType="VARCHAR" />
+		<result column="star" property="star" jdbcType="CHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="sql_select">
+		SELECT id,user_code,
+		order_id,
+		product_id,
+		star,
+		content,
+		status,
+		create_date
+
+	</sql>
+	<sql id="base_column_list">
+		user_name
+	</sql>
+
+	<insert id="insert">
+		INSERT INTO
+		tb_comment(id,user_code,order_id,product_id,star,content,status,create_date,creator)
+		VALUES(#{id},#{userCode},#{orderId},#{productId},#{star},#{content},'1',NOW(),#{creator})
+	</insert>
+
+	<update id="update">
+		UPDATE tb_comment
+		<set>
+			<if test="userCode != null">
+				user_code = #{userCode},
+			</if>
+			<if test="userName != null and userName != ''">
+				user_name = #{userName},
+			</if>
+			<if test="userDesc != null and userDesc != ''">
+				user_desc = #{userDesc},
+			</if>
+			<if test="userType != null and userType != ''">
+				user_type = #{userType},
+			</if>
+			<if test="userPwd != null and userPwd != ''">
+				user_pwd = #{userPwd},
+			</if>
+
+			<if test="salt != null and salt != ''">
+				salt = #{salt},
+			</if>
+
+			<if test="status != null and status != ''">
+				status = #{status},
+			</if>
+			<if test="updator != null and updator != ''">
+				updator = #{updator},
+			</if>
+		</set>
+		,update_date = NOW()
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		DELETE FROM tb_comment
+		WHERE id = #{id}
+	</delete>
+
+
+	<select id="findByPage" resultMap="commentResultMap" parameterType="java.lang.String">
+		<include refid="sql_select" />
+		FROM tb_comment
+		WHERE status = '1'
+		<if test="param.beginTime != null and param.beginTime !=''  ">
+       <![CDATA[
+        	AND DATE_FORMAT(create_date, '%Y-%m-%d') >=  DATE_FORMAT(#{param.beginTime}, '%Y-%m-%d')
+       ]]>
+		</if>
+		<if test="param.endTime != null and param.endTime !=''  ">
+       <![CDATA[
+        	AND DATE_FORMAT(create_date, '%Y-%m-%d') <=  DATE_FORMAT(#{param.endTime}, '%Y-%m-%d')
+       ]]>
+		</if>
+		ORDER BY create_date DESC
+	</select>
+
+
+</mapper>

@@ -9,14 +9,11 @@
 		<artifactId>ump-parent</artifactId>
 		<version>1.0</version>
 	</parent>
-	<artifactId>ump-commons</artifactId>
-	<name>ump-commons</name>
+	<artifactId>ump-core</artifactId>
+	<name>ump-core</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.ump</groupId>
-			<artifactId>ump-exception</artifactId>
-		</dependency>
+
 	</dependencies>
 </project>

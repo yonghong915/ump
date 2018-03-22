@@ -11,18 +11,31 @@
 	<url>http://maven.apache.org</url>
 	<modules>
 		<module>ump-commons</module>
+		<module>ump-core</module>
 		<module>ump-exception</module>
+		<module>ump</module>
+
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<finalName>ump</finalName>
-		<umpper.version>1.0</umpper.version>
+		<ump.version>1.0</ump.version>
 
-		<!-- spring版本 -->
-		<spring.version>4.3.0.RELEASE</spring.version>
+		<!-- spring -->
+		<spring.version>5.0.4.RELEASE</spring.version>
 		<spring-security.version>4.1.0.RELEASE</spring-security.version>
-		<!-- log4j日志文件管理 -->
-		<slf4j.version>1.7.7</slf4j.version>
+
+		<!-- mybatis -->
+		<mybatis.version>3.4.6</mybatis.version>
+		<mybatis-spring.version>1.3.2</mybatis-spring.version>
+
+
+		<!-- log4j -->
+		<slf4j.version>1.7.25</slf4j.version>
+		<logback-core.version>1.2.3</logback-core.version>
+		<logback-classic.version>1.2.3</logback-classic.version>
+		<logback-access.version>1.2.3</logback-access.version>
+
 		<log4j.version>1.2.17</log4j.version>
 		<dom4j.version>1.6.1</dom4j.version>
 
@@ -44,15 +57,9 @@
 		<dubbo.version>2.5.3</dubbo.version>
 		<mvel2.version>2.2.7.Final</mvel2.version>
 
-		<!-- mybatis版本 -->
-		<mybatis.version>3.3.1</mybatis.version>
-		<mybatis-spring.version>1.2.5</mybatis-spring.version>
+
 
 		<aspectjrt.version>1.6.9</aspectjrt.version>
-
-		<logback-core.version>1.1.7</logback-core.version>
-		<logback-classic.version>1.1.7</logback-classic.version>
-		<logback-access.version>1.1.7</logback-access.version>
 
 
 		<quartz.version>2.2.2</quartz.version>
@@ -65,12 +72,99 @@
 		<shiro.version>1.3.2</shiro.version>
 
 		<!-- ehcache -->
-		<ehcache.version>2.10.3</ehcache.version>
+		<ehcache.version>2.10.4</ehcache.version>
 
 		<java.version>1.8</java.version>
 		<mvn.plugin.version>3.6.1</mvn.plugin.version>
 	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.ump</groupId>
+				<artifactId>ump-exception</artifactId>
+				<version>${ump.version}</version>
+			</dependency>
 
+			<dependency>
+				<groupId>com.ump</groupId>
+				<artifactId>ump-core</artifactId>
+				<version>${ump.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.version}</version>
+			</dependency>
+
+			<!-- spring start -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<!-- spring end -->
+
+
+			<!-- mybatis start -->
+
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis-spring.version}</version>
+			</dependency>
+			<!-- mybatis end -->
+
+
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -84,7 +178,22 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback-classic.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
+			<version>${logback-access.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
