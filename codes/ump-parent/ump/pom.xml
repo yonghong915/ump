@@ -64,6 +64,15 @@
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 		<!-- spring end -->
+		
+			<!-- shiro start -->
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-core</artifactId>
+			</dependency>
+
+
+			<!-- shiro end -->
 
 		<!-- mybatis start -->
 		<dependency>
@@ -75,6 +84,8 @@
 			<artifactId>mybatis-spring</artifactId>
 		</dependency>
 		<!-- mybatis end -->
+		
+		
 	</dependencies>
 
 </project>
