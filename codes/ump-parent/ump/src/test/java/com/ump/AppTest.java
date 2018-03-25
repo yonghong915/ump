@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.ump.cust.model.Cust;
 import com.ump.cust.service.CustService;
 
 import junit.framework.Test;
@@ -23,12 +24,18 @@ public class AppTest extends TestCase {
 	// private CustDao custDao;
 
 	public void setUp() throws Exception {
-		String[] configLocations = new String[] { "config/spring/applicationContext-datasource.xml",
-				"config/spring/applicationContext-mybatis.xml", "config/spring/applicationContext-tx.xml" };
+		String[] configLocations = new String[] { "config/spring/applicationContext-common.xml",
+				"config/spring/applicationContext-datasource.xml", "config/spring/applicationContext-mybatis.xml",
+				"config/spring/applicationContext-tx.xml" };
 		System.out.println(System.getProperty("user.dir"));
 		appCtx = new ClassPathXmlApplicationContext(configLocations);
 		CustService custDao = (CustService) appCtx.getBean("custService");
-		System.out.println(custDao.findCustByCustCode("1234"));
+//		Cust cust = new Cust();
+//		cust.setId("33336563");
+//		cust.setCustCode("34455");
+//		cust.setCustName("andsmdg");
+//		custDao.insertCust(cust);
+		System.out.println(custDao.findCustByCustCode("34455"));
 	}
 
 	/**
