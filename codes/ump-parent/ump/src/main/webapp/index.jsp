@@ -5,8 +5,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="resources/libs/jquery/jquery-3.3.1.js"></script>
 </head>
-<body>aaaaa
-<%=System.getProperty("webapp.root") %>
+<body>
+	aaaaa
+	<%=System.getProperty("webapp.root")%>
+	<input id="btnk" value="10" />
+	<input type="button" id="btn">
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btn").click(function() {
+		alert($("#btnk").val());
+		$.ajax({
+			  type: 'POST',
+			  url: "cust/findCustByCustCode",
+			  data: {custCode:"1234"},
+			  success: function(result ){
+				  alert(JSON.stringify(result));
+			  },
+			  dataType: "json"
+			});
+		$("#btnk").val("hello")
+	});
+});
+	
+</script>
+
 </html>

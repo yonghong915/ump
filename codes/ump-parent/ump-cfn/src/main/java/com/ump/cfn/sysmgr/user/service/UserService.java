@@ -1,6 +1,6 @@
-package com.ump.cfn.user.service;
+package com.ump.cfn.sysmgr.user.service;
 
-import com.ump.cfn.user.model.User;
+import com.ump.cfn.sysmgr.user.model.User;
 
 public interface UserService {
 

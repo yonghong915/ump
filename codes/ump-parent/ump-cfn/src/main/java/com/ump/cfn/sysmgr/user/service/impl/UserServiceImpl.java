@@ -1,9 +1,10 @@
-package com.ump.cfn.user.service.impl;
+package com.ump.cfn.sysmgr.user.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.ump.cfn.user.model.User;
-import com.ump.cfn.user.service.UserService;
+import com.ump.cfn.sysmgr.user.model.User;
+import com.ump.cfn.sysmgr.user.service.UserService;
+
 
 
 @Service("userService")
