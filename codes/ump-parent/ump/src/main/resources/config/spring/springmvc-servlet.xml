@@ -19,9 +19,7 @@
 	<context:annotation-config />
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<!-- 对静态资源文件的访问 restful -->
-	<mvc:resources mapping="/resources/**" location="/,/resources/" />
-
-
+	<mvc:resources location="/,/resources/" mapping="/resources/**" />
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
 			<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
@@ -59,4 +57,12 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- 开启shiro注解 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
 </beans>  

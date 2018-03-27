@@ -12,7 +12,11 @@ import lombok.Setter;
 public class User {
 	@Getter
 	@Setter
-	private String userId;
+	private String id;
+
+	@Getter
+	@Setter
+	private String userName;
 
 	@Getter
 	@Setter(AccessLevel.PROTECTED)

@@ -5,11 +5,24 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.StringUtils;
+import org.ump.exception.BusinessException;
 
 /**
  * 利用反射进行操作的一个工具类
  */
 public class ReflectUtil {
+
+	public static Object getInstanceObj(String className) {
+		if (CommUtils.isEmpty(className)) {
+			return null;
+		}
+		try {
+			return Class.forName(className).newInstance();
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			throw new BusinessException("Reflect Object error:", e);
+		}
+	}
+
 	/**
 	 * 利用反射获取指定对象的指定属性
 	 * 
@@ -89,20 +102,21 @@ public class ReflectUtil {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	public static void copyPorperties(Object dest, Object source) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public static void copyPorperties(Object dest, Object source)
+			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Class<?> srcCla = source.getClass();
 		Field[] fsF = srcCla.getDeclaredFields();
 
-//		for (Field s : fsF) {
-//			String name = s.getName();
-//			Object srcObj = invokeGetterMethod(source, name);
-//			try {
-//				BeanUtils.setProperty(dest, name, srcObj);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//
-//		}
+		// for (Field s : fsF) {
+		// String name = s.getName();
+		// Object srcObj = invokeGetterMethod(source, name);
+		// try {
+		// BeanUtils.setProperty(dest, name, srcObj);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		//
+		// }
 	}
 
 	/**
@@ -125,12 +139,13 @@ public class ReflectUtil {
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
-	public static Object invokeMethod(final Object object, final String methodName, final Class<?>[] parameterTypes, final Object[] parameters)
+	public static Object invokeMethod(final Object object, final String methodName, final Class<?>[] parameterTypes,
+			final Object[] parameters)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Method method = getDeclaredMethod(object, methodName, parameterTypes);
 		if (method == null) {
-			throw new IllegalArgumentException(
-					"Could not find method [" + methodName + "] parameterType " + parameterTypes + " on target [" + object + "]");
+			throw new IllegalArgumentException("Could not find method [" + methodName + "] parameterType "
+					+ parameterTypes + " on target [" + object + "]");
 		}
 
 		method.setAccessible(true);
@@ -143,9 +158,10 @@ public class ReflectUtil {
 	 * 如向上转型到Object仍无法找到, 返回null.
 	 */
 	protected static Method getDeclaredMethod(Object object, String methodName, Class<?>[] parameterTypes) {
-		//Assert.notNull(object, "object不能为空");
+		// Assert.notNull(object, "object不能为空");
 
-		for (Class<?> superClass = object.getClass(); superClass != Object.class; superClass = superClass.getSuperclass()) {
+		for (Class<?> superClass = object.getClass(); superClass != Object.class; superClass = superClass
+				.getSuperclass()) {
 			try {
 				return superClass.getDeclaredMethod(methodName, parameterTypes);
 			} catch (NoSuchMethodException e) {// NOSONAR
