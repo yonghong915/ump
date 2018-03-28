@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="resources/libs/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="resources/scripts/ump.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="text" data-resId="test.do" />
+	<input type="button" data-resId="test.do" value="submit">
+	<div id="myDiv" data-appid="123" data-myname="lsxj" data-app-id="456" data-my-name="secondname"></div>
+</body>
+
+<script type="text/javascript">
+	$(function() {
+		initMain();
+	})
+	$J.parse();
+	function initMain() {
+		if (ump.enableResAuth) {
+			ump.loadAuthResList();
+		}
+
+	}
+</script>
+</html>
