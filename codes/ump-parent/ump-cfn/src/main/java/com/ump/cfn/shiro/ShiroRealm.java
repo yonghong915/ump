@@ -33,7 +33,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	private UserService userService;
 
 	/**
-	 * 登录信息和用户验证信息验证
+	 * 登录认证:登录信息和用户验证信息验证
 	 */
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authToken) throws AuthenticationException {
 		// 获取基于用户名和密码的令牌
@@ -41,9 +41,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		UsernamePasswordToken token = (UsernamePasswordToken) authToken;
 		AuthenticationInfo authenticationInfo = null;
 		String username = new String(token.getUsername());// 用户名
-		//String username = (String) token.getPrincipal();  
-        System.out.println("pwd:"+token.getCredentials().toString());  
-        logger.info("[用户:" + username + "|系统权限认证]");  
+		// String username = (String) token.getPrincipal();
+		System.out.println("pwd:" + token.getCredentials().toString());
+		logger.info("[用户:" + username + "|系统权限认证]");
 		// if (CommUtils.isEmpty(username)) {
 		// throw new BusinessException(StatusCode.USER_NAME_EMPTY.code());
 		// }
@@ -64,9 +64,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		// authenticationInfo = new SimpleAuthenticationInfo(user.getUserCode(),
 		// password, getName());
 		// this.setSession(Constants.SESSION_USER, user);
-        
-        //ByteSource.Util.bytes(sqluser.getCredentialsSalt()), this.getName());// realm  
-        logger.info("[用户:" + username + "|系统权限认证完成]");
+
+		// ByteSource.Util.bytes(sqluser.getCredentialsSalt()), this.getName());// realm
+		logger.info("[用户:" + username + "|系统权限认证完成]");
 		return authenticationInfo;
 		// } else {
 		// throw new
@@ -76,13 +76,13 @@ public class ShiroRealm extends AuthorizingRealm {
 	}
 
 	/**
-	 * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用,负责在应用程序中决定用户的访问控制的方法
+	 * 权限认证: 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用,负责在应用程序中决定用户的访问控制的方法
 	 */
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// 直接调用getPrimaryPrincipal得到之前传入的用户名
 		User user = (User) principals.getPrimaryPrincipal();
 		logger.info("[用户:" + user.getUserName() + "|权限授权]");
-
+		String loinname = (String) principals.fromRealm(getName()).iterator().next();
 		// 因为非正常退出，即没有显式调用 SecurityUtils.getSubject().logout()
 		// (可能是关闭浏览器，或超时)，但此时缓存依旧存在(principals)，所以会自己跑到授权方法里。
 		if (!SecurityUtils.getSubject().isAuthenticated()) {
@@ -92,8 +92,8 @@ public class ShiroRealm extends AuthorizingRealm {
 		}
 		SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
 		// 根据用户名调用UserService接口获取角色及权限信息
-//		authInfo.setRoles(roleService.loadRoleIdByUsername(user.getUsername()));
-//		authInfo.setStringPermissions(resourceService.loadPermissionsByUsername(user.getUsername()));
+		// authInfo.setRoles(roleService.loadRoleIdByUsername(user.getUsername()));
+		// authInfo.setStringPermissions(resourceService.loadPermissionsByUsername(user.getUsername()));
 		logger.info("[用户:" + user.getUserName() + "|权限授权完成]");
 		return authInfo;
 	}
