@@ -7,18 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<input type="text" data-resId="test.do" />
-	<input type="button" data-resId="test.do" value="submit">
+	<input type="text" data-resId="test1.do" />
+	<input type="button" data-resId="test1.do" value="submit">
 	<div id="myDiv" data-appid="123" data-myname="lsxj" data-app-id="456" data-my-name="secondname"></div>
 </body>
 
 <script type="text/javascript">
 	$(function() {
 		initMain();
+		$J.parse();
 	})
-	$J.parse();
+	
 	function initMain() {
 		if (ump.enableResAuth) {
+			var arr = new Array();
+			window[GLOBAL_CONTEXT] = arr;
 			ump.loadAuthResList();
 		}
 

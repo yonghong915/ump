@@ -141,6 +141,26 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-protobuf</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-stub -->
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-stub</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-all -->
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-all</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.grpc/grpc-core -->
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-core</artifactId>
+		</dependency>
 
 	</dependencies>
 </project>
