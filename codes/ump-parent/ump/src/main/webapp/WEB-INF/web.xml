@@ -11,7 +11,7 @@
 	<!-- 设置Spring容器加载配置文件路径 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:config/spring/applicationContext-*.xml,classpath:config/spring/springmvc-servlet.xml</param-value>
+		<param-value>classpath*:config/spring/applicationContext-*.xml</param-value>
 	</context-param>
 
 	<!-- 加载Spring容器配置,容器启动和关闭 -->
@@ -35,6 +35,41 @@
 		<listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
 	</listener>
 
+	<!-- 配置Spring核心控制器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/spring/springmvc-servlet.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detectAllHandlerExceptionResolvers</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- shiro的Filter -->
+	<filter>
+		<!-- 去spring配置文件中寻找同名bean -->
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- 解决工程编码过滤器 -->
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
@@ -55,35 +90,7 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
-	<!-- shiro的Filter -->
-	<filter>
-		<!-- 去spring配置文件中寻找同名bean -->
-		<filter-name>shiroFilter</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>shiroFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<!-- 配置Spring核心控制器 -->
-	<servlet>
-		<servlet-name>springmvc</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:config/spring/springmvc-servlet.xml</param-value>
-		</init-param>
-		<init-param>
-			<param-name>detectAllHandlerExceptionResolvers</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
 
-	<servlet-mapping>
-		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
 
 	<error-page>
 		<error-code>404</error-code>

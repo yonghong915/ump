@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans    
                         http://www.springframework.org/schema/beans/spring-beans.xsd ">
 
-	<!-- 加载配置JDBC文件 <context:property-placeholder location="classpath:config/database.properties,classpath:config/env.properties" 
-		/> -->
-	<bean id="propertyConfigurer"
-		class="com.ump.core.util.EncryptPropertyPlaceholderConfigurer">
+	<!-- 加载配置JDBC文件 <context:property-placeholder location="classpath:config/database.properties,classpath:config/env.properties" /> -->
+	<bean id="propertyConfigurer" class="com.ump.core.util.EncryptPropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
 		<property name="encryptedProps">
 			<list>
 				<value>jdbc.username</value>
@@ -23,9 +21,7 @@
 	</bean>
 
 	<!-- 配置DataSource数据源 -->
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />

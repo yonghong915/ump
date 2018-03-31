@@ -16,9 +16,15 @@ public class User {
 
 	@Getter
 	@Setter
-	private String userName;
+	private String username;
 
+	@Getter
+	@Setter
+	private String userCode;
 	@Getter
 	@Setter(AccessLevel.PROTECTED)
 	private String userPwd;
+	@Getter
+	@Setter(AccessLevel.PROTECTED)
+	private String salt;
 }
