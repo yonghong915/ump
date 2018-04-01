@@ -1,17 +1,18 @@
 package com.ump.cfn.sysmgr.user.controller;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.ump.cfn.sysmgr.user.model.User;
 import com.ump.core.base.controller.BaseCtrler;
 import com.ump.core.util.web.AjaxRsp;
-import com.ump.core.util.web.StatusCode;
 
 @Controller
 @RequestMapping("/login")
@@ -38,9 +39,12 @@ public class LoginCtrler extends BaseCtrler<User> {
 	 * 请求登录，验证用户
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	@ResponseBody
-	public AjaxRsp login(String params) throws Exception {
-		logger.info("login->params={}", params);
+	public String login(String username, HttpServletRequest request) throws Exception {
+		logger.info("login->params={}", username);
+		String paramss = request.getParameter("username");
+		Subject subject = SecurityUtils.getSubject();
+		Object obj = subject.getPrincipal();
+		// UsernamePasswordToken token = new UsernamePasswordToken(userName,password);
 		// HttpSession sessions = getSession();
 		//
 		// String secureKey = (String) sessions.getAttribute("secureKey");
@@ -60,22 +64,15 @@ public class LoginCtrler extends BaseCtrler<User> {
 		// sessions.removeAttribute("secureIv");
 		AjaxRsp ar = new AjaxRsp();
 		ar.setRspObj("true");
-		return ar;
+		return "index";
 	}
 
-	@RequestMapping("/toLoginSuccess")
-	public String toLoginSuccess() throws Exception {
-		logger.info("loginIndex->access login page");
-		ModelAndView mv = new ModelAndView();
-		// HttpSession session = getSession();
-		//
-		// String secureKey = EncryptAES.getSecretkey();
-		// String secureIv = EncryptAES.getSecretIV();
-		// logger.info("encryped:[secureKey={},secureIv={}]", secureKey, secureIv);
-		// session.setAttribute("secureKey", secureKey);
-		// session.setAttribute("secureIv", secureIv);
-		// mv.addObject("secureKey", secureKey);
-		// mv.addObject("secureIv", secureIv);
-		return "index";
+	/**
+	 * 用户登出
+	 */
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		SecurityUtils.getSubject().logout();
+		return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/";
 	}
 }

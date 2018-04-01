@@ -13,40 +13,6 @@
 	http://www.springframework.org/schema/jdbc
 	http://www.springframework.org/schema/context/spring-jdbc.xsd">
 
-	<!-- 配置Shiro核心Filter -->
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<!-- 安全管理器 -->
-		<property name="securityManager" ref="securityManager" />
-		<!-- 未认证，跳转到哪个页面 -->
-		<property name="loginUrl" value="/login/loginIndex" /><!-- ${ca.server.url} -->
-		<!-- 登录页面页面 -->
-		<property name="successUrl" value="/login/toLoginSuccess" />
-		<!-- 认证后，没有权限跳转页面 -->
-		<property name="unauthorizedUrl" value="/unauthorized" />
-
-		<!-- shiro URL控制过滤器规则 -->
-		<!--<property name="filterChainDefinitions" ref="shiroFilterChainDefinitions" /> -->
-		<property name="filterChainDefinitions">
-			<value>
-				/resources/** = anon
-				/authc/** = authc
-				/** = anon
-			</value>
-		</property>
-	</bean>
-
-	<!-- Shiro权限过滤过滤器定义 -->
-	<!-- WEB-INF/views/admin 文件夹下的所有jsp页面都需要授权才能访问 -->
-	<bean name="shiroFilterChainDefinitions" class="java.lang.String">
-		<constructor-arg>
-			<value>
-				/login/login = anon
-				/images/** = anon
-				/resources/** = anon
-				/** = authc
-			</value>
-		</constructor-arg>
-	</bean>
 	<!-- 配置权限管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- ref对应我们写的realm MyShiro -->
@@ -60,7 +26,63 @@
 
 	</bean>
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+	<!-- 配置Shiro核心Filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 安全管理器 -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 未认证，跳转到哪个页面 -->
+		<property name="loginUrl" value="/login/loginIndex" /><!-- ${ca.server.url} -->
+		<!-- 登录页面页面 -->
+		<property name="successUrl" value="/backstage/index" />
+		<!-- 认证后，没有权限跳转页面 -->
+		<property name="unauthorizedUrl" value="/login/loginIndex" />
+
+		<!-- shiro URL控制过滤器规则 -->
+		<!--<property name="filterChainDefinitions" ref="shiroFilterChainDefinitions" /> -->
+
+
+		<!-- <property name="filterChainDefinitionMap" ref="filterChainDefinitionMap" />/** = authc -->
+		<property name="filterChainDefinitions">
+			<value>
+			    /login/login = anon
+				/static/js/system/login/** = anon
+				/static/js/system/** = authc
+				/resources/** = anon
+				/favicon.ico = anon
+				/verifyCode/** = anon
+				/system_login = anon
+				/exterInt/** = anon
+				/weixin/** = anon
+				/upload/** = anon
+				/** = anon
+			</value>
+		</property>
+	</bean>
+	<bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap"></bean>
+	<bean id="filterChainDefinitionMapBuilder" class="com.ump.cfn.shiro.FilterChainDefinitionMapBuilder" />
+
+	<!-- Shiro权限过滤过滤器定义 -->
+	<!-- WEB-INF/views/admin 文件夹下的所有jsp页面都需要授权才能访问 -->
+	<bean name="shiroFilterChainDefinitions" class="java.lang.String">
+		<constructor-arg>
+			<value>
+				/login/login = anon
+				/login = anon
+				/login/** = anon
+				/images/** = anon
+				/resources/** = anon
+				/** = authc
+			</value>
+		</constructor-arg>
+	</bean>
+
 	<!-- 配置lifecycleBeanPostProcessor， 可以自动的来调用配置在spring IOC 容器中shiro bean的生命周期方法 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
-
+	<!-- AOP式方法级权限检查 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<!--  <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>-->
 </beans>
