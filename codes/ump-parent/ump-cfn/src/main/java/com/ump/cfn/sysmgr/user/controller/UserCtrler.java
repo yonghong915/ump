@@ -1,5 +1,8 @@
 package com.ump.cfn.sysmgr.user.controller;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +21,13 @@ public class UserCtrler extends BaseCtrler<User> {
 	private UserService userService;
 
 	@RequestMapping(value = "findByPage", method = RequestMethod.POST)
+	@RequiresPermissions("/findByPage")
 	@ResponseBody
 	public String findByPage(Model model) {
 		logger.info("index......");
+		Subject subject = SecurityUtils.getSubject();
+		Object obj = subject.getPrincipal();
+		boolean auth = subject.isAuthenticated();
 		return "index";
 	}
 }

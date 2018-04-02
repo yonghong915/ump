@@ -15,7 +15,7 @@
 	</context-param>
 
 
-	<!-- shiro的Filter 
+	<!-- shiro的Filter -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -29,7 +29,7 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
-	</filter-mapping>-->
+	</filter-mapping>
 
 	<!-- 解决工程编码过滤器 -->
 	<filter>

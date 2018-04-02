@@ -3,6 +3,7 @@ package com.ump.cfn.sysmgr.user.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,12 +40,14 @@ public class LoginCtrler extends BaseCtrler<User> {
 	 * 请求登录，验证用户
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String username, HttpServletRequest request) throws Exception {
+	public String login(String username, User user, HttpServletRequest request) throws Exception {
 		logger.info("login->params={}", username);
 		String paramss = request.getParameter("username");
 		Subject subject = SecurityUtils.getSubject();
 		Object obj = subject.getPrincipal();
-		// UsernamePasswordToken token = new UsernamePasswordToken(userName,password);
+		UsernamePasswordToken token = new UsernamePasswordToken(username, "123456");
+		subject.login(token);
+		request.getSession().setAttribute("user", user);
 		// HttpSession sessions = getSession();
 		//
 		// String secureKey = (String) sessions.getAttribute("secureKey");
@@ -62,6 +65,9 @@ public class LoginCtrler extends BaseCtrler<User> {
 
 		// sessions.removeAttribute("secureKey");
 		// sessions.removeAttribute("secureIv");
+		//// 权限校验。判断是否包含权限。
+		String url = "/login/login";
+		boolean isPermitted = subject.isPermitted(url);
 		AjaxRsp ar = new AjaxRsp();
 		ar.setRspObj("true");
 		return "index";
@@ -73,6 +79,7 @@ public class LoginCtrler extends BaseCtrler<User> {
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		SecurityUtils.getSubject().logout();
+		// request.getSession().invalidate();
 		return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/";
 	}
 }

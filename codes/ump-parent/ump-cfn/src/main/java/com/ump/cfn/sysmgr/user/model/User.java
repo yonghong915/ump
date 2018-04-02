@@ -1,6 +1,5 @@
 package com.ump.cfn.sysmgr.user.model;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,9 +21,9 @@ public class User {
 	@Setter
 	private String userCode;
 	@Getter
-	@Setter(AccessLevel.PROTECTED)
+	@Setter
 	private String userPwd;
 	@Getter
-	@Setter(AccessLevel.PROTECTED)
+	@Setter
 	private String salt;
 }

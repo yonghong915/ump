@@ -20,6 +20,7 @@
 	<!-- 启用spring mvc 注解 -->
 	<context:annotation-config />
 	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<aop:config proxy-target-class="true" />
 	<!-- 对静态资源文件的访问 restful -->
 	<mvc:resources location="/,/resources/" mapping="/resources/**" />
 	<mvc:annotation-driven>
@@ -91,5 +92,13 @@
 		<property name="requestContextAttribute" value="request" />
 		<!-- 给视图解析器配置优先級，你可以给之前jsp视图解析器的值配为2 -->
 		<property name="order" value="1" />
+	</bean>
+
+	<!-- AOP式方法级权限检查 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
 	</bean>
 </beans>  

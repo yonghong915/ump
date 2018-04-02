@@ -50,8 +50,8 @@ public class ShiroRealm extends AuthorizingRealm {
 
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// 直接调用getPrimaryPrincipal得到之前传入的用户名
-		User user = (User) principals.getPrimaryPrincipal();
-		logger.info("[用户:" + user.getUsername() + "|权限授权]");
+		String username = (String) principals.getPrimaryPrincipal();
+		logger.info("[用户:" + username + "|权限授权]");
 		String loinname = (String) principals.fromRealm(getName()).iterator().next();
 		// 因为非正常退出，即没有显式调用 SecurityUtils.getSubject().logout()
 		// (可能是关闭浏览器，或超时)，但此时缓存依旧存在(principals)，所以会自己跑到授权方法里。
@@ -62,9 +62,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		}
 		SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
 		// 根据用户名调用UserService接口获取角色及权限信息
-		authInfo.setRoles(roleService.loadRoleIdByUsername(user.getUsername()));
-		authInfo.setStringPermissions(resourceService.loadPermissionsByUsername(user.getUsername()));
-		logger.info("[用户:" + user.getUsername() + "|权限授权完成]");
+		authInfo.setRoles(roleService.loadRoleIdByUsername(username));
+		authInfo.setStringPermissions(resourceService.loadPermissionsByUsername(username));
+		logger.info("[用户:" + username + "|权限授权完成]");
 		return authInfo;
 	}
 
@@ -94,9 +94,13 @@ public class ShiroRealm extends AuthorizingRealm {
 			throw new BusinessException("");
 		}
 		/* 组合username,两次迭代，对密码进行加密 */
-		String pwdEncrypt = CipherUtils.createEncryptPwd(username, password, user.getSalt());
+		// String pwdEncrypt = CipherUtils.createEncryptPwd(username, password,
+		// user.getSalt());
+		String pwdEncrypt = "123456";
 		if (userPwd.equals(pwdEncrypt)) {
-			authenticationInfo = new SimpleAuthenticationInfo(user.getUserCode(), password, getName());
+			authenticationInfo = new SimpleAuthenticationInfo(user.getUserCode(), user.getUserPwd(), getName());
+			// authenticationInfo = new SimpleAuthenticationInfo(username, password,
+			// getName());
 			this.setSession("session_user", user);
 
 			// ByteSource.Util.bytes(sqluser.getCredentialsSalt()), this.getName());// realm
