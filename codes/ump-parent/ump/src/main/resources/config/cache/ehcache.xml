@@ -13,8 +13,8 @@
 		* 共有三种策略,分别为LRU(最近最少使用)、LFU(最常用的)、FIFO(先进先出) -->
 
 	<!-- 注意，以下缓存是永久有效，是系统初始化数据到缓存中，如果不需要永久有效，请另写，或在 -->
-	<!-- <defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true" maxElementsOnDisk="10000000" 
-		diskPersistent="false" diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU" /> -->
+	<defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true"
+		maxElementsOnDisk="10000000" diskPersistent="false" diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU" />
 	<!-- 密码输入错误 锁定1小时 -->
 	<!-- timeToIdleSeconds:设置对象在失效前的允许闲置时间（单位：秒） -->
 	<!-- timeToLiveSeconds:设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。 -->

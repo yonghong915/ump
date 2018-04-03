@@ -1,4 +1,4 @@
-package com.ump.cfn.shiro;
+package com.ump.cfn.shiro.service.impl;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -25,16 +25,15 @@ import com.ump.cfn.sysmgr.role.service.RoleService;
 import com.ump.cfn.sysmgr.user.model.User;
 import com.ump.cfn.sysmgr.user.service.UserService;
 import com.ump.commons.CommUtils;
-import com.ump.commons.crypto.CipherUtils;
 
 /**
  * 
  * @author fangyh
- * @date 2017-04-23 19:55:05
+ * @date 2018-04-02 19:55:05
  * @version 1.0
  */
 @Service
-public class ShiroRealm extends AuthorizingRealm {
+public class UserRealm extends AuthorizingRealm {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private UserService userService;
@@ -43,30 +42,6 @@ public class ShiroRealm extends AuthorizingRealm {
 
 	@Autowired
 	private ResourceService resourceService;
-
-	/**
-	 * 权限认证: 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用,负责在应用程序中决定用户的访问控制的方法
-	 */
-
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		// 直接调用getPrimaryPrincipal得到之前传入的用户名
-		String username = (String) principals.getPrimaryPrincipal();
-		logger.info("[用户:" + username + "|权限授权]");
-		String loinname = (String) principals.fromRealm(getName()).iterator().next();
-		// 因为非正常退出，即没有显式调用 SecurityUtils.getSubject().logout()
-		// (可能是关闭浏览器，或超时)，但此时缓存依旧存在(principals)，所以会自己跑到授权方法里。
-		if (!SecurityUtils.getSubject().isAuthenticated()) {
-			doClearCache(principals);
-			SecurityUtils.getSubject().logout();
-			return null;
-		}
-		SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
-		// 根据用户名调用UserService接口获取角色及权限信息
-		authInfo.setRoles(roleService.loadRoleIdByUsername(username));
-		authInfo.setStringPermissions(resourceService.loadPermissionsByUsername(username));
-		logger.info("[用户:" + username + "|权限授权完成]");
-		return authInfo;
-	}
 
 	/**
 	 * 登录认证:登录信息和用户验证信息验证
@@ -109,6 +84,30 @@ public class ShiroRealm extends AuthorizingRealm {
 		} else {
 			throw new IncorrectCredentialsException("");
 		}
+	}
+
+	/**
+	 * 权限认证: 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用,负责在应用程序中决定用户的访问控制的方法
+	 */
+
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		// 直接调用getPrimaryPrincipal得到之前传入的用户名
+		String username = (String) principals.getPrimaryPrincipal();
+		logger.info("[用户:" + username + "|权限授权]");
+		String loinname = (String) principals.fromRealm(getName()).iterator().next();
+		// 因为非正常退出，即没有显式调用 SecurityUtils.getSubject().logout()
+		// (可能是关闭浏览器，或超时)，但此时缓存依旧存在(principals)，所以会自己跑到授权方法里。
+		if (!SecurityUtils.getSubject().isAuthenticated()) {
+			doClearCache(principals);
+			SecurityUtils.getSubject().logout();
+			return null;
+		}
+		SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
+		// 根据用户名调用UserService接口获取角色及权限信息
+		authInfo.setRoles(roleService.loadRoleIdByUsername(username));
+		authInfo.setStringPermissions(resourceService.loadPermissionsByUsername(username));
+		logger.info("[用户:" + username + "|权限授权完成]");
+		return authInfo;
 	}
 
 	/**
