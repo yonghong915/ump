@@ -24,7 +24,11 @@
 		</property>
 		<!-- 使用下面配置的缓存管理器 -->
 		<property name="cacheManager" ref="cacheManager" />
+
+		<!-- <property name="sessionManager" ref="sessionManager" /> <property name="rememberMeManager" ref="rememberMeManager" /> -->
 	</bean>
+	<!-- <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager"> <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('2AvVhdsgUs0FSA3SDFAdag==')}" 
+		/> <property name="cookie" ref="rememberMeCookie" /> </bean> -->
 
 
 	<!-- Realm实现 -->
@@ -37,8 +41,7 @@
 		<!-- 未认证，跳转到哪个页面 -->
 		<property name="loginUrl" value="/login/loginIndex" /><!-- ${ca.server.url} -->
 
-		<!-- 登录成功后要跳转的连接(本例中此属性用不到，因为登录成功后的处理逻辑在LoginController里硬编码) -->
-		<property name="successUrl" value="/backstage/user/index" />
+		<!-- 登录成功后要跳转的连接(本例中此属性用不到，因为登录成功后的处理逻辑在LoginController里硬编码) <property name="successUrl" value="/backstage/user/index" /> -->
 		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
 		<property name="unauthorizedUrl" value="/unauthorized" />
 

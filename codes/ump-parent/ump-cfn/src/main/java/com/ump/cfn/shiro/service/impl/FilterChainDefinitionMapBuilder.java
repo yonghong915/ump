@@ -9,7 +9,7 @@ public class FilterChainDefinitionMapBuilder {
 		hashMap.put("/resources/scripts/**", "anon");
 		hashMap.put("/resources/styles/**", "anon");
 		hashMap.put("/resources/images/**", "anon");
-		hashMap.put("/login/login", "authc");
+		hashMap.put("/login/login", "anon");
 		hashMap.put("/**", "authc");
 		return hashMap;
 	}

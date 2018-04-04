@@ -36,6 +36,8 @@ public class UserServiceImpl implements UserService {
 		if (!currentUser.isAuthenticated()) {
 			token.clear();
 		}
+		
+		
 		return sc;
 	}
 

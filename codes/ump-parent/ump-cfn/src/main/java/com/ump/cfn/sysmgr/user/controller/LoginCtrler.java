@@ -42,14 +42,13 @@ public class LoginCtrler extends BaseCtrler<User> {
 	 * 请求登录，验证用户
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	@ResponseBody
-	public AjaxRsp login(String username, User user, HttpServletRequest request) throws Exception {
+	public String login(String username, User user, HttpServletRequest request) throws Exception {
 		logger.info("login->params={}", username);
 		String password = "123456";
 		String verifyCode = "123456";
 		StatusCode sc = userService.login(username, password, verifyCode);
 		AjaxRsp ar = new AjaxRsp(sc);
-		return ar;
+		return "index";
 	}
 
 	/**
