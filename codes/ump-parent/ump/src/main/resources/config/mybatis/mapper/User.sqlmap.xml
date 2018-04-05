@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.ump.cfn.sysmgr.user.dao.UserDao">
+	<resultMap type="com.ump.cfn.sysmgr.user.model.User" id="userResultMap" extends="com.ump.core.base.dao.IBaseDao.baseResultMap">
+		<result column="user_code" property="userCode" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+		<result column="user_desc" property="userDesc" jdbcType="VARCHAR" />
+		<result column="user_type" property="custType" jdbcType="CHAR" />
+	</resultMap>
+
+	<sql id="sql_select">
+		SELECT pid,user_code,
+		user_name,
+		user_pwd,
+		salt,
+		user_desc
+	</sql>
+
+	<select id="queryUser" resultMap="userResultMap" parameterType="java.util.Map">
+		<include refid="sql_select" />
+		FROM sys_user
+		WHERE user_code = #{userCode}
+	</select>
+
+</mapper>

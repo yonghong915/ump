@@ -20,24 +20,27 @@ public class BaseObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Getter
 	@Setter
-	private String id;
-	
+	private String pid;
+
+	/**
+	 * 1deleted,0 no delete
+	 */
 	@Getter
 	@Setter
-	private String status;
-	
+	private String deleteFlag = "0";
+
 	@Getter
 	@Setter
 	private String creator;
-	
+
 	@Getter
 	@Setter
 	private Timestamp createDate;
-	
+
 	@Getter
 	@Setter
 	private String updator;
-	
+
 	@Getter
 	@Setter
 	private Timestamp updateDate;

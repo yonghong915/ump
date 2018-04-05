@@ -12,8 +12,8 @@
 <body>
 	<div>
 	   <form action="<%=request.getContextPath()%>/login/login" method="post">
-	      username: <input type="text" name="username"/>
-	      password: <input type="text" name="password"/>
+	      username: <input type="text" name="userName"/>
+	      password: <input type="text" name="userPwd"/>
 	      <input type="submit" value="submit"/>
 	   </form>
 	

@@ -10,10 +10,12 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,41 +51,33 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authToken) throws AuthenticationException {
 		// 获取基于用户名和密码的令牌
 		// 实际上这个authcToken是从LoginController里面currentUser.login(token)传过来的
+		logger.info("shiro 用户登录认证");
 		UsernamePasswordToken token = (UsernamePasswordToken) authToken;
-		AuthenticationInfo authenticationInfo = null;
+		SimpleAuthenticationInfo authenticationInfo = null;
 		String username = token.getUsername();// 用户名
-		// String username = (String) token.getPrincipal();
-		System.out.println("pwd:" + token.getCredentials().toString());
-		logger.info("[用户:" + username + "|系统权限认证]");
-		if (CommUtils.isEmpty(username)) {
-			throw new BusinessException("");
+		if (CommUtils.isEmpty(username) || "unknown".equals(username)) {
+			throw new UnknownAccountException("登录用户名为空值");
 		}
 		String password = new String(token.getPassword());// 密码
+		if (CommUtils.isEmpty(password)) {
+			throw new BusinessException("登录密码为空值");
+		}
+
 		User user = userService.findUserByUserCode(username);
 		if (null == user) {
-			throw new UnknownAccountException("");
+			throw new BusinessException("用户【" + username + "】不存在");
 		}
 
 		String userPwd = user.getUserPwd();
 		if (CommUtils.isEmpty(userPwd)) {
-			throw new BusinessException("");
+			throw new BusinessException("系统存储密码为空值");
 		}
-		/* 组合username,两次迭代，对密码进行加密 */
-		// String pwdEncrypt = CipherUtils.createEncryptPwd(username, password,
-		// user.getSalt());
-		String pwdEncrypt = "123456";
-		if (userPwd.equals(pwdEncrypt)) {
-			authenticationInfo = new SimpleAuthenticationInfo(user.getUserCode(), user.getUserPwd(), getName());
-			// authenticationInfo = new SimpleAuthenticationInfo(username, password,
-			// getName());
-			this.setSession("session_user", user);
 
-			// ByteSource.Util.bytes(sqluser.getCredentialsSalt()), this.getName());// realm
-			logger.info("[用户:" + username + "|系统权限认证完成]");
-			return authenticationInfo;
-		} else {
-			throw new IncorrectCredentialsException("");
-		}
+		authenticationInfo = new SimpleAuthenticationInfo(user.getUserCode(), user.getUserPwd(), getName());
+		authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(user.getSalt()));
+		this.setSession("sessionUser", user);
+		logger.info("[用户:" + username + "|系统权限认证完成]");
+		return authenticationInfo;
 	}
 
 	/**
@@ -93,6 +87,10 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// 直接调用getPrimaryPrincipal得到之前传入的用户名
 		String username = (String) principals.getPrimaryPrincipal();
+		if (CommUtils.isEmpty(username)) {
+			throw new BusinessException("登录用户名为空值");
+		}
+		
 		logger.info("[用户:" + username + "|权限授权]");
 		String loinname = (String) principals.fromRealm(getName()).iterator().next();
 		// 因为非正常退出，即没有显式调用 SecurityUtils.getSubject().logout()
@@ -123,5 +121,13 @@ public class UserRealm extends AuthorizingRealm {
 				session.setAttribute(key, value);
 			}
 		}
+	}
+
+	public static void main(String[] args) {
+		String hashAlgorithmName = "MD5";
+		String credentials = "123456";
+		int hashIterations = 2;
+		Object obj = new SimpleHash(hashAlgorithmName, credentials, null, hashIterations);
+		System.out.println(obj);
 	}
 }

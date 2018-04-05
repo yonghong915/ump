@@ -1,6 +1,5 @@
 package com.ump;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**

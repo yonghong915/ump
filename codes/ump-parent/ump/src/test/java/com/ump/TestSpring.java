@@ -1,7 +1,6 @@
 package com.ump;
 
 
-import com.ump.commons.crypto.DESUtils;
 
 public class TestSpring {
 
@@ -17,9 +16,9 @@ public class TestSpring {
 		// appCtx = new FileSystemXmlApplicationContext(configLocations);
 		//StatusCode sc = StatusCode.valueOf("SUCCESS");
 		//System.out.println(sc.name()+" "+sc.code()+" "+sc.message());
-		System.out.println(DESUtils.encrypt("umpdbuser"));
-		System.out.println(DESUtils.encrypt("umpdbuser1234"));
-		System.out.println(DESUtils.decrypt("vIJyoAVNfHu8emfVRoIAjw"));
+//		System.out.println(DESUtils.encrypt("umpdbuser"));
+//		System.out.println(DESUtils.encrypt("umpdbuser1234"));
+//		System.out.println(DESUtils.decrypt("vIJyoAVNfHu8emfVRoIAjw"));
 	}
 
 }

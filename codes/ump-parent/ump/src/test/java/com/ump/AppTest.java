@@ -5,7 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ump.cust.model.Cust;
+import com.ump.cfn.sysmgr.user.model.User;
+import com.ump.cfn.sysmgr.user.service.UserService;
 import com.ump.cust.service.CustService;
 
 import junit.framework.Test;
@@ -29,13 +30,9 @@ public class AppTest extends TestCase {
 				"config/spring/applicationContext-tx.xml" };
 		System.out.println(System.getProperty("user.dir"));
 		appCtx = new ClassPathXmlApplicationContext(configLocations);
-		CustService custDao = (CustService) appCtx.getBean("custService");
-//		Cust cust = new Cust();
-//		cust.setId("33336563");
-//		cust.setCustCode("34455");
-//		cust.setCustName("andsmdg");
-//		custDao.insertCust(cust);
-		System.out.println(custDao.findCustByCustCode("34455"));
+		UserService srv = (UserService) appCtx.getBean("userService");
+		User usr = srv.findUserByUserCode("123456");
+		System.out.println(usr.getPid());
 	}
 
 	/**

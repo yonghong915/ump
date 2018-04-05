@@ -10,6 +10,7 @@ public class FilterChainDefinitionMapBuilder {
 		hashMap.put("/resources/styles/**", "anon");
 		hashMap.put("/resources/images/**", "anon");
 		hashMap.put("/login/login", "anon");
+		hashMap.put("/user/query", "authc,anyofroles[\"comm\",\"test\"]");
 		hashMap.put("/**", "authc");
 		return hashMap;
 	}

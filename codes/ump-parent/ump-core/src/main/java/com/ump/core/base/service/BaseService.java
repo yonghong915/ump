@@ -2,96 +2,78 @@ package com.ump.core.base.service;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.ump.core.base.model.BaseObject;
 import com.ump.core.util.page.Page;
-
 
 /**
  * 
  * @author fangyh
- * @date 2017-04-25 17:51:36
+ * @date 2017-04-22 12:29:06
  * @version 1.0
  */
-public abstract class BaseService<T> implements IBaseService<T> {
-	protected Logger logger = LoggerFactory.getLogger(getClass());
-//	@Autowired
-//	protected BaseDao<T> baseDao;
-//
-//	@Override
-//	public int insert(T o) {
-//		return baseDao.insert(o);
-//	}
-//
-//	@Override
-//	public int delete(T o) {
-//		return baseDao.delete(o);
-//	}
-//
-//	@Override
-//	public int deleteBatch(List<T> os) {
-//		return baseDao.deleteBatch(os);
-//	}
-//
-//	@Override
-//	public int update(T o) {
-//		return baseDao.update(o);
-//	}
-//
-//	@Override
-//	public List<T> find(T o) {
-//		return baseDao.find(o);
-//	}
-//
-//	@Override
-//	public Page<T> findByPage(T o, Page<T> page) {
-//		page.setResults(baseDao.findByPage(o, page));
-//		return page;
-//	}
-//
-//	@Override
-//	public int count(T o) {
-//		return baseDao.count(o);
-//	}
+public interface BaseService<E extends BaseObject> {
 
-	@Override
-	public int insert(T o) {
-		return 0;
-	}
+	/**
+	 * 保存一个对象
+	 * 
+	 * @param o
+	 *            对象
+	 * @return 对象的ID
+	 */
+	public int save(E entity);
 
-	@Override
-	public int delete(T o) {
-		return 0;
-	}
+	/**
+	 * 更新一个对象
+	 * 
+	 * @param o
+	 *            对象
+	 */
+	public int update(E entity);
 
-	@Override
-	public int deleteBatch(List<T> os) {
-		return 0;
-	}
+	/**
+	 * 删除一个对象
+	 * 
+	 * @param o
+	 *            对象
+	 */
+	public int delete(E o);
 
-	@Override
-	public int update(T o) {
-		return 0;
-	}
+	public int deleteById(String id);
 
-	@Override
-	public List<T> find(T o) {
-		return null;
-	}
+	/**
+	 * 批量删除一个对象
+	 * 
+	 * @param s
+	 *            (主键)数组
+	 */
+	public int deleteBatch(List<E> os);
 
-	@Override
-	public Page<T> findByPage(T o, Page<T> page) {
-		return null;
-	}
+	/**
+	 * 获得对象列表
+	 * 
+	 * @param o
+	 *            对象
+	 * @return List
+	 */
+	public List<E> find(E o);
 
-	@Override
-	public int count(T o) {
-		return 0;
-	}
+	/**
+	 * 获得对象列表
+	 * 
+	 * @param o
+	 *            对象
+	 * @param page
+	 *            分页对象
+	 * @return List
+	 */
+	public Page<E> findByPage(E o, Page<E> page);
 
-	@Override
-	public int deleteById(String id) {
-		return 0;
-	}
+	/**
+	 * 统计数目
+	 * 
+	 * @param o
+	 *            对象
+	 * @return long
+	 */
+	public int count(E o);
 }

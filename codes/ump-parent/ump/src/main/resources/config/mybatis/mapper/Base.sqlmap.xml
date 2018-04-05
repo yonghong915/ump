@@ -4,8 +4,8 @@
 <!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
 <mapper namespace="com.ump.core.base.dao.IBaseDao">
 	<resultMap type="com.ump.core.base.model.BaseObject" id="baseResultMap">
-		<result column="id" property="id" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="pid" property="pid" jdbcType="VARCHAR" />
+		<result column="delete_flag" property="deleteFlag" jdbcType="CHAR" />
 		<result column="creator" property="creator" jdbcType="VARCHAR" />
 		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
 		<result column="updator" property="updator" jdbcType="VARCHAR" />

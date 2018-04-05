@@ -12,28 +12,55 @@
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/jdbc
 	http://www.springframework.org/schema/context/spring-jdbc.xsd "
-	default-lazy-init="true">
+	default-lazy-init="true" >
 
 	<!-- 配置权限管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- ref对应我们写的realm MyShiro <property name="realm" ref="userRealm" /> -->
+		<!--认证管理器 -->
 		<property name="realms">
 			<list>
 				<ref bean="userRealm" />
 			</list>
 		</property>
-		<!-- 使用下面配置的缓存管理器 -->
+		<!-- 缓存管理器 -->
 		<property name="cacheManager" ref="cacheManager" />
 
-		<!-- <property name="sessionManager" ref="sessionManager" /> <property name="rememberMeManager" ref="rememberMeManager" /> -->
+		<!-- rememberMe管理器 -->
+		<!-- <property name="rememberMeManager" ref="rememberMeManager" /> <property name="sessionManager" ref="sessionManager" /> <property name="rememberMeManager" 
+			ref="rememberMeManager" /> -->
 	</bean>
-	<!-- <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager"> <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('2AvVhdsgUs0FSA3SDFAdag==')}" 
-		/> <property name="cookie" ref="rememberMeCookie" /> </bean> -->
 
+	<!-- rememberMe管理器 -->
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('7gzYfKjTASKdsai43ds==')}" />
+		<property name="cookie" ref="rememberMeCookie" />
+	</bean>
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg value="rememberMe" />
+		<property name="httpOnly" value="true" />
+		<property name="maxAge" value="2592000" /><!-- 30天 -->
+	</bean>
+
+	<!-- 会话ID生成器 -->
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator" />
+
+	<!-- 会话Cookie模板 -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg value="sid" />
+		<property name="httpOnly" value="true" />
+		<property name="maxAge" value="-1" />
+	</bean>
 
 	<!-- Realm实现 -->
-	<bean id="userRealm" class="com.ump.cfn.shiro.service.impl.UserRealm" />
-
+	<bean id="userRealm" class="com.ump.cfn.shiro.service.impl.UserRealm">
+		<property name="credentialsMatcher" ref="passwordMatcher" />
+	</bean>
+	<bean id="passwordMatcher" class="com.ump.cfn.shiro.authc.credential.LimitRetryHashedMatcher">
+		<property name="hashAlgorithmName" value="md5"></property>
+		<property name="hashIterations" value="2"></property>
+		<property name="storedCredentialsHexEncoded" value="true"></property>
+	</bean>
 	<!-- 配置Shiro核心Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<!-- 安全管理器 -->
@@ -44,9 +71,17 @@
 		<!-- 登录成功后要跳转的连接(本例中此属性用不到，因为登录成功后的处理逻辑在LoginController里硬编码) <property name="successUrl" value="/backstage/user/index" /> -->
 		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
 		<property name="unauthorizedUrl" value="/unauthorized" />
-
+		<property name="filters">
+			<map>
+				<entry key="anyofroles" value-ref="anyofroles" />
+			</map>
+		</property>
 		<property name="filterChainDefinitionMap" ref="filterChainDefinitionMap" />
 	</bean>
+
+	<!-- 自定义的过滤器，用来判断当前用户是否是roleOrFilter["comm,test"]中的某个角色 -->
+	<bean id="anyofroles" class="com.ump.cfn.shiro.filter.authz.AnyOfRolesAuthorizationFilter" />
+
 	<bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap" />
 	<bean id="filterChainDefinitionMapBuilder" class="com.ump.cfn.shiro.service.impl.FilterChainDefinitionMapBuilder" />
 	<!-- 缓存管理器 -->
