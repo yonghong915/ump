@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.ump.cfn.sysmgr.role.dao.RoleDao">
+	<resultMap type="com.ump.cfn.sysmgr.role.model.Role" id="roleResultMap" extends="com.ump.core.base.dao.BaseDao.baseResultMap">
+		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+		<collection property="roleUser" column="role_id" ofType="com.ump.cfn.sysmgr.role.model.RoleUser">
+			<id property="pid" column="pid" jdbcType="VARCHAR" />
+			<result property="roleId" column="role_id" javaType="string" jdbcType="VARCHAR" />
+			<result property="userId" column="user_id" javaType="string" jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+
+	<sql id="sql_select">
+		SELECT pid,
+		role_name
+	</sql>
+
+	<select id="findById" resultMap="roleWithPermission" parameterType="java.lang.String">
+		<include refid="sql_select" />
+		FROM sys_role
+		WHERE pid = #{value}
+	</select>
+
+	<resultMap type="com.ump.cfn.sysmgr.role.model.Role" id="roleWithPermission">
+		<id column="pid" property="pid" />
+		<result column="role_name" property="roleName" />
+		<collection property="permissions" column="pid" ofType="com.ump.cfn.sysmgr.permission.model.Permission" select="findPermissionByRole">
+			<id property="pid" column="pid" />
+			<result property="roleId" column="role_id" />
+		</collection>
+	</resultMap>
+
+	<select id="findPermissionByRole" parameterType="string" resultType="com.ump.cfn.sysmgr.permission.model.Permission">
+		select sp.permission_name permissionName,sp.pid
+		from sys_permission sp
+		join sys_role_permission srp on sp.pid = srp.permission_id
+		where srp.role_id = #{value}
+	</select>
+</mapper>

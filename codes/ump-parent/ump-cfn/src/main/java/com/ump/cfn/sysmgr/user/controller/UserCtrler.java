@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ump.cfn.sysmgr.user.model.User;
 import com.ump.cfn.sysmgr.user.service.UserService;
@@ -39,8 +38,9 @@ public class UserCtrler extends BaseCtrler<User> {
 	public String findByPage(Model model) {
 		logger.info("index......");
 		Subject subject = SecurityUtils.getSubject();
-		Object obj = subject.getPrincipal();
-		boolean auth = subject.isAuthenticated();
+		subject.isAuthenticated();
+		//Object obj = subject.getPrincipal();
+		//boolean auth = subject.isAuthenticated();
 		return "index";
 	}
 }

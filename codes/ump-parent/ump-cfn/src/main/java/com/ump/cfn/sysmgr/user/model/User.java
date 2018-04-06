@@ -1,5 +1,8 @@
 package com.ump.cfn.sysmgr.user.model;
 
+import java.util.List;
+
+import com.ump.cfn.sysmgr.role.model.Role;
 import com.ump.core.base.model.BaseObject;
 
 import lombok.Getter;
@@ -35,4 +38,8 @@ public class User extends BaseObject {
 	@Getter
 	@Setter
 	private String salt;
+
+	@Getter
+	@Setter
+	private List<Role> roles;
 }

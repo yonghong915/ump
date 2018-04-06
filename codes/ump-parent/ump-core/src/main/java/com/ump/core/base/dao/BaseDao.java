@@ -29,6 +29,8 @@ public interface BaseDao<E extends BaseObject> {
 
 	int deleteBatch(List<E> list) throws DaoException;
 
+	E findById(String pid) throws DaoException;
+
 	List<E> find(E entity) throws DaoException;
 
 	List<E> findByPage(E o, Page<E> page) throws DaoException;

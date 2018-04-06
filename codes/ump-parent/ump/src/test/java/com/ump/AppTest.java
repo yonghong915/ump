@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.ump.exception.BusinessException;
 
 import com.ump.cfn.sysmgr.user.model.User;
 import com.ump.cfn.sysmgr.user.service.UserService;
-import com.ump.cust.service.CustService;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -31,8 +31,12 @@ public class AppTest extends TestCase {
 		System.out.println(System.getProperty("user.dir"));
 		appCtx = new ClassPathXmlApplicationContext(configLocations);
 		UserService srv = (UserService) appCtx.getBean("userService");
-		User usr = srv.findUserByUserCode("123456");
-		System.out.println(usr.getPid());
+		try {
+			User usr = srv.findUserByUserCode("123456");
+			System.out.println(usr.getPid());
+		} catch (BusinessException e) {
+			System.out.println("aaaaa="+e.getMsg());
+		}
 	}
 
 	/**

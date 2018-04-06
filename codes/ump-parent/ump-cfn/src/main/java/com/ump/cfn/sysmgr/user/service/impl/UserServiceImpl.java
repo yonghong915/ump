@@ -9,13 +9,15 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-import org.ump.exception.DaoException;
-import org.ump.exception.ServiceException;
+import org.ump.exception.BusinessException;
 
+import com.ump.cfn.sysmgr.role.model.Role;
 import com.ump.cfn.sysmgr.user.dao.UserDao;
 import com.ump.cfn.sysmgr.user.model.User;
 import com.ump.cfn.sysmgr.user.service.UserService;
+import com.ump.cfn.util.exception.ErrorCode;
 import com.ump.core.base.service.BaseServiceImpl;
 import com.ump.core.util.web.StatusCode;
 
@@ -26,19 +28,19 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	private UserDao userDao;
 
 	@Override
-	public User findUserByUserCode(String username) throws ServiceException {
+	public User findUserByUserCode(String username) throws BusinessException {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("userCode", username);
 		try {
 			return userDao.queryUser(paramMap);
-		} catch (DaoException e) {
-			logger.error("", e);
-			throw new ServiceException("", e);
+		} catch (DataAccessException e) {
+			logger.error(ErrorCode.E_1001.getMessage(), e);
+			throw new BusinessException(ErrorCode.E_1001);
 		}
 	}
 
 	@Override
-	public StatusCode login(String username, String password, String verifyCode) throws ServiceException {
+	public StatusCode login(String username, String password, String verifyCode) throws BusinessException {
 		Subject currentUser = SecurityUtils.getSubject();
 		Session session = currentUser.getSession();
 		StatusCode sc = StatusCode.SUCCESS;
@@ -57,6 +59,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		}
 
 		return sc;
+	}
+
+	@Override
+	public User findById(String pid) throws BusinessException {
+		try {
+			return userDao.findById(pid);
+		} catch (DataAccessException e) {
+			throw new BusinessException("数据库删除失败", e);
+		}
 	}
 
 }

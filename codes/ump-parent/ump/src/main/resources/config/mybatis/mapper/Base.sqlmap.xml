@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
-<mapper namespace="com.ump.core.base.dao.IBaseDao">
+<mapper namespace="com.ump.core.base.dao.BaseDao">
 	<resultMap type="com.ump.core.base.model.BaseObject" id="baseResultMap">
 		<result column="pid" property="pid" jdbcType="VARCHAR" />
 		<result column="delete_flag" property="deleteFlag" jdbcType="CHAR" />
@@ -11,4 +11,8 @@
 		<result column="updator" property="updator" jdbcType="VARCHAR" />
 		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
 	</resultMap>
+
+	<select id="findById" resultMap="baseResultMap" parameterType="java.lang.String">
+        SELECT 'x' FROM dual
+	</select>
 </mapper>

@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.ump.exception.BusinessException;
 import org.ump.exception.DaoException;
 import org.ump.exception.ServiceException;
 
@@ -56,6 +58,15 @@ public abstract class BaseServiceImpl<E extends BaseObject> implements BaseServi
 			return baseDao.deleteBatch(list);
 		} catch (DaoException e) {
 			throw new ServiceException("数据库删除失败", e);
+		}
+	}
+
+	@Override
+	public E findById(String pid) throws BusinessException {
+		try {
+			return baseDao.findById(pid);
+		} catch (DataAccessException e) {
+			throw new BusinessException("数据库删除失败", e);
 		}
 	}
 

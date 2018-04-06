@@ -48,6 +48,8 @@ public interface BaseService<E extends BaseObject> {
 	 */
 	public int deleteBatch(List<E> os);
 
+	public E findById(String pid);
+
 	/**
 	 * 获得对象列表
 	 * 
