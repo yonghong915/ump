@@ -13,7 +13,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.ump.exception.BusinessException;
 
-import com.ump.cfn.sysmgr.role.model.Role;
 import com.ump.cfn.sysmgr.user.dao.UserDao;
 import com.ump.cfn.sysmgr.user.model.User;
 import com.ump.cfn.sysmgr.user.service.UserService;

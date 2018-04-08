@@ -160,8 +160,8 @@ public class DESUtils {
 	public static void main(String[] args) {
 		// try {
 		// System.out.println(encode("webapp".getBytes()));
-		System.out.println("root=" + encrypt("root"));
-		System.out.println("root1234=" + encrypt("root1234"));
+		System.out.println("umpdbuser=" + encrypt("umpdbuser"));
+		System.out.println("umpdbuser1234=" + encrypt("umpdbuser1234"));
 		// } catch (InvalidKeyException e) {
 		// e.printStackTrace();
 		// } catch (NoSuchAlgorithmException e) {

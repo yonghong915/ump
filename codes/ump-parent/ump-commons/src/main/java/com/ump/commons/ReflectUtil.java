@@ -104,8 +104,8 @@ public class ReflectUtil {
 	 */
 	public static void copyPorperties(Object dest, Object source)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Class<?> srcCla = source.getClass();
-		Field[] fsF = srcCla.getDeclaredFields();
+		//Class<?> srcCla = source.getClass();
+		//Field[] fsF = srcCla.getDeclaredFields();
 
 		// for (Field s : fsF) {
 		// String name = s.getName();

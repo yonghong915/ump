@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ump.cfn.sysmgr.user.model.User;
 import com.ump.cfn.sysmgr.user.service.UserService;
 import com.ump.core.base.controller.BaseCtrler;
+import com.ump.core.util.web.AjaxRsp;
 
 @Controller
 @RequestMapping("/backstage/user")
@@ -39,8 +40,17 @@ public class UserCtrler extends BaseCtrler<User> {
 		logger.info("index......");
 		Subject subject = SecurityUtils.getSubject();
 		subject.isAuthenticated();
-		//Object obj = subject.getPrincipal();
-		//boolean auth = subject.isAuthenticated();
+		// Object obj = subject.getPrincipal();
+		// boolean auth = subject.isAuthenticated();
 		return "index";
+	}
+
+	@RequestMapping(value = "saveUser", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxRsp saveUser(User user) {
+		logger.info("index......");
+		userService.save(user);
+		AjaxRsp ar = new AjaxRsp();
+		return ar;
 	}
 }

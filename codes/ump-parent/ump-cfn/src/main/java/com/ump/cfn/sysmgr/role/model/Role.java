@@ -14,9 +14,18 @@ public class Role extends BaseObject {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	@Setter
+	@Getter
+	private String roleId;
+
 	@Setter
 	@Getter
 	private String roleName;
+
+	@Setter
+	@Getter
+	private String roleDesc;
 
 	@Setter
 	@Getter

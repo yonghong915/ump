@@ -1,6 +1,7 @@
 package com.ump.cfn.sysmgr.role.service.impl;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,15 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	public Role findById(String pid) throws BusinessException {
 		try {
 			return roleDao.findById(pid);
+		} catch (DataAccessException e) {
+			throw new BusinessException("数据库删除失败", e);
+		}
+	}
+
+	@Override
+	public List<Role> findRolesByUserName(String userCode) throws BusinessException {
+		try {
+			return roleDao.findRolesByUserName(userCode);
 		} catch (DataAccessException e) {
 			throw new BusinessException("数据库删除失败", e);
 		}

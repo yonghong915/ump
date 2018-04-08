@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.ump.exception.BusinessException;
-import org.ump.exception.ServiceException;
 
 import com.ump.cfn.sysmgr.user.model.User;
 import com.ump.cfn.sysmgr.user.service.UserService;

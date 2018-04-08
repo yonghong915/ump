@@ -1,5 +1,7 @@
 package com.ump.cfn.shiro.service.impl;
 
+import java.util.List;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -21,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.ump.exception.BusinessException;
 
-import com.ump.cfn.sysmgr.permission.model.Permission;
+import com.ump.cfn.sysmgr.resource.model.Resource;
 import com.ump.cfn.sysmgr.resource.service.ResourceService;
 import com.ump.cfn.sysmgr.role.model.Role;
 import com.ump.cfn.sysmgr.role.service.RoleService;
@@ -69,6 +71,12 @@ public class UserRealm extends AuthorizingRealm {
 			throw new BusinessException("用户【" + username + "】不存在");
 		}
 
+		// if (currentUser.getStatus()==User.STATUS_DISABLED) {
+		// throw new DisabledAccountException("用户已注销");
+		// }else if(currentUser.getStatus()==User.STATUS_NOT_ACTIVE){
+		// throw new DisabledAccountException("用户未激活");//这里需要编写一个用户未激活异常
+		// }
+
 		String userPwd = user.getUserPwd();
 		if (CommUtils.isEmpty(userPwd)) {
 			throw new BusinessException("系统存储密码为空值");
@@ -93,7 +101,6 @@ public class UserRealm extends AuthorizingRealm {
 		}
 
 		logger.info("[用户:" + username + "|权限授权]");
-		String loinname = (String) principals.fromRealm(getName()).iterator().next();
 		// 因为非正常退出，即没有显式调用 SecurityUtils.getSubject().logout()
 		// (可能是关闭浏览器，或超时)，但此时缓存依旧存在(principals)，所以会自己跑到授权方法里。
 		if (!SecurityUtils.getSubject().isAuthenticated()) {
@@ -102,17 +109,8 @@ public class UserRealm extends AuthorizingRealm {
 			return null;
 		}
 		SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
-		User user = userService.findUserByUserCode(username);
-		// 根据用户名调用UserService接口获取角色及权限信息
-		for (Role role : user.getRoles()) {
-			authInfo.addRole(role.getPid());
-			Role role1 = roleService.findById(role.getPid());
-			for (Permission p : role1.getPermissions()) {
-				authInfo.addStringPermission(p.getPermissionName());
-			}
-		}
-		// authInfo.setRoles(roleService.loadRoleIdByUsername(username));
-		// authInfo.setStringPermissions(resourceService.loadPermissionsByUsername(username));
+		addRole(username, authInfo);
+        addPermission(username, authInfo);
 		logger.info("[用户:" + username + "|权限授权完成]");
 		return authInfo;
 	}
@@ -129,6 +127,27 @@ public class UserRealm extends AuthorizingRealm {
 			if (null != session) {
 				session.setAttribute(key, value);
 			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param username
+	 * @param info
+	 */
+	private void addRole(String username, SimpleAuthorizationInfo info) {
+		List<Role> roles = roleService.findRolesByUserName(username);
+		if (null != roles && roles.size() > 0) {
+			for (Role role : roles) {
+				info.addRole(role.getRoleName());
+			}
+		}
+	}
+
+	private void addPermission(String username, SimpleAuthorizationInfo info) {
+		List<Resource> resources = resourceService.findResourcesByUserName(username);
+		for (Resource resource : resources) {
+			info.addStringPermission(resource.getUrl());// 添加权限
 		}
 	}
 

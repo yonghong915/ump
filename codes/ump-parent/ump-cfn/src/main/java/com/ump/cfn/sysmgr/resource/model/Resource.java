@@ -1,26 +1,29 @@
-package com.ump.cfn.sysmgr.permission.model;
+package com.ump.cfn.sysmgr.resource.model;
 
 import com.ump.core.base.model.BaseObject;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class Permission extends BaseObject {
+public class Resource extends BaseObject {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Getter
+	@Setter
+	private String resourceId;
 
 	@Getter
 	@Setter
-	private String permissionId;
+	private String resourceName;
 
 	@Getter
 	@Setter
-	private String permissionName;
+	private String resourceDesc;
 
 	@Getter
 	@Setter
-	private String permissionDesc;
+	private String url;
 }

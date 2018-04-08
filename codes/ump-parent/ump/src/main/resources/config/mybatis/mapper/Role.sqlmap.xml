@@ -4,12 +4,9 @@
 <!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
 <mapper namespace="com.ump.cfn.sysmgr.role.dao.RoleDao">
 	<resultMap type="com.ump.cfn.sysmgr.role.model.Role" id="roleResultMap" extends="com.ump.core.base.dao.BaseDao.baseResultMap">
+		<id column="pid" property="roleId" />
 		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
-		<collection property="roleUser" column="role_id" ofType="com.ump.cfn.sysmgr.role.model.RoleUser">
-			<id property="pid" column="pid" jdbcType="VARCHAR" />
-			<result property="roleId" column="role_id" javaType="string" jdbcType="VARCHAR" />
-			<result property="userId" column="user_id" javaType="string" jdbcType="VARCHAR" />
-		</collection>
+		<result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="sql_select">
@@ -38,4 +35,13 @@
 		join sys_role_permission srp on sp.pid = srp.permission_id
 		where srp.role_id = #{value}
 	</select>
+	
+	<select id="findRolesByUserName" parameterType="string" resultMap="roleResultMap" >
+	    SELECT sr.pid ,sr.role_name
+		from sys_user su 
+		join sys_user_role sur on su.pid = sur.user_id
+		join sys_role sr on sur.role_id = sr.pid
+		where su.user_code=#{value}
+	</select>
+	
 </mapper>

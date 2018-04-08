@@ -18,6 +18,9 @@ public class User extends BaseObject {
 	 * 
 	 */
 	private static final long serialVersionUID = -6262747901732584984L;
+	@Getter
+	@Setter
+	private String userId;
 
 	@Getter
 	@Setter
@@ -34,6 +37,10 @@ public class User extends BaseObject {
 	@Getter
 	@Setter
 	private String userDesc;
+
+	@Getter
+	@Setter
+	private String userStatus;
 
 	@Getter
 	@Setter
