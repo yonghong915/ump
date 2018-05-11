@@ -1,16 +1,21 @@
 package com.ump.commons;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.ump.exception.BusinessException;
 
 /**
  * 利用反射进行操作的一个工具类
  */
 public class ReflectUtil {
+	private static Logger logger = LoggerFactory.getLogger(ReflectUtil.class);
 
 	public static Object getInstanceObj(String className) {
 		if (CommUtils.isEmpty(className)) {
@@ -104,8 +109,8 @@ public class ReflectUtil {
 	 */
 	public static void copyPorperties(Object dest, Object source)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		//Class<?> srcCla = source.getClass();
-		//Field[] fsF = srcCla.getDeclaredFields();
+		// Class<?> srcCla = source.getClass();
+		// Field[] fsF = srcCla.getDeclaredFields();
 
 		// for (Field s : fsF) {
 		// String name = s.getName();
@@ -157,7 +162,7 @@ public class ReflectUtil {
 	 * 
 	 * 如向上转型到Object仍无法找到, 返回null.
 	 */
-	protected static Method getDeclaredMethod(Object object, String methodName, Class<?>[] parameterTypes) {
+	public static Method getDeclaredMethod(Object object, String methodName, Class<?>[] parameterTypes) {
 		// Assert.notNull(object, "object不能为空");
 
 		for (Class<?> superClass = object.getClass(); superClass != Object.class; superClass = superClass
@@ -167,6 +172,49 @@ public class ReflectUtil {
 			} catch (NoSuchMethodException e) {// NOSONAR
 												// Method不在当前类定义,继续向上转型
 			}
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param className
+	 * @return
+	 */
+	public static Object getObjectInstance(String className) {
+		if (CommUtils.isEmpty(className)) {
+			return null;
+		}
+		try {
+			Class<?> clazz = Class.forName(className);
+			Object obj = clazz.newInstance();
+			return obj;
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			logger.error("obtain object instance error:{}", e);
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param className
+	 * @return
+	 */
+	public static Object getObjectInstance(String className, Map<String, Object> paramMap) {
+		if (CommUtils.isEmpty(className)) {
+			return null;
+		}
+		if (!(paramMap instanceof Map)) {
+			throw new IllegalArgumentException("illeagal argument,should be map type.");
+		}
+		try {
+			Class<?> clazz = Class.forName(className);
+			Constructor<?> constructor = clazz.getConstructor(Map.class);
+			Object obj = constructor.newInstance(paramMap);
+			return obj;
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException
+				| SecurityException | IllegalArgumentException | InvocationTargetException e) {
+			System.out.println(e);
 		}
 		return null;
 	}
