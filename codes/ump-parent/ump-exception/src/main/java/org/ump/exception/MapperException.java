@@ -1,5 +1,9 @@
 package org.ump.exception;
 
+import java.text.MessageFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class MapperException extends RuntimeException {
 
 	/**
@@ -17,6 +21,13 @@ public class MapperException extends RuntimeException {
 	public MapperException(String errCode) {
 		super(errCode);
 		this.errCode = errCode;
+		this.errMsg = getErrorMsg(errCode);
+	}
+
+	public MapperException(String errCode, String errMsg) {
+		super(errMsg);
+		this.errCode = errCode;
+		this.errMsg = errMsg;
 	}
 
 	public MapperException(String errCode, Object[] params) {
@@ -62,12 +73,6 @@ public class MapperException extends RuntimeException {
 		this.params = params;
 	}
 
-	public MapperException(String errCode, String errMsg) {
-		super(errMsg);
-		this.errCode = errCode;
-		this.errMsg = errMsg;
-	}
-
 	public MapperException(String errCode, String errMsg, Object[] params) {
 		super(errMsg);
 		this.errCode = errCode;
@@ -99,4 +104,28 @@ public class MapperException extends RuntimeException {
 		this.params = params;
 	}
 
+	private static ResourceBundle getLocalResourceBundle(String resFile) {
+		Locale myLocale = Locale.getDefault();
+		ResourceBundle bundle = ResourceBundle.getBundle(resFile, myLocale);
+		return bundle;
+	}
+
+	protected static String getErrorMsg(String errorCode) {
+		try {
+			return getLocalResourceBundle("config.messages.errorMsg").getString(errorCode);
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	public String toString() {
+		String exceptionName = getClass().getName();
+		String errorCode = getLocalizedMessage();
+		StringBuffer sb = new StringBuffer(exceptionName);
+		if (null != errorCode && !"".equals(errorCode)) {
+			sb.append("[errCode:").append(errorCode).append(",errMsg:");
+			sb.append(MessageFormat.format(getErrMsg(), getParams())).append("]");
+		}
+		return sb.toString();
+	}
 }

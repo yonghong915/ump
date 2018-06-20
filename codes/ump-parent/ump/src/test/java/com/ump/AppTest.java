@@ -25,18 +25,9 @@ public class AppTest extends TestCase {
 	// private CustDao custDao;
 
 	public void setUp() throws Exception {
-		String[] configLocations = new String[] { "config/spring/applicationContext-common.xml",
-				"config/spring/applicationContext-datasource.xml", "config/spring/applicationContext-mybatis.xml",
-				"config/spring/applicationContext-tx.xml" };
-		System.out.println(System.getProperty("user.dir"));
-		appCtx = new ClassPathXmlApplicationContext(configLocations);
-		UserService srv = (UserService) appCtx.getBean("userService");
-		try {
-			User usr = srv.findUserByUserCode("123456");
-			System.out.println(usr.getPid());
-		} catch (BusinessException e) {
-			System.out.println("aaaaa="+e.getMsg());
-		}
+		System.out.println("00000000c9ec538cab7f38ef9c67a95742f56ab07b0a37c5be6b02808dbfb4e0".length());
+		System.out.println(hexStringToByte("00000000c9ec538cab7f38ef9c67a95742f56ab07b0a37c5be6b02808dbfb4e0").length);
+	    //32*8=256
 	}
 
 	/**
@@ -63,5 +54,21 @@ public class AppTest extends TestCase {
 	 */
 	public void testApp() {
 		assertTrue(true);
+	}
+
+	public static byte[] hexStringToByte(String hex) {
+		int len = (hex.length() / 2);
+		byte[] result = new byte[len];
+		char[] achar = hex.toCharArray();
+		for (int i = 0; i < len; i++) {
+			int pos = i * 2;
+			result[i] = (byte) (toByte(achar[pos]) << 4 | toByte(achar[pos + 1]));
+		}
+		return result;
+	}
+
+	private static byte toByte(char c) {
+		byte b = (byte) "0123456789abcdef".indexOf(c);
+		return b;
 	}
 }

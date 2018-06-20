@@ -157,13 +157,16 @@
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

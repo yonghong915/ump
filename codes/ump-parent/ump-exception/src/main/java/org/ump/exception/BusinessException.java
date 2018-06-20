@@ -67,17 +67,16 @@ public class BusinessException extends MapperException {
 		return sb.toString();
 	}
 
-	private ResourceBundle getLocalResourceBundle(String resFile) {
-		Locale myLocale = Locale.getDefault();
-		ResourceBundle bundle = ResourceBundle.getBundle(resFile, myLocale);
-		return bundle;
-	}
+	
 
-	private String getErrorMsg(String errorCode) {
-		try {
-			return getLocalResourceBundle("config.messages.errorMsg").getString(errorCode);
-		} catch (Exception e) {
-			return "";
-		}
-	}
+//	public String toString() {
+//		String exceptionName = getClass().getName();
+//		String errorCode = getLocalizedMessage();
+//		StringBuffer sb = new StringBuffer(exceptionName);
+//		if (null != errorCode && !"".equals(errorCode)) {
+//			sb.append("[errCode:").append(errorCode).append(",errmsg:");
+//			sb.append(MessageFormat.format(getErrorMsg(this.getErrCode()), getParams())).append("]");
+//		}
+//		return sb.toString();
+//	}
 }

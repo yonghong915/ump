@@ -1,0 +1,9 @@
+[ConnectionProfile]
+ConnectionType=JDBC
+Dbms=SAP HANA
+DisableBind=0
+Driver=com.mysql.cj.jdbc.Driver
+JarFiles=D:\tools\maven\repository\mysql\mysql-connector-java\6.0.6\mysql-connector-java-6.0.6.jar
+LogId=umpdbuser
+TrimSpaces=0
+URL=jdbc:mysql://localhost:3306/umpdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
