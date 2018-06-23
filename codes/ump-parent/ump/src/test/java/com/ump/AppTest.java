@@ -3,11 +3,7 @@ package com.ump;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.ump.exception.BusinessException;
-
-import com.ump.cfn.sysmgr.user.model.User;
-import com.ump.cfn.sysmgr.user.service.UserService;
+import com.ump.commons.crypto.DESUtils;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -25,6 +21,8 @@ public class AppTest extends TestCase {
 	// private CustDao custDao;
 
 	public void setUp() throws Exception {
+		System.out.println(DESUtils.decrypt("Kay1Y6VbC6s="));
+		System.out.println(DESUtils.decrypt("sJ/KKg3zozJmN1Zt7HWhqw=="));
 		System.out.println("00000000c9ec538cab7f38ef9c67a95742f56ab07b0a37c5be6b02808dbfb4e0".length());
 		System.out.println(hexStringToByte("00000000c9ec538cab7f38ef9c67a95742f56ab07b0a37c5be6b02808dbfb4e0").length);
 	    //32*8=256

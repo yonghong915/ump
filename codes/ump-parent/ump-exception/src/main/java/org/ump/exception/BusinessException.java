@@ -1,8 +1,6 @@
 package org.ump.exception;
 
 import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class BusinessException extends MapperException {
 	private static final long serialVersionUID = -3876502758804606346L;

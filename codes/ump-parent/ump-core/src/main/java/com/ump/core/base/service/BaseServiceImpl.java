@@ -66,7 +66,7 @@ public abstract class BaseServiceImpl<E extends BaseObject> implements BaseServi
 		try {
 			return baseDao.findById(pid);
 		} catch (DataAccessException e) {
-			throw new BusinessException("数据库删除失败", e);
+			throw new BusinessException("数据库查询失败", e);
 		}
 	}
 

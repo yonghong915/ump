@@ -676,7 +676,7 @@ create table SYS_CODE_INFO
   code_info_desc  VARCHAR2(100),
   code_type_code  VARCHAR2(32) not null,
   parent_code_id  VARCHAR2(32) not null,
-  oreder_no       NUMBER(4) not null,
+  order_no       NUMBER(4) not null,
   creator         VARCHAR2(32) not null,
   create_time     TIMESTAMP(6) default systimestamp not null,
   updator         VARCHAR2(32) not null,
@@ -698,7 +698,7 @@ tablespace MYDATA
 -- Add comments to the columns 
 comment on column SYS_CODE_INFO.id
   is '主键';
-comment on column SYS_CODE_INFO.oreder_no
+comment on column SYS_CODE_INFO.order_no
   is '排序号';
 comment on column SYS_CODE_INFO.creator
   is '创建人';

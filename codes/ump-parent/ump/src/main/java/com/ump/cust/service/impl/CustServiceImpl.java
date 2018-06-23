@@ -27,9 +27,9 @@ public class CustServiceImpl extends BaseServiceImpl<Cust> implements CustServic
 	@Override
 	public int insertCust(Cust cust) {
 		CustContract c = new CustContract();
-		c.setPid("1234545");
-		custDao.insertCust(cust);
-		System.out.println("".substring(4));
+//		c.setPid("1234545");
+//		custDao.insertCust(cust);
+//		System.out.println("".substring(4));
 		custContractDao.insertCust(c);
 		return 1;
 	}

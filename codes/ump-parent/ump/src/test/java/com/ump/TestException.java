@@ -2,7 +2,6 @@ package com.ump;
 
 import org.ump.exception.BusinessException;
 
-import com.ump.commons.CommUtils;
 import com.ump.util.exception.ErrorCode;
 
 public class TestException {
