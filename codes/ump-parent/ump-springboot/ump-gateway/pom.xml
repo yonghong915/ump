@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+ <?xml version="1.0"?>
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0"
@@ -11,9 +11,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ump</groupId>
-	<version>1.0.0.RELEASE</version>
-	<artifactId>ump-eureka</artifactId>
-	<name>ump-eureka</name>
+	<artifactId>ump-gateway</artifactId>
+	<version>1.0.0-RELEASE</version>
+	<name>ump-gateway</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,34 +22,17 @@
 		<spring-cloud.version>Dalston.SR4</spring-cloud.version>
 	</properties>
 	<dependencies>
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-jetty</artifactId> 
-			</dependency> -->
-
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka -->
-		<!-- <dependency> https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-server 
-			<groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId> 
-			<version>1.4.4.RELEASE</version> <exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
-			<artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions> 
-			</dependency> -->
-		<!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
-		<dependency>
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>jsr305</artifactId>
-			<version>3.0.2</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zuul</artifactId>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
@@ -63,6 +46,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 	<build>
 		<filters>
 			<filter>src/main/resources/filters/${env}.properties</filter>

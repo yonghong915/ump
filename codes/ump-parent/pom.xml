@@ -6,7 +6,7 @@
 
 	<groupId>com.ump</groupId>
 	<artifactId>ump-parent</artifactId>
-	<version>1.0</version>
+	<version>1.0.0-RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>ump-parent</name>
