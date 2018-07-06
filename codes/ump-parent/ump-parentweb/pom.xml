@@ -15,9 +15,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>ump-commons</module>
-		<module>ump-exception</module>
-		<module>ump-core</module>
 		<module>ump-cfn</module>
 		<module>ump</module>
 	</modules>
