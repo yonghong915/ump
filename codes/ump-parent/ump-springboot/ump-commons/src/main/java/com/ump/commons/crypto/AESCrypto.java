@@ -90,18 +90,18 @@ public class AESCrypto implements ICrypto {
 
 	}
 
-	public static void main(String[] args) {
-		ICrypto cc = new AESCrypto();
-		String key = "8NONwyJtHesysWpM";
-		String src = "ABCDEFGH";
-		try {
-			String tee = Base64.encodeBase64String(cc.encrypt(src.getBytes("UTF-8"), key.getBytes("UTF-8")));
-			logger.info(tee);
-			String ret = new String(cc.decrypt(Base64.decodeBase64(tee), key.getBytes()));
-			logger.info("sege={}", ret);
-		} catch (Exception e) {
-			logger.error("error=", e);
-		}
-	}
+//	public static void main(String[] args) {
+//		ICrypto cc = new AESCrypto();
+//		String key = "8NONwyJtHesysWpM";
+//		String src = "ABCDEFGH";
+//		try {
+//			String tee = Base64.encodeBase64String(cc.encrypt(src.getBytes("UTF-8"), key.getBytes("UTF-8")));
+//			logger.info(tee);
+//			String ret = new String(cc.decrypt(Base64.decodeBase64(tee), key.getBytes()));
+//			logger.info("sege={}", ret);
+//		} catch (Exception e) {
+//			logger.error("error=", e);
+//		}
+//	}
 
 }

@@ -11,17 +11,16 @@
 	</resultMap>
 
 	<sql id="sql_select">
-		SELECT pid,user_code,
+		SELECT user_id,
 		user_name,
 		user_pwd,
-		salt,
 		user_desc
 	</sql>
 
 	<select id="queryById" resultMap="userResultMap" parameterType="java.lang.String">
 		<include refid="sql_select" />
 		FROM sys_user
-		WHERE user_name = #{userName}
+		WHERE user_id = #{userId}
 	</select>
 
 </mapper>

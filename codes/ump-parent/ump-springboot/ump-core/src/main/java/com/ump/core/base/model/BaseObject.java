@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,7 +19,7 @@ public class BaseObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Getter
 	@Setter
 	private String creator;
@@ -44,6 +45,7 @@ public class BaseObject implements Serializable {
 	 */
 	@Getter
 	@Setter
+	@NonNull
 	private String delFlag = "n";
 
 }
