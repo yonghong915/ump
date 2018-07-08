@@ -5,7 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.ump.exception.BusinessException;
 import org.ump.exception.DaoException;
 import org.ump.exception.ServiceException;
@@ -65,7 +64,7 @@ public abstract class BaseServiceImpl<T extends BaseObject> implements BaseServi
 	public T queryById(String pid) throws BusinessException {
 		try {
 			return baseDao.queryById(pid);
-		} catch (DataAccessException e) {
+		} catch (DaoException e) {
 			throw new BusinessException("数据库查询失败", e);
 		}
 	}

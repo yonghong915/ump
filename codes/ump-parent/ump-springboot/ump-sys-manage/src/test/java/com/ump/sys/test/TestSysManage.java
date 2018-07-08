@@ -41,6 +41,9 @@ public class TestSysManage {
 		logger.info("UserJson={}", json);
 		assertEquals("zhansan", user.getUserName());
 
+		
+		
+		
 	}
 
 }
