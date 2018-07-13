@@ -19,6 +19,8 @@
 		<module>ump-exception</module>
 		<module>ump-core</module>
     <module>ump-workflow</module>
+    <module>ump-service</module>
+    <module>ump-client</module>
   </modules>
 	<!-- lookup parent from repository -->
 	<parent>

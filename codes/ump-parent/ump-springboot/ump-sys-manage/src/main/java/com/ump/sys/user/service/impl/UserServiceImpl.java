@@ -1,6 +1,5 @@
 package com.ump.sys.user.service.impl;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 	@Autowired
 	private UserMapper userMapper;
 
-	@Transactional
+//	@Transactional
 	@Override
 	public void insert(User user) {
 		// TODO Auto-generated method stub
