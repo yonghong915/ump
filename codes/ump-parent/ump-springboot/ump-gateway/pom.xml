@@ -77,7 +77,7 @@
 
 	<build>
 		<filters>
-			<filter>src/main/resources/filters/${env}.properties</filter>
+			<filter>src/main/resources/filters/application-${env}.properties</filter>
 		</filters>
 		<resources>
 			<resource>
