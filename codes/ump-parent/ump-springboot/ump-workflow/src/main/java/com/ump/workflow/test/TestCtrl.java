@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestCtrl {
-	@Value("${foo}") // git配置文件里的key
+	@Value("${datasource}") // git配置文件里的key
 	String myww;
 
 	@RequestMapping(value = "/hi")
