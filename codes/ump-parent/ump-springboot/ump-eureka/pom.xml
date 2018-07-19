@@ -10,7 +10,6 @@
 		<version>1.0.0.RELEASE</version>
 	</parent>
 	<artifactId>ump-eureka</artifactId>
-	<version>1.0.0.RELEASE</version>
 	<name>ump-eureka</name>
 	<url>http://maven.apache.org</url>
 	<packaging>jar</packaging>
@@ -19,6 +18,12 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+
+		<!-- 监控和管理生产环境的依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 	</dependencies>
 
