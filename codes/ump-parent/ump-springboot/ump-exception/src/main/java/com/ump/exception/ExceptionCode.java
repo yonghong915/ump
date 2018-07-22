@@ -1,4 +1,4 @@
-package org.ump.exception;
+package com.ump.exception;
 
 public interface ExceptionCode {
 	// 错误码编号

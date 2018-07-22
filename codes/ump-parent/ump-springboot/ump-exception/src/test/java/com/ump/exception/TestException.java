@@ -1,7 +1,7 @@
 package com.ump.exception;
 
-import org.ump.exception.BusinessException;
-import org.ump.exception.ErrorCode;
+import com.ump.exception.BusinessException;
+import com.ump.exception.ErrorCode;
 
 public class TestException {
 	public static void main(String[] args) {

@@ -2,10 +2,9 @@ package com.ump.core.base.dao;
 
 import java.util.List;
 
-import org.ump.exception.DaoException;
-
 import com.ump.core.base.model.BaseObject;
 import com.ump.core.util.page.Page;
+import com.ump.exception.DaoException;
 
 public interface BaseDao<T extends BaseObject> {
 

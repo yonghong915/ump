@@ -18,7 +18,8 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.ump.exception.CommonException;
+
+import com.ump.exception.CommonException;
 
 public class AESCrypto implements ICrypto {
 	static Logger logger = LoggerFactory.getLogger(AESCrypto.class);

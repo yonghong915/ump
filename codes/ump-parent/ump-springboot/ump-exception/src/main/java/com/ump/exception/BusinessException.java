@@ -1,4 +1,4 @@
-package org.ump.exception;
+package com.ump.exception;
 
 import java.text.MessageFormat;
 

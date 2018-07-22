@@ -1,13 +1,26 @@
 package com.ump.core.util.web;
 
 import com.google.common.collect.ImmutableMap;
+import com.ump.exception.status.RestStatus;
 
 public enum StatusCode implements RestStatus {
 	/** 操作成功 */
 	SUCCESS("000000", "操作成功"),
 
 	/** 操作失败 */
-	FAIL("-999999", "操作失败");
+	FAIL("-999999", "操作失败"),
+
+	/** 空指针异常 */
+	NULLPOINTER("E000001", "发生空指针异常"),
+
+	/** 请求参数类型不匹配 */
+	ILLEGAL_ARGUMENT("E000002", "请求参数类型不匹配"),
+
+	/** 数据库访问异常 */
+	DB_EXCEPTION("E000003", "数据库访问异常"),
+
+	/** 其他异常 */
+	OTHER_EXCEPTION("E000009", "其他异常");
 
 	private final String code;
 

@@ -1,6 +1,6 @@
 package com.ump.commons.crypto;
 
-import org.ump.exception.CommonException;
+import com.ump.exception.CommonException;
 
 public interface ICrypto {
 	public byte[] encrypt(byte[] src, byte[] key) throws CommonException;

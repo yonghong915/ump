@@ -11,7 +11,8 @@ import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 
 import org.apache.commons.codec.binary.Base64;
-import org.ump.exception.CommonException;
+
+import com.ump.exception.CommonException;
 
 public class DESCrypto implements ICrypto {
 

@@ -1,4 +1,4 @@
-package org.ump.exception;
+package com.ump.exception;
 
 public class CaptchaException extends RuntimeException {
 	/**

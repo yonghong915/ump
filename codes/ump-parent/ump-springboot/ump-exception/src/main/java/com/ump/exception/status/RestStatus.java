@@ -1,4 +1,4 @@
-package com.ump.core.util.web;
+package com.ump.exception.status;
 
 public interface RestStatus {
 	/**

@@ -1,6 +1,6 @@
 package com.ump.commons.crypto;
 
-import org.ump.exception.CommonException;
+import com.ump.exception.CommonException;
 
 public class RSACrypto implements ICrypto {
 

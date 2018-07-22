@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ump.exception.status.RestStatus;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 
@@ -12,9 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @version 1.0
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AjaxRsp implements Serializable {
-
-	
+public class AjaxRsp<T> implements Serializable {
 
 	/**
 	 * 
@@ -23,18 +25,24 @@ public class AjaxRsp implements Serializable {
 	/**
 	 * 返回码值,默认值Const.FAI
 	 */
+	@Setter
+	@Getter
 	@JsonProperty("rspCode")
-	private String rspCode = StatusCode.FAIL.code();
+	private String rspCode = StatusCode.SUCCESS.code();
 	/**
 	 * 返回码值解析
 	 */
+	@Setter
+	@Getter
 	@JsonProperty("rspMsg")
-	private String rspMsg;
+	private String rspMsg = StatusCode.SUCCESS.message();
 	/**
 	 * 返回对象
 	 */
+	@Setter
+	@Getter
 	@JsonProperty("rspObj")
-	private Object rspObj;
+	private T rspObj;
 
 	public AjaxRsp() {
 	}
@@ -43,7 +51,7 @@ public class AjaxRsp implements Serializable {
 		this(statusCodes, null);
 	}
 
-	public AjaxRsp(RestStatus statusCodes, Object details) {
+	public AjaxRsp(RestStatus statusCodes, T details) {
 		this.rspCode = statusCodes.code();
 		this.rspMsg = statusCodes.message();
 		if (details != null) {
@@ -51,28 +59,9 @@ public class AjaxRsp implements Serializable {
 		}
 	}
 
-	public String getRspCode() {
-		return rspCode;
-	}
-
-	public void setRspCode(String rspCode) {
-		this.rspCode = rspCode;
-	}
-
-	public String getRspMsg() {
-		return rspMsg;
-	}
-
-	public void setRspMsg(String rspMsg) {
-		this.rspMsg = rspMsg;
-	}
-
-	public Object getRspObj() {
-		return rspObj;
-	}
-
-	public void setRspObj(Object rspObj) {
-		this.rspObj = rspObj;
+	public AjaxRsp(String code, String msg) {
+		this.rspCode = code;
+		this.rspMsg = msg;
 	}
 
 	/**
@@ -83,7 +72,7 @@ public class AjaxRsp implements Serializable {
 	 * @param resMsg
 	 *            设置码值解析
 	 */
-	public void setSucceed(Object rspObj, String rspMsg) {
+	public void setSucceed(T rspObj, String rspMsg) {
 		this.setRspMsg(rspMsg);
 		this.setSucceed(rspObj);
 	}
@@ -94,7 +83,7 @@ public class AjaxRsp implements Serializable {
 	 * @param obj
 	 *            设置对象
 	 */
-	public void setSucceed(Object rspObj) {
+	public void setSucceed(T rspObj) {
 		this.rspObj = rspObj;
 		this.setRspCode(StatusCode.SUCCESS.code());
 		this.setRspMsg("success");
@@ -106,9 +95,9 @@ public class AjaxRsp implements Serializable {
 	 * @param resMsg
 	 *            返回码值解析
 	 */
-	public void setSucceedMsg(String resMsg) {
+	public void setSucceedMsg(String rspMsg) {
 		this.setRspCode(StatusCode.SUCCESS.code());
-		this.setRspMsg(resMsg);
+		this.setRspMsg(rspMsg);
 	}
 
 	/**
@@ -125,7 +114,7 @@ public class AjaxRsp implements Serializable {
 
 	@Override
 	public String toString() {
-		return "AjaxRes [resCode=" + rspCode + ", resMsg=" + rspMsg + ", rspObj=" + rspObj + "]";
+		return "AjaxRsp [rspCode=" + rspCode + ", rspMsg=" + rspMsg + ", rspObj=" + rspObj + "]";
 	}
 
 	/**

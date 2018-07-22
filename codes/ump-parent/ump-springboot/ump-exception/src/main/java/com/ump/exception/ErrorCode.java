@@ -1,6 +1,6 @@
-package org.ump.exception;
+package com.ump.exception;
 
-import org.ump.exception.ExceptionCode;
+import com.ump.exception.ExceptionCode;
 
 public enum ErrorCode implements ExceptionCode {
 	E_1001("1002");

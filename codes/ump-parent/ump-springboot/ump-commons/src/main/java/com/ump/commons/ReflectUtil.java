@@ -10,7 +10,8 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.ump.exception.BusinessException;
+
+import com.ump.exception.BusinessException;
 
 /**
  * 利用反射进行操作的一个工具类

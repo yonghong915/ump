@@ -1,7 +1,7 @@
 /*
  * 
  */
-package org.ump.exception;
+package com.ump.exception;
 
 public class SysErrCode {
 	public static final String SYS_NAME = "EBBC";
