@@ -1,8 +1,8 @@
-package com.ump.exception;
+package com.ump.commons.exception;
 
 import java.security.GeneralSecurityException;
 
-import com.ump.exception.status.RestStatus;
+import com.ump.commons.web.RestStatus;
 
 import lombok.Getter;
 import lombok.Setter;

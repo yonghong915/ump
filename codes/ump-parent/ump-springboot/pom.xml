@@ -22,7 +22,6 @@
 		<module>ump-gateway</module>
 		<module>ump-sys-manage</module>
 		<module>ump-commons</module>
-		<module>ump-exception</module>
 		<module>ump-core</module>
 		<module>ump-workflow</module>
 		<module>ump-service</module>

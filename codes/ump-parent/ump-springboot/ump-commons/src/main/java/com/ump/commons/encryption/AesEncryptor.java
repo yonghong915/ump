@@ -1,4 +1,4 @@
-package com.ump.commons.crypto;
+package com.ump.commons.encryption;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -15,20 +15,19 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ump.exception.CommonException;
+import com.ump.commons.exception.CommonException;
 
-public class AESCrypto implements ICrypto {
-	static Logger logger = LoggerFactory.getLogger(AESCrypto.class);
+public class AesEncryptor implements IEncryptor {
+	static Logger logger = LoggerFactory.getLogger(AesEncryptor.class);
 
 	@Override
 	public byte[] encrypt(byte[] src, byte[] key) throws CommonException {
-		//if (null == key || key.length != 32) {
-		//	throw new IllegalArgumentException();
-		//}
+		// if (null == key || key.length != 32) {
+		// throw new IllegalArgumentException();
+		// }
 
 		// AES/CBC/PKCS5Padding
 
@@ -46,12 +45,12 @@ public class AESCrypto implements ICrypto {
 			Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
 
 			/* 初始化为加密模式的密码器 */
-			final byte [] iv = new byte [12]; 
+			final byte[] iv = new byte[12];
 			SecureRandom sr = new SecureRandom();
 			sr.nextBytes(iv);
-			cipher.init(Cipher.ENCRYPT_MODE, key1,new GCMParameterSpec(16 * Byte.SIZE, iv));
-			//byte[] iv = cipher.getIV(); // See question #1
-			//assert iv.length == 12; // See question #2
+			cipher.init(Cipher.ENCRYPT_MODE, key1, new GCMParameterSpec(16 * Byte.SIZE, iv));
+			// byte[] iv = cipher.getIV(); // See question #1
+			// assert iv.length == 12; // See question #2
 
 			// 加密
 			byte[] cipherText = cipher.doFinal(src);
@@ -91,18 +90,32 @@ public class AESCrypto implements ICrypto {
 
 	}
 
-//	public static void main(String[] args) {
-//		ICrypto cc = new AESCrypto();
-//		String key = "8NONwyJtHesysWpM";
-//		String src = "ABCDEFGH";
-//		try {
-//			String tee = Base64.encodeBase64String(cc.encrypt(src.getBytes("UTF-8"), key.getBytes("UTF-8")));
-//			logger.info(tee);
-//			String ret = new String(cc.decrypt(Base64.decodeBase64(tee), key.getBytes()));
-//			logger.info("sege={}", ret);
-//		} catch (Exception e) {
-//			logger.error("error=", e);
-//		}
-//	}
+	@Override
+	public String encrypt(String plaintext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String decrypt(String ciphertext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	// public static void main(String[] args) {
+	// ICrypto cc = new AESCrypto();
+	// String key = "8NONwyJtHesysWpM";
+	// String src = "ABCDEFGH";
+	// try {
+	// String tee = Base64.encodeBase64String(cc.encrypt(src.getBytes("UTF-8"),
+	// key.getBytes("UTF-8")));
+	// logger.info(tee);
+	// String ret = new String(cc.decrypt(Base64.decodeBase64(tee),
+	// key.getBytes()));
+	// logger.info("sege={}", ret);
+	// } catch (Exception e) {
+	// logger.error("error=", e);
+	// }
+	// }
 
 }

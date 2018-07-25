@@ -1,4 +1,4 @@
-package com.ump.exception.status;
+package com.ump.commons.web;
 
 public interface RestStatus {
 	/**
@@ -9,13 +9,7 @@ public interface RestStatus {
 	String code();
 
 	/**
-	 * @return status enum name
-	 */
-	String name();
-
-	/**
 	 * @return message summary
 	 */
 	String message();
-
 }

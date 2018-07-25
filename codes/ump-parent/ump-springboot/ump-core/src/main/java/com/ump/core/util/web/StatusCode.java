@@ -1,7 +1,7 @@
 package com.ump.core.util.web;
 
 import com.google.common.collect.ImmutableMap;
-import com.ump.exception.status.RestStatus;
+import com.ump.commons.web.RestStatus;
 
 public enum StatusCode implements RestStatus {
 	/** 操作成功 */

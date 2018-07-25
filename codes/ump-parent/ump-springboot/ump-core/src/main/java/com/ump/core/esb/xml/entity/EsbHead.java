@@ -13,6 +13,11 @@ import lombok.Setter;
 
 @XmlAccessorType(value = XmlAccessType.FIELD)
 public class EsbHead implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public EsbHead() {
 	}
 

@@ -1,4 +1,4 @@
-package com.ump.exception;
+package com.ump.commons.exception;
 
 import java.text.MessageFormat;
 import java.util.Locale;

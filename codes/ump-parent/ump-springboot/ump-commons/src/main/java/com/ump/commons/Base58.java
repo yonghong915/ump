@@ -1,6 +1,6 @@
 package com.ump.commons;
 
-import com.ump.exception.BusinessException;
+import com.ump.commons.exception.BusinessException;
 
 public class Base58 {
 	private Base58() {}

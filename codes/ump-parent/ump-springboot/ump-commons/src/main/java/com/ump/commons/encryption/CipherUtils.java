@@ -1,4 +1,4 @@
-package com.ump.commons.crypto;
+package com.ump.commons.encryption;
 
 import org.apache.commons.codec.digest.DigestUtils;
 

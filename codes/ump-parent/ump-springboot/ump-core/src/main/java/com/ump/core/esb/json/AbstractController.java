@@ -1,7 +1,5 @@
 package com.ump.core.esb.json;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

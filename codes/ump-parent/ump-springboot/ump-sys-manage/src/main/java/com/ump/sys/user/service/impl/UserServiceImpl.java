@@ -17,7 +17,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 //	@Transactional
 	@Override
 	public void insert(User user) {
-		// TODO Auto-generated method stub
+		userMapper.deleteById("");
 
 	}
 }

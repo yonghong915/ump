@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ump.exception.status.RestStatus;
+import com.ump.commons.web.RestStatus;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,7 +41,7 @@ public class AjaxRsp<T> implements Serializable {
 	 */
 	@Setter
 	@Getter
-	@JsonProperty("rspObj")
+	@JsonProperty("data")
 	private T rspObj;
 
 	public AjaxRsp() {

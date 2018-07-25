@@ -1,7 +1,7 @@
 /*
  * 
  */
-package com.ump.exception;
+package com.ump.commons.exception;
 
 /**
  * 
@@ -13,6 +13,7 @@ public class BaseException extends RuntimeException {
 	private static final long serialVersionUID = 0x1a8e9f24dbb2c54bL;
 
 	public BaseException() {
+		super();
 	}
 
 	public BaseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {

@@ -6,11 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ump.commons.exception.BusinessException;
+import com.ump.commons.exception.DaoException;
+import com.ump.commons.exception.ServiceException;
 import com.ump.core.base.dao.BaseDao;
 import com.ump.core.base.model.BaseObject;
-import com.ump.exception.BusinessException;
-import com.ump.exception.DaoException;
-import com.ump.exception.ServiceException;
 
 /**
  * 

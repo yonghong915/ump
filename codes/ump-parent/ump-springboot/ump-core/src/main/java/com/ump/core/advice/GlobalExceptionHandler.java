@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ump.commons.exception.CommonException;
 import com.ump.core.util.web.AjaxRsp;
 import com.ump.core.util.web.StatusCode;
-import com.ump.exception.CommonException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
