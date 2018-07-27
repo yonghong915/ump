@@ -28,14 +28,14 @@ public class AjaxRsp<T> implements Serializable {
 	@Setter
 	@Getter
 	@JsonProperty("rspCode")
-	private String rspCode = StatusCode.SUCCESS.code();
+	private String rspCode = StatusCode.FAIL.code();
 	/**
 	 * 返回码值解析
 	 */
 	@Setter
 	@Getter
 	@JsonProperty("rspMsg")
-	private String rspMsg = StatusCode.SUCCESS.message();
+	private String rspMsg = StatusCode.FAIL.message();
 	/**
 	 * 返回对象
 	 */

@@ -1,5 +1,6 @@
 package com.ump.commons.encryption;
 
+import java.io.UnsupportedEncodingException;
 import java.security.Key;
 import java.security.SecureRandom;
 
@@ -59,11 +60,12 @@ public class DesEncryptor implements IEncryptor {
 		return null;
 	}
 
-	public static void main(String[] args) {
-//		IEncryptor s = new DesEncryptor();
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		IEncryptor s = new DesEncryptor();
 //		List result = Collections.EMPTY_LIST;
-//		System.out.println(Base64.encodeBase64String(s.encrypt(null, null)));
-//		System.out.println(new String(s.decrypt(null, null)));
+		String src = "aaaaaa";
+		System.out.println(Base64.encodeBase64String(s.encrypt(src.getBytes("UTF8"), null)));
+		//System.out.println(new String(s.decrypt(null, null)));
 	}
 
 	@Override
@@ -74,6 +76,18 @@ public class DesEncryptor implements IEncryptor {
 
 	@Override
 	public String decrypt(String ciphertext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String encrypt(String key, String plaintext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String decrypt(String key, String ciphertext) {
 		// TODO Auto-generated method stub
 		return null;
 	}

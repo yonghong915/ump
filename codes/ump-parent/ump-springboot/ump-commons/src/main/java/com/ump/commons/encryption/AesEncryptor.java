@@ -102,6 +102,18 @@ public class AesEncryptor implements IEncryptor {
 		return null;
 	}
 
+	@Override
+	public String encrypt(String key, String plaintext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String decrypt(String key, String ciphertext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	// public static void main(String[] args) {
 	// ICrypto cc = new AESCrypto();
 	// String key = "8NONwyJtHesysWpM";

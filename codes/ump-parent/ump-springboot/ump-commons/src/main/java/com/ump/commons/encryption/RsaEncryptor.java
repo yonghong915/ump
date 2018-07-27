@@ -28,4 +28,16 @@ public class RsaEncryptor implements IEncryptor {
 		return null;
 	}
 
+	@Override
+	public String encrypt(String key, String plaintext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String decrypt(String key, String ciphertext) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
