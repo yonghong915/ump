@@ -4,7 +4,9 @@ public enum StatusCode implements RestStatus {
 	/** 加密失败 */
 	ENCRYPT_FAIL("E990000", "failed to encrypt"),
 	/** 解密失败 */
-	DECRYPT_FAIL("E990001", "failed to decrypt");
+	DECRYPT_FAIL("E990001", "failed to decrypt"),
+	/***/
+	KEY_LENGTH_INSUFFICIENT("E990002", "key length insufficient");
 
 	private final String code;
 

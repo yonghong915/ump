@@ -10,8 +10,8 @@ public final class CipherUtils {
 		return DigestUtils.sha256Hex(username + salt + password);
 	}
 
-	public static String encrypt4DES(String plaintext) {
-		IEncryptor encryptor = CryptoFactory.INSTANCE.getCrypto("3des");
-		return encryptor.encrypt(plaintext);
-	}
+//	public static String encrypt4DES(String plaintext) {
+//		IEncryptor encryptor = CryptoFactory.INSTANCE.getCrypto("3des");
+//		return encryptor.encrypt(plaintext);
+//	}
 }
