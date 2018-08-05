@@ -1,38 +1,40 @@
 package com.ump.commons.exception;
 
 import com.ump.commons.web.RestStatus;
-
+import com.ump.commons.web.StatusCode;
 import lombok.Getter;
-import lombok.Setter;
 
+/**
+ * Business exception of all business throw
+ * 
+ * @author fangyh
+ * @date 2018-08-05 09:46:05
+ * @version 1.0.0
+ */
 public class BusinessException extends BaseException {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Getter
-	@Setter
-	private String code;
+	private final String code;
 
 	@Getter
-	@Setter
-	private String msg;
+	private final String msg;
 
-	public BusinessException() {
-		super();
+	public BusinessException(String errCode, String message) {
+		super(message);
+		this.code = errCode;
+		this.msg = message;
 	}
 
-	public BusinessException(String errCode) {
-		super(errCode);
+	public BusinessException(String message, Throwable cause) {
+		super(message, cause);
+		this.code = StatusCode.FAIL.code();
+		this.msg = message;
 	}
 
 	public BusinessException(Throwable exception) {
 		super(exception);
-	}
-
-	public BusinessException(String errCode, Throwable exception) {
-		super(errCode, exception);
+		this.code = StatusCode.FAIL.code();
+		this.msg = StatusCode.FAIL.message();
 	}
 
 	public BusinessException(RestStatus restStatus) {
@@ -41,15 +43,13 @@ public class BusinessException extends BaseException {
 		this.msg = restStatus.message();
 	}
 
-	// public String toString() {
-	// String exceptionName = getClass().getName();
-	// String errorCode = getLocalizedMessage();
-	// StringBuffer sb = new StringBuffer(exceptionName);
-	// if (null != errorCode && !"".equals(errorCode)) {
-	// sb.append("[errCode:").append(errorCode).append(",errmsg:");
-	// sb.append(MessageFormat.format(getErrorMsg(this.getErrCode()),
-	// getParams())).append("]");
-	// }
-	// return sb.toString();
-	// }
+	public BusinessException(RestStatus restStatus, Throwable cause) {
+		super(restStatus.message(), cause);
+		this.code = restStatus.code();
+		this.msg = restStatus.message();
+	}
+
+	public String toString() {
+		return "{rspCode:" + code + ",rspMsg:" + msg + "}";
+	}
 }

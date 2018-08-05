@@ -4,12 +4,13 @@
 package com.ump.commons.exception;
 
 /**
+ * Base exception class of all exception classes
  * 
  * @author fangyh
- * @since 2018-03-22 20:50:30
+ * @date 2018-08-05 09:45:05
+ * @version 1.0.0
  */
 public class BaseException extends RuntimeException {
-
 	private static final long serialVersionUID = 0x1a8e9f24dbb2c54bL;
 
 	public BaseException() {
