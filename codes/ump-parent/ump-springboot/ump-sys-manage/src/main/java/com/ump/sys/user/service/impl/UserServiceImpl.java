@@ -1,5 +1,6 @@
 package com.ump.sys.user.service.impl;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 	@Autowired
 	private UserMapper userMapper;
 
-//	@Transactional
+	// @Transactional
 	@Override
 	public void insert(User user) {
 		userMapper.deleteById("");
 
+	}
+
+	@Override
+	public List<User> queryUsers(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
