@@ -34,14 +34,14 @@ public class AesEncryptor extends AbstractEncryptor {
 	}
 
 	@Override
-	public String encrypt(String key, String plaintext) throws CommonException {
+	public String encrypt(String key, String plaintext) {
 
 		byte[] ciphertext = encrypt(ModeType.GCM, key.getBytes(ENCODING), plaintext.getBytes(ENCODING));
 		return Base64.encodeBase64String(ciphertext);
 	}
 
 	@Override
-	public String decrypt(String key, String ciphertext) throws CommonException {
+	public String decrypt(String key, String ciphertext) {
 		if (null == key || key.length() < 24) {
 			throw new CommonException(StatusCode.KEY_LENGTH_INSUFFICIENT);
 		}

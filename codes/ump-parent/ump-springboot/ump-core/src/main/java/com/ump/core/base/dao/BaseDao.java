@@ -1,8 +1,6 @@
 package com.ump.core.base.dao;
 
 import java.util.List;
-
-import com.ump.commons.exception.DaoException;
 import com.ump.core.base.model.BaseObject;
 import com.ump.core.util.page.Page;
 
@@ -14,7 +12,7 @@ public interface BaseDao<T extends BaseObject> {
 	 * @param entity
 	 * @throws Exception
 	 */
-	int save(T entity) throws DaoException;
+	int save(T entity);
 
 	/**
 	 * 实体更新
@@ -22,21 +20,21 @@ public interface BaseDao<T extends BaseObject> {
 	 * @param entity
 	 * @throws Exception
 	 */
-	int update(T entity) throws DaoException;
+	int update(T entity);
 
-	int delete(T entity) throws DaoException;
+	int delete(T entity);
 
-	int deleteBatch(List<T> list) throws DaoException;
+	int deleteBatch(List<T> list);
 
-	T queryById(String pid) throws DaoException;
+	T queryById(String pid);
 
-	List<T> find(T entity) throws DaoException;
+	List<T> find(T entity);
 
-	List<T> findByPage(T o, Page<T> page) throws DaoException;
+	List<T> findByPage(T o, Page<T> page);
 
-	int count(T o) throws DaoException;
+	int count(T o);
 
-	int deleteById(String id) throws DaoException;
+	int deleteById(String id);
 
 	// /**
 	// * 根据对应列获取全部实体信息，排序

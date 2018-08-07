@@ -14,7 +14,6 @@ import org.apache.commons.codec.binary.Base64;
 import com.ump.commons.encryption.type.EncryptAlgorithm;
 import com.ump.commons.encryption.type.ModeType;
 import com.ump.commons.encryption.type.PaddingMode;
-import com.ump.commons.exception.CommonException;
 
 public class DesEncryptor extends AbstractEncryptor {
 
@@ -28,13 +27,13 @@ public class DesEncryptor extends AbstractEncryptor {
 	}
 
 	@Override
-	public String encrypt(String key, String plaintext) throws CommonException {
+	public String encrypt(String key, String plaintext) {
 		byte[] ciphertext = encrypt(ModeType.CBC, key.getBytes(ENCODING), plaintext.getBytes(ENCODING));
 		return Base64.encodeBase64String(ciphertext);
 	}
 
 	@Override
-	public String decrypt(String key, String ciphertext) throws CommonException {
+	public String decrypt(String key, String ciphertext) {
 		byte[] cipherByts = Base64.decodeBase64(ciphertext);
 		byte[] plaintext = decrypt(ModeType.CBC, key.getBytes(ENCODING), cipherByts);
 		return new String(plaintext, ENCODING);

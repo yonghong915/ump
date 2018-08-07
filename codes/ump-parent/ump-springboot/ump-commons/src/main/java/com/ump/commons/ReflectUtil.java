@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import com.ump.commons.exception.BusinessException;
 
-
 /**
  * 利用反射进行操作的一个工具类
  */
@@ -51,7 +50,7 @@ public class ReflectUtil {
 			try {
 				result = field.get(obj);
 			} catch (IllegalArgumentException | IllegalAccessException e) {
-				logger.error("error={}", e);
+				logger.error("obtain field value exception:", e);
 			}
 		}
 		return result;
@@ -96,7 +95,7 @@ public class ReflectUtil {
 				field.setAccessible(true);
 				field.set(obj, fieldValue);
 			} catch (IllegalArgumentException | IllegalAccessException e) {
-				logger.error("error={}", e);
+				logger.error("set field value :", e);
 			}
 		}
 	}
@@ -120,7 +119,7 @@ public class ReflectUtil {
 			try {
 				BeanUtils.setProperty(dest, name, srcObj);
 			} catch (Exception e) {
-				logger.error("error={}", e);
+				logger.error("operate props:", e);
 			}
 
 		}
@@ -212,7 +211,7 @@ public class ReflectUtil {
 			return constructor.newInstance(paramMap);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException
 				| SecurityException | InvocationTargetException e) {
-			logger.error("error={}", e);
+			logger.error("obtain obj instance:", e);
 		}
 		return null;
 	}

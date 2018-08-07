@@ -1,8 +1,16 @@
 package com.ump.commons;
 
+/**
+ * 
+ * @author fangyh
+ * @date 2018-08-05 09:37:05
+ * @version 1.0.0
+ */
 public class Code {
-	private Code() {}
-	public static String encodeStr(String param) {
+	private Code() {
+	}
+
+	public static String encode(String param) {
 		if (null == param) {
 			return "";
 		}
@@ -34,7 +42,7 @@ public class Code {
 		return sb.toString();
 	}
 
-	public static String decodeStr(String param) {
+	public static String decode(String param) {
 		if (null == param) {
 			return "";
 		}

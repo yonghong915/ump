@@ -1,14 +1,9 @@
 package com.ump.core.base.service;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.ump.commons.exception.BusinessException;
-import com.ump.commons.exception.DaoException;
-import com.ump.commons.exception.ServiceException;
 import com.ump.core.base.dao.BaseDao;
 import com.ump.core.base.model.BaseObject;
 
@@ -25,57 +20,34 @@ public abstract class BaseServiceImpl<T extends BaseObject> implements BaseServi
 	protected BaseDao<T> baseDao;
 
 	@Override
-	public int save(T entity) throws ServiceException {
-		try {
-			return baseDao.save(entity);
-		} catch (DaoException e) {
-			throw new ServiceException("数据库保存失败", e);
-		}
+	public int save(T entity) {
+		return baseDao.save(entity);
+
 	}
 
 	@Override
-	public int update(T entity) throws ServiceException {
-		try {
-			return baseDao.update(entity);
-		} catch (DaoException e) {
-			throw new ServiceException("数据库更新失败", e);
-		}
+	public int update(T entity) {
+		return baseDao.update(entity);
 	}
 
 	@Override
-	public int delete(T entity) throws ServiceException {
-		try {
-			return baseDao.delete(entity);
-		} catch (DaoException e) {
-			throw new ServiceException("数据库删除失败", e);
-		}
+	public int delete(T entity) {
+		return baseDao.delete(entity);
 	}
 
 	@Override
-	public int deleteBatch(List<T> list) throws ServiceException {
-		try {
-			return baseDao.deleteBatch(list);
-		} catch (DaoException e) {
-			throw new ServiceException("数据库删除失败", e);
-		}
+	public int deleteBatch(List<T> list) {
+		return baseDao.deleteBatch(list);
 	}
 
 	@Override
-	public T queryById(String pid) throws BusinessException {
-		try {
-			return baseDao.queryById(pid);
-		} catch (DaoException e) {
-			throw new BusinessException("数据库查询失败", e);
-		}
+	public T queryById(String pid) {
+		return baseDao.queryById(pid);
 	}
 
 	@Override
-	public List<T> find(T o) throws ServiceException {
-		try {
-			return baseDao.find(o);
-		} catch (DaoException e) {
-			throw new ServiceException("数据库删除失败", e);
-		}
+	public List<T> find(T o) {
+		return baseDao.find(o);
 	}
 
 	// @Override
@@ -98,11 +70,7 @@ public abstract class BaseServiceImpl<T extends BaseObject> implements BaseServi
 	// }
 
 	@Override
-	public int deleteById(String id) throws ServiceException {
-		try {
-			return baseDao.deleteById(id);
-		} catch (DaoException e) {
-			throw new ServiceException("数据库删除失败", e);
-		}
+	public int deleteById(String id) {
+		return baseDao.deleteById(id);
 	}
 }

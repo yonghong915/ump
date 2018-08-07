@@ -44,13 +44,39 @@ public class RsaEncryptor extends AbstractEncryptor {
 	/**
 	 * RSA最大加密明文大小
 	 */
-	private static final int MAX_ENCRYPT_BLOCK = 117;
+	protected static final int MAX_ENCRYPT_BLOCK = 117;
 
 	/** */
 	/**
 	 * RSA最大解密密文大小
 	 */
-	private static final int MAX_DECRYPT_BLOCK = 128;
+	protected static final int MAX_DECRYPT_BLOCK = 128;
+
+	// public Key getEncrypKey() {
+	//
+	// }
+	//
+	// public Key getDencryptKey() {
+	// }
+
+	public byte[] sign(Key key, byte[] digest) {
+
+		return null;
+	}
+
+	public boolean verify(Key key, byte[] signature, byte[] digest) {
+		return false;
+	}
+
+	public byte[] encrypt(Key key, byte[] plaintext) {
+		byte[] ciphertext = null;
+		return ciphertext;
+	}
+	
+	public byte[] decrypt(Key key, byte[] ciphertext) {
+		byte[] plaintext = null;
+		return plaintext;
+	}
 
 	public Cipher getCipher(ModeType modeType) throws NoSuchAlgorithmException, NoSuchPaddingException {
 		return getCipher(EncryptAlgorithm.RSA, modeType, PaddingMode.PKCS1Padding);
@@ -102,8 +128,7 @@ public class RsaEncryptor extends AbstractEncryptor {
 			KeyPair keyPair = getKeyPair();
 			byte[] pubKey = getPublicKey(keyPair);
 			byte[] priKey = getPrivateKey(keyPair);
-			byte[] data = "12345678567890填太个LlXkB"
-					.getBytes(ENCODING);
+			byte[] data = "12345678567890填太个LlXkB".getBytes(ENCODING);
 			byte[] sign = sign(priKey, data);
 			boolean verFlag = verify(pubKey, data, sign);
 			System.out.println("verFlag=" + verFlag);

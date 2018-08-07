@@ -3,7 +3,9 @@ package com.ump.commons;
 import com.ump.commons.exception.BusinessException;
 
 public class Base58 {
-	private Base58() {}
+	private Base58() {
+	}
+
 	private static final char[] ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".toCharArray();
 	private static final int BASE_58 = ALPHABET.length;
 	private static final int BASE_256 = 256;
@@ -70,7 +72,7 @@ public class Base58 {
 				digit58 = INDEXES[c];
 			}
 			if (digit58 < 0) {
-				throw new BusinessException("Not a Base58 input: " + input);
+				throw new BusinessException("Eooeee", "Not a Base58 input: " + input);
 			}
 
 			input58[i] = (byte) digit58;

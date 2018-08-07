@@ -28,6 +28,12 @@ import com.ump.commons.encryption.type.PaddingMode;
 import com.ump.commons.exception.CommonException;
 import com.ump.commons.web.StatusCode;
 
+/**
+ * 
+ * @author fangyh
+ * @date 2018-07-31 08:55:31
+ * @version 1.0.0
+ */
 public abstract class AbstractEncryptor implements IEncryptor {
 	private static Logger logger = LoggerFactory.getLogger(AbstractEncryptor.class);
 	protected static int RSA_KEY_SIZE = 1024;
@@ -37,6 +43,15 @@ public abstract class AbstractEncryptor implements IEncryptor {
 	static final Charset ENCODING = StandardCharsets.UTF_8;
 	private static final String SEPARATOR = "/";
 
+	/**
+	 * 
+	 * @param modeType
+	 * @param key
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeyException
+	 * @throws InvalidKeySpecException
+	 */
 	protected abstract Key generateKey(ModeType modeType, byte[] key)
 			throws NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException;
 

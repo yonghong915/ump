@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ump.commons.exception.CommonException;
-import com.ump.core.util.web.AjaxRsp;
-import com.ump.core.util.web.StatusCode;
+import com.ump.commons.web.ResultRsp;
+import com.ump.commons.web.StatusCode;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
 
 	@ResponseBody
 	@ExceptionHandler
-	public AjaxRsp<?> handler(HttpServletRequest req, HttpServletResponse res, Exception e) {
+	public ResultRsp<?> handler(HttpServletRequest req, HttpServletResponse res, Exception e) {
 		logger.info("Restful Http请求发生异常...");
 		if (res.getStatus() == HttpStatus.BAD_REQUEST.value()) {
 			logger.info("修改返回状态值为200");
@@ -31,20 +31,20 @@ public class GlobalExceptionHandler {
 
 		if (e instanceof NullPointerException) {
 			logger.error("代码00：" + e.getMessage(), e);
-			return new AjaxRsp<>(StatusCode.NULLPOINTER);
+			return new ResultRsp<>(StatusCode.NULLPOINTER);
 		} else if (e instanceof IllegalArgumentException) {
 			logger.error("代码01：" + e.getMessage(), e);
-			return new AjaxRsp<>(StatusCode.ILLEGAL_ARGUMENT);
+			return new ResultRsp<>(StatusCode.ILLEGAL_ARGUMENT);
 		} else if (e instanceof SQLException) {
 			logger.error("代码02：" + e.getMessage(), e);
-			return new AjaxRsp<>(StatusCode.DB_EXCEPTION);
+			return new ResultRsp<>(StatusCode.DB_EXCEPTION);
 		} else if (e instanceof CommonException) {
 			CommonException ex = (CommonException) e;
 			logger.error("【系统异常】{}", e);
-			return new AjaxRsp<>(ex.getCode(), ex.getMessage());
+			return new ResultRsp<>(ex.getCode(), ex.getMessage());
 		} else {
 			logger.error("代码99：" + e.getMessage(), e);
-			return new AjaxRsp<>(StatusCode.OTHER_EXCEPTION);
+			return new ResultRsp<>(StatusCode.OTHER_EXCEPTION);
 		}
 	}
 }
