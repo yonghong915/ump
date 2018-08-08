@@ -33,6 +33,9 @@ public enum StatusCode implements RestStatus {
 	/** 数据库访问异常 */
 	DB_EXCEPTION("E000003", "数据库访问异常"),
 
+	/** 加载文件异常 */
+	LOAD_FILE_EXCEPTION("E000004", "加载文件异常"),
+
 	/** 其他异常 */
 	OTHER_EXCEPTION("E000009", "其他异常");
 
