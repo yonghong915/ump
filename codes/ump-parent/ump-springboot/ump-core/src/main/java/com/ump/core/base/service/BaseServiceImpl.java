@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ump.core.base.dao.BaseDao;
-import com.ump.core.base.model.BaseObject;
+import com.ump.core.base.entity.BaseObject;
 
 /**
  * 
@@ -49,25 +49,6 @@ public abstract class BaseServiceImpl<T extends BaseObject> implements BaseServi
 	public List<T> find(T o) {
 		return baseDao.find(o);
 	}
-
-	// @Override
-	// public Page<T> findByPage(E o, Page<E> page) throws ServiceException {
-	// try {
-	// page.setResults(baseDao.findByPage(o, page));
-	// return page;
-	// } catch (DaoException e) {
-	// throw new ServiceException("数据库删除失败", e);
-	// }
-	// }
-	//
-	// @Override
-	// public int count(E o) throws ServiceException {
-	// try {
-	// return baseDao.count(o);
-	// } catch (DaoException e) {
-	// throw new ServiceException("数据库删除失败", e);
-	// }
-	// }
 
 	@Override
 	public int deleteById(String id) {

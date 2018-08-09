@@ -158,8 +158,7 @@ public class RsaEncryptor extends AbstractEncryptor {
 			// byte[] dedata = cipher.doFinal(endata);
 			// System.out.println(new String(dedata));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
 		}
 	}
 

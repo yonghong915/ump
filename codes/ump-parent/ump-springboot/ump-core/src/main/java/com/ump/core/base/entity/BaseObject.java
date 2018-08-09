@@ -1,4 +1,4 @@
-package com.ump.core.base.model;
+package com.ump.core.base.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

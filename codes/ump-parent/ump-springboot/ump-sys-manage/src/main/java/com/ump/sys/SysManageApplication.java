@@ -2,6 +2,8 @@ package com.ump.sys;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,13 +29,14 @@ import com.zaxxer.hikari.HikariDataSource;
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 @RestController
 public class SysManageApplication {
+	private static Logger logger = LoggerFactory.getLogger(SysManageApplication.class);
+
 	public static void main(String[] args) {
 		ApplicationContext appCtx = SpringApplication.run(SysManageApplication.class, args);
 		DataSource dataSource = appCtx.getBean(DataSource.class);
-		System.out.println("datasource is :" + dataSource);
 		// // 检查数据库是否是hikar数据库连接池
 		if (!(dataSource instanceof HikariDataSource)) {
-			System.err.println(" Wrong datasource type :" + dataSource.getClass().getCanonicalName());
+			logger.error(" Wrong datasource type :{}", dataSource.getClass().getCanonicalName());
 			System.exit(-1);
 		}
 	}

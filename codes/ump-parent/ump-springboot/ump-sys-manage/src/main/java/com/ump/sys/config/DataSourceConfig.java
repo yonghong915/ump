@@ -22,7 +22,7 @@ public class DataSourceConfig {
 	@Primary
 	public DataSource primaryDataSource() {
 		logger.info("数据库连接池创建中.......");
-		HikariDataSource ds = new HikariDataSource();// DataSourceBuilder.create().build();
+		HikariDataSource ds = new HikariDataSource();
 		ds.setDriverClassName(props.getDriverClassName());
 		ds.setJdbcUrl(props.getJdbcUrl());
 		ds.setUsername(props.getUsername());

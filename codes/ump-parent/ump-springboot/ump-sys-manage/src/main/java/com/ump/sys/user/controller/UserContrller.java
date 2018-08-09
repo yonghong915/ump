@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ump.commons.web.ResultRsp;
-import com.ump.sys.user.model.User;
+import com.ump.sys.user.entity.User;
 import com.ump.sys.user.service.IUserService;
 
 @RestController
@@ -26,14 +26,14 @@ public class UserContrller {
 	}
 
 	@RequestMapping(value = "/queryUserById", method = RequestMethod.POST)
-	public ResultRsp<?> queryUserById(String userId) {
+	public ResultRsp<User> queryUserById(String userId) {
 		ResultRsp<User> rsp = new ResultRsp<>();
 		User user = userService.queryById(userId);
 		rsp.setSucceed(user);
 		return rsp;
 	}
 
-	public ResultRsp<?> queryUsers(User user) {
+	public ResultRsp<List<User>> queryUsers(User user) {
 		ResultRsp<List<User>> rsp = new ResultRsp<>();
 		List<User> userLst = userService.queryUsers(user);
 		rsp.setSucceed(userLst);

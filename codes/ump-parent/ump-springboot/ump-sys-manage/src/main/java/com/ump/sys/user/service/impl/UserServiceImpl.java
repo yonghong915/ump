@@ -2,12 +2,14 @@ package com.ump.sys.user.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ump.core.base.service.BaseServiceImpl;
+import com.ump.sys.user.entity.User;
 import com.ump.sys.user.mapper.UserMapper;
-import com.ump.sys.user.model.User;
 import com.ump.sys.user.service.IUserService;
 
 @Service(value = "userService")
@@ -15,7 +17,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 	@Autowired
 	private UserMapper userMapper;
 
-	// @Transactional
+	@Transactional
 	@Override
 	public void insert(User user) {
 		userMapper.deleteById("");
@@ -24,7 +26,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 
 	@Override
 	public List<User> queryUsers(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return userMapper.find(user);
 	}
 }

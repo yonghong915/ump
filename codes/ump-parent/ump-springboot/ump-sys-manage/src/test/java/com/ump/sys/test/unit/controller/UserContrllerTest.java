@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ump.commons.web.ResultRsp;
 import com.ump.sys.user.controller.UserContrller;
-import com.ump.sys.user.model.User;
+import com.ump.sys.user.entity.User;
 import com.ump.sys.user.service.IUserService;
 
 /**

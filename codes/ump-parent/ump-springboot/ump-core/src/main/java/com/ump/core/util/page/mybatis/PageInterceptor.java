@@ -23,10 +23,11 @@ import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.ump.commons.ReflectUtil;
 import com.ump.core.util.page.Page;
-
 
 /**
  * 分页拦截器，用于拦截需要进行分页查询的操作，然后对其进行分页处理。 利用拦截器实现Mybatis分页的原理：
@@ -45,9 +46,11 @@ import com.ump.core.util.page.Page;
  * @date 2017-04-23 20:23:41
  * @version 1.0
  */
-@Intercepts({ @Signature(method = "prepare", type = StatementHandler.class, args = { Connection.class,Integer.class }) })
+@Intercepts({
+		@Signature(method = "prepare", type = StatementHandler.class, args = { Connection.class, Integer.class }) })
 public class PageInterceptor implements Interceptor {
-	private static String databaseType = "";// 数据库类型，不同的数据库有不同的分页方法
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	private String databaseType = "";// 数据库类型，不同的数据库有不同的分页方法
 
 	/**
 	 * 拦截后要执行的方法
@@ -116,7 +119,7 @@ public class PageInterceptor implements Interceptor {
 			try {
 				throw new PropertyException("databaseType is not found!");
 			} catch (PropertyException e) {
-				e.printStackTrace();
+				logger.error("数据库类型未找到异常", e);
 			}
 		}
 	}
@@ -131,7 +134,7 @@ public class PageInterceptor implements Interceptor {
 	 * @return
 	 */
 	private String getPageSql(Page<?> page, String sql) {
-		StringBuffer sqlBuffer = new StringBuffer(sql);
+		StringBuilder sqlBuffer = new StringBuilder(sql);
 		if ("mysql".equalsIgnoreCase(databaseType)) {
 			return getMysqlPageSql(page, sqlBuffer);
 		} else if ("oracle".equalsIgnoreCase(databaseType)) {
@@ -151,13 +154,14 @@ public class PageInterceptor implements Interceptor {
 	 *            包含原sql语句的StringBuffer对象
 	 * @return Mysql数据库分页语句
 	 */
-	private String getSqlserverPageSql(Page<?> page, StringBuffer sqlBuffer) {
+	private String getSqlserverPageSql(Page<?> page, StringBuilder sqlBuffer) {
 		// 计算第一条记录的位置，Sqlserver中记录的位置是从0开始的。
 		int startRowNum = (page.getPageNum() - 1) * page.getPageSize() + 1;
 		int endRowNum = startRowNum + page.getPageSize();
-		String sql = "select appendRowNum.row,* from (select ROW_NUMBER() OVER (order by (select 0)) AS row,* from (" + sqlBuffer.toString()
-				+ ") as innerTable" + ")as appendRowNum where appendRowNum.row >= " + startRowNum + " AND appendRowNum.row <= " + endRowNum;
-		return sql;
+		return "select appendRowNum.row,* from (select ROW_NUMBER() OVER (order by (select 0)) AS row,* from ("
+				+ sqlBuffer.toString() + ") as innerTable" + ")as appendRowNum where appendRowNum.row >= " + startRowNum
+				+ " AND appendRowNum.row <= " + endRowNum;
+
 	}
 
 	/**
@@ -169,7 +173,7 @@ public class PageInterceptor implements Interceptor {
 	 *            包含原sql语句的StringBuffer对象
 	 * @return Mysql数据库分页语句
 	 */
-	private String getMysqlPageSql(Page<?> page, StringBuffer sqlBuffer) {
+	private String getMysqlPageSql(Page<?> page, StringBuilder sqlBuffer) {
 		// 计算第一条记录的位置，Mysql中记录的位置是从0开始的。
 		int offset = (page.getPageNum() - 1) * page.getPageSize();
 		sqlBuffer.append(" limit ").append(offset).append(",").append(page.getPageSize());
@@ -185,10 +189,11 @@ public class PageInterceptor implements Interceptor {
 	 *            包含原sql语句的StringBuffer对象
 	 * @return Oracle数据库的分页查询语句
 	 */
-	private String getOraclePageSql(Page<?> page, StringBuffer sqlBuffer) {
+	private String getOraclePageSql(Page<?> page, StringBuilder sqlBuffer) {
 		// 计算第一条记录的位置，Oracle分页是通过rownum进行的，而rownum是从1开始的
 		int offset = (page.getPageNum() - 1) * page.getPageSize() + 1;
-		sqlBuffer.insert(0, "select u.*, rownum r from (").append(") u where rownum < ").append(offset + page.getPageSize());
+		sqlBuffer.insert(0, "select u.*, rownum r from (").append(") u where rownum < ")
+				.append(offset + page.getPageSize());
 		sqlBuffer.insert(0, "select * from (").append(") where r >= ").append(offset);
 		// 上面的Sql语句拼接之后大概是这个样子：
 		// select * from (select u.*, rownum r from (select * from t_user) u
@@ -206,7 +211,8 @@ public class PageInterceptor implements Interceptor {
 	 * @param connection
 	 *            当前的数据库连接
 	 */
-	private void setTotalRecord(Page<?> page, @SuppressWarnings("rawtypes") MapperMethod.ParamMap params, MappedStatement mappedStatement, Connection connection) {
+	private void setTotalRecord(Page<?> page, @SuppressWarnings("rawtypes") MapperMethod.ParamMap params,
+			MappedStatement mappedStatement, Connection connection) {
 		// 获取对应的BoundSql，这个BoundSql其实跟我们利用StatementHandler获取到的BoundSql是同一个对象。
 		// delegate里面的boundSql也是通过mappedStatement.getBoundSql(paramObj)方法获取到的。
 		BoundSql boundSql = mappedStatement.getBoundSql(params);
@@ -235,7 +241,7 @@ public class PageInterceptor implements Interceptor {
 				page.setTotalRecord(totalRecord);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error("数据库操作异常", e);
 		} finally {
 			try {
 				if (rs != null)
@@ -243,7 +249,7 @@ public class PageInterceptor implements Interceptor {
 				if (pstmt != null)
 					pstmt.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.error("sql异常:", e);
 			}
 		}
 	}

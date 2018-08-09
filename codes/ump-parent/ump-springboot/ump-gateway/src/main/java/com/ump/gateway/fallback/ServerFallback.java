@@ -49,29 +49,29 @@ public class ServerFallback implements FallbackProvider {
 		return new ClientHttpResponse() {
 			@Override
 			public HttpStatus getStatusCode() throws IOException {
-				return HttpStatus.OK; // 请求网关成功了，所以是ok
+				return status; // 请求网关成功了，所以是ok
 			}
 
 			@Override
 			public int getRawStatusCode() throws IOException {
-				return HttpStatus.OK.value();
+				return status.value();
 			}
 
 			@Override
 			public String getStatusText() throws IOException {
-				return HttpStatus.OK.getReasonPhrase();
+				return status.getReasonPhrase();
 			}
 
 			@Override
 			public void close() {
-
+				// Do nothing
 			}
 
 			@Override
 			public InputStream getBody() throws IOException {
 				JSONObject json = new JSONObject();
-				json.put("status", HttpStatus.SERVICE_UNAVAILABLE.value());
-				json.put("msg", HttpStatus.SERVICE_UNAVAILABLE.getReasonPhrase());
+				json.put("rspCode", HttpStatus.SERVICE_UNAVAILABLE.value());
+				json.put("rspMsg", HttpStatus.SERVICE_UNAVAILABLE.getReasonPhrase());
 				return new ByteArrayInputStream(json.toJSONString().getBytes(StandardCharsets.UTF_8)); // 返回前端的内容
 			}
 

@@ -13,12 +13,19 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailUtil {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public final class EmailUtil {
+	private EmailUtil() {
+	}
+
+	private Logger logger = LoggerFactory.getLogger(EmailUtil.class);
 	private String stmpServer = "smtp.163.com";
 	private String stmpPort = "25";
 	private String protocol = "smtp";
 	private String username = "yonghong915";
-	private String password = "enjoyLIFE915*#";
+	private String emailPass = "enjoyLIFE915*#";
 	private String from = "yonghong915@163.com";
 	private String to = "13684088503@139.com";
 	private String subject = "测试邮件发送";
@@ -40,7 +47,7 @@ public class EmailUtil {
 
 	public Session getSession() {
 		Properties props = getMailProps();
-		Authenticator authenticator = new EmailAuthenticator(username, password);
+		Authenticator authenticator = new EmailAuthenticator(username, emailPass);
 		Session session = Session.getInstance(props, authenticator);
 		session.setDebug(true);
 		return session;
@@ -68,8 +75,7 @@ public class EmailUtil {
 			transport.sendMessage(message, message.getRecipients(RecipientType.TO));
 			transport.close();
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("发送邮件失败:", e);
 		}
 
 	}

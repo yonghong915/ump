@@ -2,7 +2,7 @@ package com.ump.core.base.service;
 
 import java.util.List;
 
-import com.ump.core.base.model.BaseObject;
+import com.ump.core.base.entity.BaseObject;
 
 /**
  * 
@@ -57,24 +57,4 @@ public interface BaseService<T extends BaseObject> {
 	 * @return List
 	 */
 	public List<T> find(T o);
-
-//	/**
-//	 * 获得对象列表
-//	 * 
-//	 * @param o
-//	 *            对象
-//	 * @param page
-//	 *            分页对象
-//	 * @return List
-//	 */
-//	public Page<E> findByPage(E o, Page<E> page);
-//
-//	/**
-//	 * 统计数目
-//	 * 
-//	 * @param o
-//	 *            对象
-//	 * @return long
-//	 */
-//	public int count(E o);
 }

@@ -18,11 +18,11 @@ import com.ump.commons.web.StatusCode;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-	private final static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+	private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 	@ResponseBody
 	@ExceptionHandler
-	public ResultRsp<?> handler(HttpServletRequest req, HttpServletResponse res, Exception e) {
+	public ResultRsp<Object> handler(HttpServletRequest req, HttpServletResponse res, Exception e) {
 		logger.info("Restful Http请求发生异常...");
 		if (res.getStatus() == HttpStatus.BAD_REQUEST.value()) {
 			logger.info("修改返回状态值为200");
