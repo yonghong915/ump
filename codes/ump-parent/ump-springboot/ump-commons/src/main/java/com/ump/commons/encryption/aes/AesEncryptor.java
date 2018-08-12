@@ -7,6 +7,8 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+
+import com.ump.commons.encryption.bccsp.DecrypterOpts;
 import com.ump.commons.encryption.bccsp.EncrypterOpts;
 import com.ump.commons.encryption.bccsp.Key;
 import com.ump.commons.encryption.sw.internals.Encryptor;
@@ -15,6 +17,10 @@ import com.ump.commons.web.StatusCode;
 
 public class AesEncryptor implements Encryptor {
 	private static final String SEPARATOR = "/";
+
+	public Key KeyGen() {
+		return null;
+	}
 
 	@Override
 	public byte[] Encrypt(Key key, byte[] plaintext, EncrypterOpts opts) {
@@ -32,5 +38,9 @@ public class AesEncryptor implements Encryptor {
 			System.out.println(e);
 			throw new CommonException(StatusCode.ENCRYPT_FAIL);
 		}
+	}
+
+	public byte[] Decrypt(Key key, byte[] ciphertext, DecrypterOpts opts) {
+		return null;
 	}
 }
