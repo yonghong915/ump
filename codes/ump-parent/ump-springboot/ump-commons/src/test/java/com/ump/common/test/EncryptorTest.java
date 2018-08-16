@@ -17,6 +17,8 @@ import com.ump.commons.encryption.des.TripleDesOpts;
 import com.ump.commons.encryption.internals.IEncryptor;
 import com.ump.commons.encryption.internals.Key;
 import com.ump.commons.encryption.internals.Opts;
+import com.ump.commons.encryption.rsa.RsaEncryptor;
+import com.ump.commons.encryption.rsa.RsaOpts;
 
 public class EncryptorTest {
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -70,7 +72,18 @@ public class EncryptorTest {
 	}
 
 	@Test
-	@Ignore
 	public void testRsa() {
+		IEncryptor encry = new RsaEncryptor();
+		Opts opts = new RsaOpts();
+		Key key = encry.generateKey(opts);
+		String plaintext = "aA1~!@#$%^&*()_+`";
+
+		byte[] ciphertext = encry.encrypt(key, plaintext.getBytes(), opts);
+		logger.info("rsa ciphertext={}", Base64.encodeBase64String(ciphertext));
+
+		byte[] pltxt = encry.decrypt(key, ciphertext, opts);
+		String decryptedText = new String(pltxt);
+		logger.info("rsa plaintext={}", decryptedText);
+		assertEquals(plaintext, decryptedText);
 	}
 }

@@ -29,13 +29,7 @@ public abstract class AbstractEncryptor {
 	protected Key genKey(Opts opts) {
 		try {
 			KeyGenerator keyGenerator = KeyGenerator.getInstance(opts.getAlgorithm());
-			
-			SecureRandom secrand = new SecureRandom();
-			byte[] b = new byte[20];
-			// fill with truly random bits
-			secrand.setSeed(b);
-			
-			keyGenerator.init(opts.getKeySize(), secrand);
+			keyGenerator.init(opts.getKeySize(), new SecureRandom());
 			Key secretKey = keyGenerator.generateKey();
 			return secretKey;
 		} catch (NoSuchAlgorithmException e) {
