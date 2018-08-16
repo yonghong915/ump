@@ -17,13 +17,16 @@ public enum StatusCode implements RestStatus {
 	FAIL("E999999", "FAILURE"),
 
 	/** 加密失败 */
-	ENCRYPT_FAIL("E990000", "failed to encrypt"),
+	GENKEY_FAIL("E990000", "failed to gen key"),
+
+	/** 加密失败 */
+	ENCRYPT_FAIL("E990001", "failed to encrypt"),
 
 	/** 解密失败 */
-	DECRYPT_FAIL("E990001", "failed to decrypt"),
+	DECRYPT_FAIL("E990002", "failed to decrypt"),
 
 	/***/
-	KEY_LENGTH_INSUFFICIENT("E990002", "key length insufficient"),
+	KEY_LENGTH_INSUFFICIENT("E990003", "key length insufficient"),
 	/** 空指针异常 */
 	NULLPOINTER("E000001", "发生空指针异常"),
 

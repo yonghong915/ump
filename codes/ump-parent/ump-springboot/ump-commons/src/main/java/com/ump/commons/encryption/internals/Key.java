@@ -12,9 +12,13 @@ public interface Key {
 	// SKI returns the subject key identifier of this key.
 	byte[] SKI();
 
-	// Symmetric returns true if this key is a symmetric key,
-	// false is this key is asymmetric
-	boolean Symmetric();
+	/**
+	 * isSymmetric returns true if this key is a symmetric key, false is this key is
+	 * asymmetric
+	 * 
+	 * @return
+	 */
+	boolean isSymmetric();
 
 	// Private returns true if this key is a private key,
 	// false otherwise.

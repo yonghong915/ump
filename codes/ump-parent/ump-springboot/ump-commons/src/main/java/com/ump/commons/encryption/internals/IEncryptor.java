@@ -8,10 +8,10 @@ package com.ump.commons.encryption.internals;
  */
 public interface IEncryptor {
 
-	public Key KeyGen(Opts opts);
+	public Key generateKey(Opts opts);
 
-	public byte[] Encrypt(Key key, byte[] plaintext, Opts enOpts);
+	public byte[] encrypt(Key key, byte[] plaintext, Opts enOpts);
 
-	public byte[] Decrypt(Key key, byte[] ciphertext, Opts deOpts);
+	public byte[] decrypt(Key key, byte[] ciphertext, Opts deOpts);
 
 }

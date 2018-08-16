@@ -7,9 +7,25 @@ package com.ump.commons.encryption.internals;
  * @version 1.0.0
  */
 public interface Opts {
-	String Algorithm();
+	/**
+	 * 
+	 * getAlgorithm returns specified encryption algorithm
+	 * 
+	 * @return
+	 */
+	String getAlgorithm();
 
-	String ModeType();
+	/**
+	 * 
+	 * @return
+	 */
+	String getModeType();
 
-	String PaddingMode();
+	/**
+	 * 
+	 * @return
+	 */
+	String getPaddingMode();
+
+	int getKeySize();
 }

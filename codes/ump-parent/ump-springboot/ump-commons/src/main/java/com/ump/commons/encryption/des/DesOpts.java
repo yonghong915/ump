@@ -1,4 +1,4 @@
-package com.ump.commons.encryption.aes;
+package com.ump.commons.encryption.des;
 
 import com.ump.commons.encryption.internals.Opts;
 import com.ump.commons.encryption.type.EncryptAlgorithm;
@@ -6,16 +6,11 @@ import com.ump.commons.encryption.type.KeySizeEnum;
 import com.ump.commons.encryption.type.ModeType;
 import com.ump.commons.encryption.type.PaddingMode;
 
-/**
- * 
- * @author fangyh
- * @date 2018-08-15 22:40:15
- * @version 1.0.0
- */
-public class AesOpts implements Opts {
+public class DesOpts implements Opts {
+
 	@Override
 	public String getAlgorithm() {
-		return EncryptAlgorithm.AES.name();
+		return EncryptAlgorithm.DES.name();
 	}
 
 	@Override
@@ -30,7 +25,7 @@ public class AesOpts implements Opts {
 
 	@Override
 	public int getKeySize() {
-		return KeySizeEnum.AES.value();
+		return KeySizeEnum.DES.value();
 	}
 
 }
