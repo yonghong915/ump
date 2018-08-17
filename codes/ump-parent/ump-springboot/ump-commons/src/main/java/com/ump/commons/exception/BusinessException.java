@@ -49,6 +49,7 @@ public class BusinessException extends BaseException {
 		this.msg = restStatus.message();
 	}
 
+	@Override
 	public String toString() {
 		return "{rspCode:" + code + ",rspMsg:" + msg + "}";
 	}

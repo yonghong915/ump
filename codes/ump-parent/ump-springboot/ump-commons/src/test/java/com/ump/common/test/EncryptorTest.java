@@ -1,9 +1,7 @@
 package com.ump.common.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.apache.commons.codec.binary.Base64;
-import org.junit.Ignore;
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +34,7 @@ public class EncryptorTest {
 		byte[] pltxt = encry.decrypt(key, ciphertext, opts);
 		String decryptedText = new String(pltxt);
 		logger.info("aes plaintext={}", decryptedText);
-		assertEquals(plaintext, decryptedText);
+		Assert.assertEquals(plaintext, decryptedText);
 	}
 
 	@Test
@@ -52,7 +50,7 @@ public class EncryptorTest {
 		byte[] pltxt = encry.decrypt(key, ciphertext, opts);
 		String decryptedText = new String(pltxt);
 		logger.info("des plaintext={}", decryptedText);
-		assertEquals(plaintext, decryptedText);
+		Assert.assertEquals(plaintext, decryptedText);
 	}
 
 	@Test
@@ -68,7 +66,7 @@ public class EncryptorTest {
 		byte[] pltxt = encry.decrypt(key, ciphertext, opts);
 		String decryptedText = new String(pltxt);
 		logger.info("tripleDes plaintext={}", decryptedText);
-		assertEquals(plaintext, decryptedText);
+		Assert.assertEquals(plaintext, decryptedText);
 	}
 
 	@Test
@@ -84,6 +82,6 @@ public class EncryptorTest {
 		byte[] pltxt = encry.decrypt(key, ciphertext, opts);
 		String decryptedText = new String(pltxt);
 		logger.info("rsa plaintext={}", decryptedText);
-		assertEquals(plaintext, decryptedText);
+		Assert.assertEquals(plaintext, decryptedText);
 	}
 }

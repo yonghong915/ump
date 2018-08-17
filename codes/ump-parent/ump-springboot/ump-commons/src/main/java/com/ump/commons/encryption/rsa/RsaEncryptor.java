@@ -21,6 +21,9 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ump.commons.encryption.internals.IEncryptor;
 import com.ump.commons.encryption.internals.Key;
 import com.ump.commons.encryption.internals.Opts;
@@ -29,9 +32,11 @@ import com.ump.commons.exception.CommonException;
 import com.ump.commons.web.StatusCode;
 
 public class RsaEncryptor implements IEncryptor {
+	private static Logger logger = LoggerFactory.getLogger(RsaEncryptor.class);
 	static int RSA_KEY_SIZE = 1024;
 	public static final String KEY_ALGORITHM_RSA = "RSA";
 	public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
+	private static final byte[] EMPTY_ARRAY = new byte[0];
 	/**
 	 * RSA最大加密明文大小
 	 */
@@ -49,8 +54,7 @@ public class RsaEncryptor implements IEncryptor {
 		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(EncryptAlgorithm.RSA.name());
 		SecureRandom secureRandom = new SecureRandom();
 		keyPairGenerator.initialize(RSA_KEY_SIZE, secureRandom);
-		KeyPair keyPair = keyPairGenerator.generateKeyPair();
-		return keyPair;
+		return keyPairGenerator.generateKeyPair();
 	}
 
 	@Override
@@ -70,14 +74,13 @@ public class RsaEncryptor implements IEncryptor {
 	public byte[] encrypt(Key key, byte[] plaintext, Opts enOpts) {
 		RsaPrivateKey priKey = (RsaPrivateKey) key;
 		Cipher cipher;
-		try {
+		try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
 			cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			X509EncodedKeySpec keySpec = new X509EncodedKeySpec(priKey.getPublicKey());
 			KeyFactory keyFactory = KeyFactory.getInstance(EncryptAlgorithm.RSA.name());
 			PublicKey publicKey = keyFactory.generatePublic(keySpec);
 			cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 			int inputLen = plaintext.length;
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			int offSet = 0;
 			byte[] cache;
 			int i = 0;
@@ -92,23 +95,19 @@ public class RsaEncryptor implements IEncryptor {
 				i++;
 				offSet = i * MAX_ENCRYPT_BLOCK;
 			}
-			byte[] encryptedData = out.toByteArray();
-			out.close();
-			return encryptedData;
+			return out.toByteArray();
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeySpecException | InvalidKeyException
 				| IllegalBlockSizeException | BadPaddingException | IOException e) {
-			e.printStackTrace();
-		} finally {
+			logger.error("RSA加密异常", e);
 		}
-
-		return null;
+		return EMPTY_ARRAY;
 	}
 
 	@Override
 	public byte[] decrypt(Key key, byte[] ciphertext, Opts deOpts) {
 		RsaPrivateKey priKey = (RsaPrivateKey) key;
 		Cipher cipher;
-		try {
+		try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
 			cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 
 			// 取得私钥
@@ -122,7 +121,7 @@ public class RsaEncryptor implements IEncryptor {
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
 			int inputLen = ciphertext.length;
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
+
 			int offSet = 0;
 			byte[] cache;
 			int i = 0;
@@ -137,15 +136,12 @@ public class RsaEncryptor implements IEncryptor {
 				i++;
 				offSet = i * MAX_DECRYPT_BLOCK;
 			}
-			byte[] decryptedData = out.toByteArray();
-			out.close();
-			return decryptedData;
+			return out.toByteArray();
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeySpecException | InvalidKeyException
 				| IllegalBlockSizeException | BadPaddingException | IOException e) {
-			e.printStackTrace();
-		} finally {
+			logger.error("RSA解密异常", e);
 		}
-		return null;
+		return EMPTY_ARRAY;
 	}
 
 }

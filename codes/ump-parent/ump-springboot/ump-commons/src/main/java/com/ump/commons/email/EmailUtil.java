@@ -9,7 +9,6 @@ import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -53,7 +52,7 @@ public final class EmailUtil {
 		return session;
 	}
 
-	public Message getMimeMessage(Session session) throws AddressException, MessagingException {
+	public Message getMimeMessage(Session session) throws MessagingException {
 		Message message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(from));
 		message.setRecipients(RecipientType.TO, InternetAddress.parse(to));

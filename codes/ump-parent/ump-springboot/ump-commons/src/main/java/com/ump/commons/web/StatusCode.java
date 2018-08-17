@@ -27,6 +27,13 @@ public enum StatusCode implements RestStatus {
 
 	/***/
 	KEY_LENGTH_INSUFFICIENT("E990003", "key length insufficient"),
+
+	/***/
+	PACK_XML_EXCEPTION("E990004", "组装XML异常"),
+
+	/***/
+	UNPACK_XML_EXCEPTION("E990005", "解包XML异常"),
+
 	/** 空指针异常 */
 	NULLPOINTER("E000001", "发生空指针异常"),
 

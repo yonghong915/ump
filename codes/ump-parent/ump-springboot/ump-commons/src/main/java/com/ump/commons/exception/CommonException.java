@@ -36,6 +36,7 @@ public class CommonException extends BaseException {
 		this.code = restStatus.code();
 	}
 
+	@Override
 	public String toString() {
 		return "{rspCode:" + code + ",rspMsg:" + getMessage() + "}";
 	}

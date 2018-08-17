@@ -23,32 +23,7 @@ public class AesPrivateKey implements Key {
 	private boolean exportable;
 
 	@Override
-	public byte[] Bytes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public byte[] SKI() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean isSymmetric() {
 		return true;
 	}
-
-	@Override
-	public boolean Private() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Key PublicKey() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

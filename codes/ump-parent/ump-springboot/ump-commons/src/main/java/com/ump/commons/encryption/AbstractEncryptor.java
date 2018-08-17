@@ -30,8 +30,7 @@ public abstract class AbstractEncryptor {
 		try {
 			KeyGenerator keyGenerator = KeyGenerator.getInstance(opts.getAlgorithm());
 			keyGenerator.init(opts.getKeySize(), new SecureRandom());
-			Key secretKey = keyGenerator.generateKey();
-			return secretKey;
+			return keyGenerator.generateKey();
 		} catch (NoSuchAlgorithmException e) {
 			logger.error(StatusCode.GENKEY_FAIL.message(), e);
 			throw new CommonException(StatusCode.GENKEY_FAIL);
