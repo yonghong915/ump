@@ -2,6 +2,9 @@ package com.ump.core.proxy.cglib;
 
 import java.lang.reflect.Method;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ump.commons.ReflectUtil;
 
 import net.sf.cglib.proxy.Enhancer;
@@ -9,6 +12,8 @@ import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
 public class CglibProxy implements MethodInterceptor {
+	private Logger logger = LoggerFactory.getLogger(getClass());
+
 	public Object getInstance(String targetClass) {
 		Object targetObj = ReflectUtil.getInstanceObj(targetClass);
 		return getInstance(targetObj);
@@ -25,11 +30,11 @@ public class CglibProxy implements MethodInterceptor {
 
 	public Object intercept(Object object, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 		// 添加切面逻辑（advise），此处是在目标类代码执行之前，即为MethodBeforeAdviceInterceptor。
-		System.out.println("before-------------");
+		logger.info("before-------------");
 		// 执行目标类add方法
 		proxy.invokeSuper(object, args);
 		// 添加切面逻辑（advise），此处是在目标类代码执行之后，即为MethodAfterAdviceInterceptor。
-		System.out.println("after--------------");
+		logger.info("after--------------");
 		return null;
 	}
 }

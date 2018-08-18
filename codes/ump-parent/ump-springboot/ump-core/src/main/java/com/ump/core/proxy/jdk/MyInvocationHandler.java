@@ -4,8 +4,11 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class MyInvocationHandler implements InvocationHandler {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class MyInvocationHandler implements InvocationHandler {
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	/** 代理的真实对象 */
 	private Object target;
 
@@ -37,11 +40,11 @@ public class MyInvocationHandler implements InvocationHandler {
 	 */
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		// 程序执行前加入逻辑，MethodBeforeAdviceInterceptor
-		System.out.println("before-----------------------------");
+		logger.info("before-----------------------------");
 		// 程序执行
 		Object result = method.invoke(target, args);
 		// 程序执行后加入逻辑，MethodAfterAdviceInterceptor
-		System.out.println("after------------------------------");
+		logger.info("after------------------------------");
 		return result;
 	}
 

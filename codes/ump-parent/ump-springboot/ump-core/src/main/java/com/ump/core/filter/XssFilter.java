@@ -25,7 +25,7 @@ public class XssFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-
+		// Do nothing because of
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class XssFilter implements Filter {
 
 	@Override
 	public void destroy() {
-
+		// Do nothing because of
 	}
 
 	public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {

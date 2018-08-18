@@ -3,9 +3,9 @@ package com.ump.common.test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.ump.commons.esb.xml.EsbBody;
-import com.ump.commons.esb.xml.EsbHead;
-import com.ump.commons.esb.xml.EsbReq;
+import com.ump.commons.esb.xml.entity.EsbBody;
+import com.ump.commons.esb.xml.entity.EsbReq;
+import com.ump.commons.esb.xml.entity.EsbReqHead;
 import com.ump.commons.xml.JaxbUtil;
 
 public class XmlTest {
@@ -16,7 +16,7 @@ public class XmlTest {
 		String xml = "";
 		for (int i = 0; i < 5; i++) {
 			EsbReq req = new EsbReq();
-			EsbHead head = new EsbHead();
+			EsbReqHead head = new EsbReqHead();
 			head.setChannel("01");
 			head.setProviderSystem("ump");
 			req.setHead(head);

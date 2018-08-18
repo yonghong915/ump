@@ -1,85 +1,81 @@
 package com.ump.common.test;
 
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 
-import com.ump.commons.esb.xml.EsbBody;
-import com.ump.commons.esb.xml.EsbHead;
-import com.ump.commons.esb.xml.EsbReq;
+import com.google.common.collect.Lists;
+import com.ump.commons.esb.xml.entity.EsbBody;
+import com.ump.commons.esb.xml.entity.EsbReq;
+import com.ump.commons.esb.xml.entity.EsbReqHead;
+import com.ump.commons.esb.xml.entity.Field;
+import com.ump.commons.esb.xml.entity.Row;
+import com.ump.commons.esb.xml.entity.Rows;
+import com.ump.commons.xml.JaxbUtil;
 
 public class EsbTest {
 	@Test
 	public void testEsb() {
 		EsbReq req = new EsbReq();
-		EsbHead head = new EsbHead();
+		EsbReqHead head = new EsbReqHead();
 		head.setChannel("01");
+		head.setServiceCode("aopg01");
+		head.setServiceOperation("query");
 		head.setProviderSystem("ump");
+		head.setConsumerSystem("ammp");
+		head.setCreateTime(new Date());
+		head.setOperator("fangyh");
+		head.setSerialNo("20180940500000");
 		req.setHead(head);
 
 		EsbBody body = new EsbBody();
+		List<Field> fldLst = Lists.newArrayList();
+		Field f1 = new Field();
+		f1.setName("loginName");
+		f1.setValue("amefyg");
+		fldLst.add(f1);
+
+		Field f2 = new Field();
+		f2.setName("userage");
+		f2.setValue("100");
+		fldLst.add(f2);
+
+		body.setFieldList(fldLst);
+
+		Rows rows = new Rows();
+
+		List<Row> rowList = Lists.newArrayList();
+		Row row = new Row();
+		Field row1 = new Field();
+		row1.setName("userage");
+		row1.setValue("100");
+
+		Field row2 = new Field();
+		row2.setName("userage1");
+		row2.setValue("1001");
+
+		List<Field> rowsList = Lists.newArrayList();
+		rowsList.add(row1);
+		rowsList.add(row2);
+		row.setRowList(rowsList);
+
+		Row row21 = new Row();
+		Field row11 = new Field();
+		row11.setName("userage");
+		row11.setValue("100");
+
+		rowList.add(row);
+		rowList.add(row21);
+		rows.setRowList(rowList);
+
+		body.setRows(rows);
 		req.setBody(body);
-		try {
-			String xml = packgeXML(req, EsbReq.class);
-			System.out.println("xml=" + xml);
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
+		String xml = JaxbUtil.packXML(req);
+		System.out.println("xml=" + xml);
 
+		EsbReq que = JaxbUtil.unpackXML(EsbReq.class, xml);
+		System.out.println(que.getHead().getChannel());
 	}
 
-	public static String packgeXML(Object obj, Class<?> load) throws JAXBException {
-		JAXBContext context = JAXBContext.newInstance(load);
-		Marshaller marshaller = context.createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		marshaller.setProperty(Marshaller.JAXB_ENCODING, StandardCharsets.UTF_8.name());
-		StringWriter writer = new StringWriter();
-		marshaller.marshal(obj, writer);
-		return writer.toString();
-	}
-
-	public static String unpackageXML() {
-		return "";
-	}
-
-	public static <T> T parseXML(Class<T> clazz, String context) {
-
-		T result = null;
-		Locale.setDefault(Locale.ENGLISH);
-		try {
-			StringReader reader = new StringReader(context);
-			JAXBContext jc = JAXBContext.newInstance(clazz);
-			Unmarshaller u = jc.createUnmarshaller();
-			result = (T) u.unmarshal(reader);
-			reader.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	public static String convertObjectToXml(String xmlEncoding, Object obj, Class<?> clazz) {
-		JAXBContext jaxbContext = null;
-		StringWriter outPutSW = new StringWriter();
-		try {
-			jaxbContext = JAXBContext.newInstance(clazz);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-			if (!"UTF-8".equals(xmlEncoding))
-				jaxbMarshaller.setProperty("jaxb.encoding", xmlEncoding);
-
-			jaxbMarshaller.marshal(obj, outPutSW);
-			return outPutSW.toString();
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-		return "";
-	}
 }

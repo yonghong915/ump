@@ -1,5 +1,6 @@
 package com.ump.core.util.page;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,8 +43,8 @@ public class Page<T> {
 	public void setTotalRecord(int totalRecord) {
 		this.totalRecord = totalRecord;
 		// 在设置总页数的时候计算出对应的总页数，在下面的三目运算中加法拥有更高的优先级，所以最后可以不加括号。
-		int totalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
-		this.setTotalPage(totalPage);
+		int thisTotalPage = totalRecord % pageSize == 0 ? totalRecord / pageSize : totalRecord / pageSize + 1;
+		this.setTotalPage(thisTotalPage);
 	}
 
 	public int getTotalPage() {
@@ -55,8 +56,8 @@ public class Page<T> {
 	}
 
 	public List<T> getResults() {
-		if (null != results && results.size() == 0) {
-			return null;
+		if (null != results && results.isEmpty()) {
+			return Collections.emptyList();
 		}
 		return results;
 	}
@@ -68,8 +69,9 @@ public class Page<T> {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Page [pageNum=").append(pageNum).append(", pageSize=").append(pageSize).append(", results=").append(results)
-				.append(", totalPage=").append(totalPage).append(", totalRecord=").append(totalRecord).append("]");
+		builder.append("Page [pageNum=").append(pageNum).append(", pageSize=").append(pageSize).append(", results=")
+				.append(results).append(", totalPage=").append(totalPage).append(", totalRecord=").append(totalRecord)
+				.append("]");
 		return builder.toString();
 	}
 }
