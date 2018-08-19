@@ -20,7 +20,7 @@ public class DesOpts implements Opts {
 
 	@Override
 	public String getPaddingMode() {
-		return PaddingMode.PKCS5Padding.name();
+		return PaddingMode.PKCS5PADDING.name();
 	}
 
 	@Override

@@ -1,6 +1,12 @@
-package com.ump.commons.desensi;
+package desensitization;
 
-public enum SensitiveTypeEnum {
+/**
+ * 
+ * @author fangyh
+ * @date 2018-08-18 21:16:18
+ * @version 1.0.0
+ */
+public enum SensitiveType {
 	/** 中文名 */
 	CHINESE_NAME,
 	/** 身份证号 */

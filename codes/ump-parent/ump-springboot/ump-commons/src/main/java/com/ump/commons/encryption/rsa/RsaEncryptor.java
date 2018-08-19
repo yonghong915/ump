@@ -33,7 +33,7 @@ import com.ump.commons.web.StatusCode;
 
 public class RsaEncryptor implements IEncryptor {
 	private static Logger logger = LoggerFactory.getLogger(RsaEncryptor.class);
-	static int RSA_KEY_SIZE = 1024;
+	public static final int RSA_KEY_SIZE = 1024;
 	public static final String KEY_ALGORITHM_RSA = "RSA";
 	public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
 	private static final byte[] EMPTY_ARRAY = new byte[0];

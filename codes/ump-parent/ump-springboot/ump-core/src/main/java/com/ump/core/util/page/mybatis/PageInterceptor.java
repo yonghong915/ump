@@ -87,6 +87,11 @@ public class PageInterceptor implements Interceptor {
 					break;
 				}
 			}
+			
+			for (Object key :paramMap.entrySet()) {
+				
+			}
+			
 		}
 
 		if (page != null) {

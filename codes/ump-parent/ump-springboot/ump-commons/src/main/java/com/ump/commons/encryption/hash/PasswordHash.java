@@ -30,6 +30,9 @@ package com.ump.commons.encryption.hash;
 
 import java.security.SecureRandom;
 import javax.crypto.spec.PBEKeySpec;
+
+import org.apache.commons.lang3.StringUtils;
+
 import javax.crypto.SecretKeyFactory;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -186,7 +189,7 @@ public class PasswordHash {
 		String hex = bi.toString(16);
 		int paddingLength = (array.length * 2) - hex.length();
 		if (paddingLength > 0)
-			return String.format("%0" + paddingLength + "d", 0) + hex;
+			return StringUtils.leftPad("0", paddingLength,"0") + hex;
 		else
 			return hex;
 	}

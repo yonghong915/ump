@@ -10,7 +10,7 @@ public class TripleDesOpts implements Opts {
 
 	@Override
 	public String getAlgorithm() {
-		return EncryptAlgorithm.DESede.name();
+		return EncryptAlgorithm.DESEDE.name();
 	}
 
 	@Override
@@ -20,12 +20,12 @@ public class TripleDesOpts implements Opts {
 
 	@Override
 	public String getPaddingMode() {
-		return PaddingMode.PKCS5Padding.name();
+		return PaddingMode.PKCS5PADDING.name();
 	}
 
 	@Override
 	public int getKeySize() {
-		return KeySizeEnum.DESede.value();
+		return KeySizeEnum.DESEDE.value();
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.ump.commons;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 
  * @author fangyh
@@ -11,13 +13,12 @@ public class Code {
 	}
 
 	public static String encode(String param) {
-		if (null == param) {
+		if (StringUtils.isBlank(param)) {
 			return "";
 		}
 		StringBuilder sb = new StringBuilder();
 		String str = "";
-		int len = param.length();
-		for (int idx = 0; idx < len; idx++) {
+		for (int idx = 0, len = param.length(); idx < len; idx++) {
 			int k = param.charAt(idx);
 			int m;
 			if (k > 255) {
@@ -26,7 +27,7 @@ public class Code {
 					str = "0".concat(str);
 				}
 				sb.append("^").append(str);
-			} else if ((k < 48) || ((k > 57) && (k < 65)) || ((k > 90) && (k < 97)) || (k > 122)) {
+			} else if (!isEE(k)) {
 				// ascii [48,57]=[0,9]
 				// [65,90]=[A,Z]
 				// [97,122]=[a,z]
@@ -42,28 +43,36 @@ public class Code {
 		return sb.toString();
 	}
 
+	private static boolean isEE(int k) {
+		// ascii [48,57]=[0,9]
+		// [65,90]=[A,Z]
+		// [97,122]=[a,z]
+		return (k >= 48 && k <= 57) && (k >= 65 && k <= 90) && (k >= 97 && k <= 122);
+	}
+
 	public static String decode(String param) {
-		if (null == param) {
+		if (StringUtils.isBlank(param)) {
 			return "";
 		}
 		StringBuilder sb = new StringBuilder();
 		int len = param.length();
-		for (int i = 0; i < len; i++) {
+		int i = 0;
+		while (i < len) {
 			char c = param.charAt(i);
 			String str;
 			switch (c) {
 			case '~':
 				str = param.substring(i + 1, i + 3);
 				sb.append((char) Integer.parseInt(str, 16));
-				i += 2;
+				i += 3;
 				break;
-
 			case '^':
 				str = param.substring(i + 1, i + 5);
 				sb.append((char) Integer.parseInt(str, 16));
-				i += 4;
+				i += 5;
 				break;
 			default:
+				i++;
 				sb.append(c);
 			}
 		}

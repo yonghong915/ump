@@ -19,16 +19,14 @@ public class BatchExecutor implements Runnable {
 			return;
 		}
 		Object obj = ReflectUtil.getObjectInstance(className);
-		if (null != obj) {
-			if (obj instanceof IHandler) {
-				this.impl = (IHandler) obj;
-				this.paramMap = paramMap;
-			}
+		if (null != obj && (obj instanceof IHandler)) {
+			this.impl = (IHandler) obj;
+			this.paramMap = paramMap;
 		}
 	}
 
 	@Override
 	public void run() {
-		impl.execute();
+		impl.execute(paramMap);
 	}
 }
