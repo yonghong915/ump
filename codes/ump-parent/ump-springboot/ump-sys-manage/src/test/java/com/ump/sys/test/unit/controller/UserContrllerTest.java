@@ -1,7 +1,5 @@
 package com.ump.sys.test.unit.controller;
 
-import java.util.ArrayList;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.ump.commons.web.ResultRsp;
 import com.ump.sys.user.controller.UserContrller;
 import com.ump.sys.user.entity.User;
@@ -66,9 +66,12 @@ public class UserContrllerTest {
 		User user = new User();
 		user.setUserId("100000");
 		user.setUserName("fangyh");
-		Mockito.when(userService.queryUsers(user)).thenReturn(new ArrayList<User>());
-		ResultRsp<?> r = userContrller.queryUsers(user);
-		Mockito.verify(userService).queryUsers(user);
+		Page<User> page = new Page<>();
+		page.setPageNum(10);
+		page.setPageSize(1);
+		Mockito.when(userService.queryUsers(user, page)).thenReturn(new PageInfo<User>());
+		ResultRsp<?> r = userContrller.queryUsers(user, page);
+		Mockito.verify(userService).queryUsers(user, page);
 		Assert.assertEquals("000000", r.getRspCode());
 	}
 }

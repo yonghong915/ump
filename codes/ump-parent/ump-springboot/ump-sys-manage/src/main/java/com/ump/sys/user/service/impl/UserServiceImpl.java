@@ -7,6 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ump.core.base.service.BaseServiceImpl;
 import com.ump.sys.user.entity.User;
 import com.ump.sys.user.mapper.UserMapper;
@@ -25,7 +28,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 	}
 
 	@Override
-	public List<User> queryUsers(User user) {
-		return userMapper.find(user);
+	public PageInfo<User> queryUsers(User user, Page<User> page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
+		List<User> usrLst = userMapper.find(user);
+		return new PageInfo<>(usrLst);
+	}
+
+	public PageInfo<User> queryList(int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<User> list = userMapper.find(null);
+		PageInfo<User> pageInfo = new PageInfo<>(list);
+		return pageInfo;
 	}
 }

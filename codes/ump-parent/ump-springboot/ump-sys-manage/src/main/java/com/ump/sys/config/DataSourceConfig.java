@@ -19,7 +19,7 @@ public class DataSourceConfig {
 	private DataSourceProperties props;
 
 	@Bean(name = "primaryDataSource")
-	@Primary
+	@Primary 
 	public DataSource primaryDataSource() {
 		logger.info("数据库连接池创建中.......");
 		HikariDataSource ds = new HikariDataSource();
