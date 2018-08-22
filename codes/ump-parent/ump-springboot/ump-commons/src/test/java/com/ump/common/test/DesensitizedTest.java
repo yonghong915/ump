@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.ump.commons.Code;
+import com.ump.commons.desensitization.DesensitizedUtils;
 
-import desensitization.DesensitizedUtils;
 
 public class DesensitizedTest {
 	private Logger logger = LoggerFactory.getLogger(getClass());

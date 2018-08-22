@@ -1,4 +1,4 @@
-package desensitization;
+package com.ump.commons.desensitization;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

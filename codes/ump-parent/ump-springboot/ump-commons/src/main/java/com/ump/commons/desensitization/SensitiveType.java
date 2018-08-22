@@ -1,4 +1,4 @@
-package desensitization;
+package com.ump.commons.desensitization;
 
 /**
  * 

@@ -2,8 +2,9 @@ package com.ump.common.test;
 
 import java.io.Serializable;
 
-import desensitization.Desensitized;
-import desensitization.SensitiveType;
+import com.ump.commons.desensitization.Desensitized;
+import com.ump.commons.desensitization.SensitiveType;
+
 import lombok.Getter;
 import lombok.Setter;
 
