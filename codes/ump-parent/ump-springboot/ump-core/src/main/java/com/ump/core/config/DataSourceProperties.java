@@ -1,4 +1,4 @@
-package com.ump.sys.config;
+package com.ump.core.config;
 
 import java.io.Serializable;
 

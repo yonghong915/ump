@@ -1,4 +1,4 @@
-package com.ump.commons.log.aspect;
+package com.ump.core.log.aspect;
 
 import java.lang.reflect.Method;
 
@@ -10,14 +10,13 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
-import com.ump.commons.log.annotation.SystemControllerLog;
-import com.ump.commons.log.annotation.SystemServiceLog;
 import com.ump.commons.web.ResultRsp;
+import com.ump.core.log.annotation.SystemControllerLog;
+import com.ump.core.log.annotation.SystemServiceLog;
 
 @Aspect
 @Component
@@ -111,7 +110,7 @@ public class SystemLogAspect {
 	// 异常处理
 	@AfterThrowing(pointcut = "controllerAspect()", throwing = "e")
 	public void doAfterThrowing(JoinPoint joinPoint, Throwable e) throws Throwable {
-		logger.error("exception:{}",e);
+		logger.error("exception:{}", e);
 		// SystemLog systemLog = new SystemLog();
 		// Object proceed = null;
 		// // 获取session中的用户

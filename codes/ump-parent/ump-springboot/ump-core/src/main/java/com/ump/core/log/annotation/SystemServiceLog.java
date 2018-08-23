@@ -1,4 +1,4 @@
-package com.ump.commons.log.annotation;
+package com.ump.core.log.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

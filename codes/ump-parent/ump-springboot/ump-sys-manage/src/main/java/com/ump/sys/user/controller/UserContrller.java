@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
-import com.ump.commons.log.annotation.SystemControllerLog;
 import com.ump.commons.web.ResultRsp;
+import com.ump.core.log.annotation.SystemControllerLog;
 import com.ump.sys.user.entity.User;
 import com.ump.sys.user.service.IUserService;
 
