@@ -34,6 +34,9 @@ public enum StatusCode implements RestStatus {
 	/***/
 	UNPACK_XML_EXCEPTION("E990005", "解包XML异常"),
 
+	/** 加载文件异常 */
+	ESB_REQ_EXCEPTION("E990006", "ESB异常"),
+
 	/** 空指针异常 */
 	NULLPOINTER("E000001", "发生空指针异常"),
 

@@ -3,7 +3,7 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
 <mapper namespace="com.ump.sys.user.mapper.UserMapper">
-	<resultMap type="com.ump.sys.user.model.User" id="userResultMap" extends="com.ump.core.base.dao.BaseDao.baseResultMap">
+	<resultMap type="com.ump.sys.user.entity.User" id="userResultMap" extends="com.ump.core.base.dao.BaseDao.baseResultMap">
 		<id column="user_id" property="userId" jdbcType="VARCHAR" />
 		<result column="user_name" property="userName" jdbcType="VARCHAR" />
 		<result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
