@@ -40,4 +40,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 		PageInfo<User> pageInfo = new PageInfo<>(list);
 		return pageInfo;
 	}
+
+	@Override
+	public User queryUserByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

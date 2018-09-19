@@ -37,6 +37,10 @@ public class User extends BaseObject {
 	@Getter
 	private String userDesc;
 
+	@Setter
+	@Getter
+	private String salt;
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == this)
