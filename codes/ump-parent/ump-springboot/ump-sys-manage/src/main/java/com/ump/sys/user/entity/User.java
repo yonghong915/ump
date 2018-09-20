@@ -21,7 +21,7 @@ public class User extends BaseObject {
 	/***/
 	@Setter
 	@Getter
-	private String userId;
+	private Integer userId;
 
 	/***/
 	@Setter
@@ -31,6 +31,10 @@ public class User extends BaseObject {
 	@Setter
 	@Getter
 	private String userPwd;
+
+	@Setter
+	@Getter
+	private String realName;
 
 	/***/
 	@Setter

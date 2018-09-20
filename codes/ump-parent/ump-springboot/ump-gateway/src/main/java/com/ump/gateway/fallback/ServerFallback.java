@@ -44,7 +44,7 @@ public class ServerFallback implements FallbackProvider {
 
 	}
 
-	private ClientHttpResponse response(HttpStatus status) {
+	private ClientHttpResponse response(final HttpStatus status) {
 
 		return new ClientHttpResponse() {
 			@Override

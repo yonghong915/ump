@@ -23,7 +23,7 @@ public class Resource extends BaseObject {
 	/***/
 	@Setter
 	@Getter
-	private String resourceId;
+	private Integer resourceId;
 
 	/***/
 	@Setter

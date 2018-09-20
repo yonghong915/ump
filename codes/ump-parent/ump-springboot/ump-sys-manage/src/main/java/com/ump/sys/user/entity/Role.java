@@ -23,7 +23,7 @@ public class Role extends BaseObject {
 	/***/
 	@Setter
 	@Getter
-	private String roleId;
+	private Integer roleId;
 
 	/***/
 	@Setter

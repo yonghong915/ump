@@ -10,4 +10,6 @@ public interface IUserService extends BaseService<User> {
 	void insert(User user);
 
 	PageInfo<User> queryUsers(User user, Page<User> page);
+
+	User queryUserByUserName(String userName);
 }

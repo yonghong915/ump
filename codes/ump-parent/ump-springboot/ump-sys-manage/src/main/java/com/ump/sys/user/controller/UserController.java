@@ -19,8 +19,8 @@ import com.ump.sys.user.entity.User;
 import com.ump.sys.user.service.IUserService;
 
 @RestController
-public class UserContrller {
-	Logger logger = LoggerFactory.getLogger(UserContrller.class);
+public class UserController {
+	Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private IUserService userService;

@@ -1,10 +1,13 @@
 package com.ump.core.config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import com.google.common.collect.Lists;
 import com.ump.core.interceptor.TokenInterceptor;
 
 /**
@@ -15,8 +18,12 @@ import com.ump.core.interceptor.TokenInterceptor;
  */
 @Configuration
 @ComponentScan(useDefaultFilters = true)
-public class WebAppConfig extends WebMvcConfigurationSupport  {
-	public void addInterceptor(InterceptorRegistry registry) {
-		registry.addInterceptor(new TokenInterceptor()).addPathPatterns("/**");
+public class WebAppConfig extends WebMvcConfigurationSupport {
+
+	@Override
+	protected void addInterceptors(InterceptorRegistry registry) {
+		List<String> patterns = Lists.newArrayList();
+		registry.addInterceptor(new TokenInterceptor()).addPathPatterns("/**").addPathPatterns(patterns);
 	}
+
 }
