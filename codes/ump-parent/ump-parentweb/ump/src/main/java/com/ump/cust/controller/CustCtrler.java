@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ump.cfn.sysmgr.user.model.User;
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 import com.ump.core.base.controller.BaseCtrler;
-import com.ump.core.util.web.AjaxRsp;
 import com.ump.cust.model.Cust;
 import com.ump.cust.service.CustService;
 
@@ -20,10 +19,10 @@ public class CustCtrler extends BaseCtrler<User> {
 
 	@RequestMapping(value = "findCustByCustCode", method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxRsp findCustByCustCode(String custCode) {
+	public ResultRsp findCustByCustCode(String custCode) {
 		logger.info("index......");
 		Cust cust = custService.findCustByCustCode(custCode);
-		AjaxRsp ar = new AjaxRsp();
+		ResultRsp ar = new ResultRsp();
 		ar.setSucceed(cust);
 		return ar;
 	}

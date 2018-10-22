@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<version>2.0.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -22,11 +22,12 @@
 		<module>ump-eureka</module>
 		<module>ump-config</module>
 		<module>ump-gateway</module>
-		<module>ump-sys-manage</module>
+		<module>ump-sysmgt</module>
 		<module>ump-commons</module>
 		<module>ump-core</module>
 		<module>ump-workflow</module>
 		<module>ump-hystrix</module>
+		<module>ump-security</module>
 	</modules>
 
 	<properties>
@@ -48,17 +49,14 @@
 		<junit.version>4.12</junit.version>
 		<jsr305.version>3.0.2</jsr305.version>
 		<jacoco.version>0.8.2</jacoco.version>
-		<sonar.language>java</sonar.language>
+		<!-- <sonar.language>java</sonar.language> -->
 		<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
 	</properties>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
-		<dependency>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.8.2</version>
-		</dependency>
+		<!-- <dependency> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId> 
+			<version>0.8.2</version> </dependency> -->
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -71,6 +69,9 @@
 			<artifactId>jsr305</artifactId>
 			<version>${jsr305.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.eclipse.m2e/lifecycle-mapping -->
+		<!-- <dependency> <groupId>org.eclipse.m2e</groupId> <artifactId>lifecycle-mapping</artifactId> 
+			<version>1.0.0</version> </dependency> -->
 
 	</dependencies>
 	<dependencyManagement>
@@ -202,6 +203,15 @@
 
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -225,7 +235,6 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.2</version>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
@@ -263,6 +272,31 @@
 						<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
 					</systemPropertyVariables>
 					<destFile>${basedir}/target/coverage-reports/jacoco.exec</destFile>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.m2e</groupId>
+				<artifactId>lifecycle-mapping</artifactId>
+				<configuration>
+					<lifecycleMappingMetadata>
+						<pluginExecutions>
+							<pluginExecution>
+								<pluginExecutionFilter>
+									<groupId>org.apache.maven.plugins</groupId>
+									<artifactId>maven-resources-plugin</artifactId>
+									<versionRange>[1.2,)</versionRange>
+									<goals>
+										<goal>resources</goal>
+										<goal>testResources</goal>
+									</goals>
+								</pluginExecutionFilter>
+								<action>
+									<ignore />
+								</action>
+							</pluginExecution>
+						</pluginExecutions>
+					</lifecycleMappingMetadata>
 				</configuration>
 			</plugin>
 		</plugins>
