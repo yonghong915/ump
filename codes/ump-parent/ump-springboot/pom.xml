@@ -28,6 +28,7 @@
 		<module>ump-workflow</module>
 		<module>ump-hystrix</module>
 		<module>ump-security</module>
+		<module>ump-bank</module>
 	</modules>
 
 	<properties>
@@ -43,7 +44,7 @@
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 		<commons-codec.version>1.11</commons-codec.version>
-		<springboot.version>2.0.3.RELEASE</springboot.version>
+		<springboot.version>2.0.6.RELEASE</springboot.version>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<powermock.version>1.7.4</powermock.version>
 		<junit.version>4.12</junit.version>

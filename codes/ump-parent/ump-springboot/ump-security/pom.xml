@@ -18,6 +18,18 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>com.ump</groupId>
+			<artifactId>ump-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ump</groupId>
+			<artifactId>ump-sysmgt</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.crazycake/shiro-redis -->
 		<dependency>
 			<groupId>org.crazycake</groupId>
@@ -43,6 +55,26 @@
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-ehcache</artifactId>
 			<version>1.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
 		</dependency>
 
 	</dependencies>

@@ -1,4 +1,4 @@
-package org.ump.security;
+package org.ump.bank;
 
 /**
  * Hello world!
