@@ -3,6 +3,7 @@ package com.ump.security.config;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.Filter;
 
 import org.apache.shiro.mgt.SecurityManager;
@@ -22,7 +23,6 @@ import org.springframework.context.annotation.Configuration;
 import com.ump.security.filter.KickoutSessionControlFilter;
 import com.ump.security.service.impl.MyShiroRealm;
 
-
 /**
  * 
  * @author fangyh
@@ -31,6 +31,8 @@ import com.ump.security.service.impl.MyShiroRealm;
  */
 @Configuration
 public class ShiroConfig {
+	@Resource
+	private RedisSessionDAO sessionDAO;
 
 	@Bean
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
@@ -64,13 +66,24 @@ public class ShiroConfig {
 	}
 
 	@Bean
+	public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor() {
+		AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();
+		aasa.setSecurityManager(securityManager());
+		return new AuthorizationAttributeSourceAdvisor();
+	}
+
+
+	@Bean
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		securityManager.setRealm(myShiroRealm());
 		// 自定义缓存实现 使用redis
-		securityManager.setCacheManager(cacheManager());
+		// securityManager.setCacheManager(cacheManager());
 		// 自定义session管理 使用redis
+		// securityManager.setSessionManager(sessionManager());
+
 		securityManager.setSessionManager(sessionManager());
+		securityManager.setCacheManager(redisCacheManager());
 		return securityManager;
 	}
 
@@ -82,6 +95,11 @@ public class ShiroConfig {
 	@Bean
 	public Realm myShiroRealm() {
 		return new MyShiroRealm();
+	}
+
+	@Bean
+	public RedisCacheManager redisCacheManager() {
+		return new RedisCacheManager();
 	}
 
 	/**
@@ -115,8 +133,12 @@ public class ShiroConfig {
 	 */
 	@Bean
 	public DefaultWebSessionManager sessionManager() {
+		// DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+		// sessionManager.setSessionDAO(redisSessionDAO());
 		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-		sessionManager.setSessionDAO(redisSessionDAO());
+		sessionManager.setSessionDAO(sessionDAO);
+		sessionManager.setGlobalSessionTimeout(1800);
+		sessionManager.setCacheManager(redisCacheManager());
 		return sessionManager;
 	}
 
