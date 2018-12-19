@@ -1,0 +1,1 @@
+ECIF(Enterprise Customer Information Facility),即企业级客户信息整合系统,系统主要的目的是整合银行各个系统的客户信息，比如包括客户基本信息、客户关系、客户产品等等。我理解整合后的系统属于基础信息系统。
