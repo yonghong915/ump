@@ -15,16 +15,14 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<ump.version>1.0.0.RELEASE</ump.version>
 	</properties>
 	<dependencies>
 
 		<dependency>
 			<groupId>com.ump</groupId>
 			<artifactId>ump-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.ump</groupId>
-			<artifactId>ump-cfn</artifactId>
+			<version>${ump.version}</version>
 		</dependency>
 
 		<dependency>

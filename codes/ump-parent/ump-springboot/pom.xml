@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.ump</groupId>
@@ -13,22 +15,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.6.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<modules>
-		<module>ump-eureka</module>
-		<module>ump-config</module>
-		<module>ump-gateway</module>
-		<module>ump-sysmgt</module>
-		<module>ump-commons</module>
-		<module>ump-core</module>
-		<module>ump-workflow</module>
-		<module>ump-hystrix</module>
-		<module>ump-security</module>
+		<module>ump-framework</module>
 		<module>ump-bank</module>
-    <module>ump-blockchain</module>
-  </modules>
+		<module>ump-blockchain</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,6 +58,27 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4 -->
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>1.7.4</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito -->
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>1.7.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>jsr305</artifactId>
@@ -77,6 +92,11 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- 统一依赖管理 -->
+			<dependency>
+				<groupId>com.ump</groupId>
+				<artifactId>ump-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -184,19 +204,35 @@
 				<artifactId>mysql-connector-java</artifactId>
 				<version>8.0.12</version>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4 -->
+
 			<dependency>
-				<groupId>org.powermock</groupId>
-				<artifactId>powermock-module-junit4</artifactId>
-				<version>1.7.4</version>
-				<scope>test</scope>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.18.0</version>
+				<scope>provided</scope>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito -->
+
 			<dependency>
-				<groupId>org.powermock</groupId>
-				<artifactId>powermock-api-mockito</artifactId>
-				<version>1.7.4</version>
-				<scope>test</scope>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>1.11.3</version>
+			</dependency>
+
+			<dependency>
+				<groupId>edu.uci.ics</groupId>
+				<artifactId>crawler4j</artifactId>
+				<version>4.4.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.geccocrawler</groupId>
+				<artifactId>gecco</artifactId>
+				<version>1.3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.javacsv</groupId>
+				<artifactId>javacsv</artifactId>
+				<version>2.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -212,7 +248,16 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+
+
+
 		<plugins>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -292,7 +337,7 @@
 									</goals>
 								</pluginExecutionFilter>
 								<action>
-									<ignore/>
+									<ignore />
 								</action>
 							</pluginExecution>
 						</pluginExecutions>
