@@ -4,8 +4,8 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>ump-framework</artifactId>
-	<name>ump-framework</name>
+	<artifactId>ump-cloud</artifactId>
+	<name>ump-cloud</name>
 	<url>http://maven.apache.org</url>
 	<packaging>pom</packaging>
 	<parent>
@@ -14,21 +14,13 @@
 		<version>1.0.0.RELEASE</version>
 	</parent>
 	<modules>
-		<module>ump-commons</module>
-		<module>ump-core</module>
-		<module>ump-workflow</module>
-		<module>ump-hystrix</module>
-		<module>ump-security</module>
+		<module>ump-eureka</module>
+		<module>ump-config</module>
+		<module>ump-gateway</module>
 	</modules>
-	<dependencies>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-		
-	</dependencies>
+
+
+	<!-- <dependencyManagement> <dependencies> 引入的Eureka-server <dependency> 
+		<groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId> 
+		<version>${springboot.version}</version> </dependency> </dependencies> </dependencyManagement> -->
 </project>

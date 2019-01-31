@@ -143,7 +143,7 @@ public class SystemLogAspect {
 		// 获取连接点参数
 		Object[] args = joinpoint.getArgs();
 		// 根据连接点类的名字获取指定类
-		Class targetClass = Class.forName(className);
+		Class<?> targetClass = Class.forName(className);
 		// 拿到类里面的方法
 		Method[] methods = targetClass.getMethods();
 
@@ -151,7 +151,7 @@ public class SystemLogAspect {
 		// 遍历方法名，找到被调用的方法名
 		for (Method method : methods) {
 			if (method.getName().equals(methodName)) {
-				Class[] clazzs = method.getParameterTypes();
+				Class<?>[] clazzs = method.getParameterTypes();
 				if (clazzs.length == args.length) {
 					// 获取注解的说明
 					description = method.getAnnotation(SystemServiceLog.class).decription();
@@ -176,13 +176,13 @@ public class SystemLogAspect {
 		// 获取连接点参数
 		Object[] args = point.getArgs();
 		// 根据连接点类的名字获取指定类
-		Class targetClass = Class.forName(targetName);
+		Class<?> targetClass = Class.forName(targetName);
 		// 获取类里面的方法
 		Method[] methods = targetClass.getMethods();
 		String description = "";
 		for (Method method : methods) {
 			if (method.getName().equals(methodName)) {
-				Class[] clazzs = method.getParameterTypes();
+				Class<?>[] clazzs = method.getParameterTypes();
 				if (clazzs.length == args.length) {
 					description = method.getAnnotation(SystemControllerLog.class).descrption();
 					break;

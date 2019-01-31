@@ -10,10 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ump.commons.web.RestStatus;
 import com.ump.commons.web.ResultRsp;
-import com.ump.core.base.service.IEsbService;
-import com.ump.core.util.ServiceMappingEnum;
 
 /**
  * 
@@ -28,7 +25,7 @@ public class EsbCtrler extends BaseCtrler {
 	@RequestMapping("/execute")
 	@ResponseBody
 	public ResultRsp<?> execute(HttpServletRequest request, HttpServletResponse response) {
-		ResultRsp rsp = new ResultRsp<>();
+		ResultRsp<?> rsp = new ResultRsp<>();
 
 		try {
 			request.setCharacterEncoding(CHARSET);
@@ -38,8 +35,8 @@ public class EsbCtrler extends BaseCtrler {
 			while ((line = reader.readLine()) != null) {
 				soapMessage.append(line);
 			}
-			String serviceName = "";
-			IEsbService esbService = null;
+			//String serviceName = "";
+			//IEsbService esbService = null;
 //			RestStatus sm = ServiceMappingEnum.valueOfCode(serviceName);
 //			String className = sm.message();
 		} catch (IOException e) {
@@ -47,11 +44,4 @@ public class EsbCtrler extends BaseCtrler {
 		return rsp;
 	}
 
-	public static void main(String[] args) {
-		String serviceName = "ClrgApl";
-		IEsbService esbService = null;
-//		RestStatus sm = ServiceMappingEnum.valueOfCode(serviceName);
-//		String className = sm.message();
-//		System.out.println(className);
-	}
 }

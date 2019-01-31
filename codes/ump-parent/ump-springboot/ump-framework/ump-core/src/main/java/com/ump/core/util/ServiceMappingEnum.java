@@ -9,11 +9,11 @@ public enum ServiceMappingEnum implements RestStatus {
 	SUCCESS("ClrgApl", ProductEsbService.class);
 	private final String serviceName;
 
-	private final Class className;
+	//private final Class<?> className;
 
-	ServiceMappingEnum(String serviceName, Class className) {
+	ServiceMappingEnum(String serviceName, Class<?> className) {
 		this.serviceName = serviceName;
-		this.className = className;
+		//this.className = className;
 	}
 
 	private static final ImmutableMap<String, ServiceMappingEnum> CACHE;

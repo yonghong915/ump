@@ -18,6 +18,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		logger.info("");
 		String basePath = request.getContextPath();
 		String path = request.getRequestURI();
 		if (!doLoginInterceptor(path, basePath)) {
@@ -30,6 +31,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	private boolean doLoginInterceptor(String path, String basePath) {
 		Set<String> notLoginPaths = Sets.newHashSet();
+		notLoginPaths.contains(path);
 		return false;
 	}
 
