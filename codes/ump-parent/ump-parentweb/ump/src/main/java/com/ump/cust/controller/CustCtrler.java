@@ -1,29 +1,30 @@
 package com.ump.cust.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
-import com.ump.core.base.controller.BaseCtrler;
-import com.ump.cust.model.Cust;
-import com.ump.cust.service.CustService;
+import com.ump.commons.web.ResultRsp;
+import com.ump.cust.service.ICustService;
 
 @Controller
 @RequestMapping("/cust")
-public class CustCtrler extends BaseCtrler<User> {
+public class CustCtrler {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
-	private CustService custService;
+	private ICustService custService;
 
-	@RequestMapping(value = "findCustByCustCode", method = RequestMethod.POST)
+	@PostMapping(value = "findCustByCustCode")
 	@ResponseBody
-	public ResultRsp findCustByCustCode(String custCode) {
+	public ResultRsp<Object> findCustByCustCode(String custCode) {
 		logger.info("index......");
-		Cust cust = custService.findCustByCustCode(custCode);
-		ResultRsp ar = new ResultRsp();
-		ar.setSucceed(cust);
+		// Cust cust = custService.findCustByCustCode(custCode);
+		ResultRsp<Object> ar = new ResultRsp<>();
+		// ar.setSucceed(cust);
 		return ar;
 	}
 }

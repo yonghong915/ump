@@ -4,6 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+	<packaging>jar</packaging>
 	<artifactId>ump-workflow</artifactId>
 	<name>ump-workflow</name>
 	<url>http://maven.apache.org</url>
@@ -12,11 +13,10 @@
 		<groupId>com.ump</groupId>
 		<artifactId>ump-framework</artifactId>
 		<version>1.0.0.RELEASE</version>
-		<relativePath />
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<activiti.version>5.18.0</activiti.version>
+		<activiti.version>6.0.0</activiti.version>
 	</properties>
 	<dependencies>
 

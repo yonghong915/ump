@@ -13,6 +13,6 @@ public final class CipherUtils {
 	}
 
 	public static String encrypt4SHA256(String username, String password, String salt) {
-		return DigestUtils.sha256Hex(username + salt + password);
+		return DigestUtils.sha256Hex(username + "{" + password + "}" + salt);
 	}
 }

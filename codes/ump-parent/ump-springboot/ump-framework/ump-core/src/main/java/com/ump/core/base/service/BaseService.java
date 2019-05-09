@@ -2,7 +2,7 @@ package com.ump.core.base.service;
 
 import java.util.List;
 
-import com.ump.core.base.entity.BaseObject;
+import com.ump.core.base.entity.BaseEntity;
 
 /**
  * 
@@ -10,7 +10,7 @@ import com.ump.core.base.entity.BaseObject;
  * @date 2017-04-22 12:29:06
  * @version 1.0
  */
-public interface BaseService<T extends BaseObject> {
+public interface BaseService<T extends BaseEntity> {
 
 	/**
 	 * 保存一个对象

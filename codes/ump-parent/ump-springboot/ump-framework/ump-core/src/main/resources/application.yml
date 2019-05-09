@@ -1,16 +1,48 @@
 server:
   port: 5000
+  
 spring:
   datasource:
-    url: jdbc:h2:file:./DB
-  batch:
-    job:
-      enabled:false
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto:update
+     url: jdbc:mysql://localhost:3306/umpdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+     username: umpapp
+     password: ump@2019
+     driverClassName: com.mysql.cj.jdbc.Driver
+     type: com.alibaba.druid.pool.DruidDataSource
+     master:
+        url: jdbc:mysql://localhost:3306/sysdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: umpapp
+        password: ump@2019
+        driverClassName: com.mysql.cj.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+     slave:
+        url: jdbc:mysql://localhost:3306/umpdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: umpapp
+        password: ump@2019
+        driverClassName: com.mysql.cj.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+  thymeleaf:
+     cache: false
+     prefix: classpath:/templates/
+     suffix: .html
+  messages:
+     basename: i18n.messages
+#mybatis plus        
+mybatis-plus:
+  mapper-locations: classpath*:org/jeecg/modules/**/xml/*Mapper.xml
+  configuration:
+     map-underscore-to-camel-case: true
+     cache-enabled: false
+  global-config:
+     db-column-underline: true
+     id-type: 2
+     field-strategy: 2
+     logic-delete-value: 0
+     logic-not-delete-value: 1
+     db-type: mysql
+     refresh: false 
+  
+#logging
+logging:
+  level:
+     com.ump.uias.modules.system.mapper: DEBUG
+     com.ump.core.modules.system.mapper: DEBUG

@@ -6,10 +6,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.ump</groupId>
-		<artifactId>ump-springboot</artifactId>
+		<artifactId>ump-framework</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
-	<artifactId>ump-framework</artifactId>
+	<artifactId>ump-hystrix</artifactId>
 	<name>ump-hystrix</name>
 	<url>http://maven.apache.org</url>
 	<properties>

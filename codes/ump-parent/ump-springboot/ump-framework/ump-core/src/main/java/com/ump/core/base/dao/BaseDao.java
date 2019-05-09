@@ -2,10 +2,10 @@ package com.ump.core.base.dao;
 
 import java.util.List;
 
-import com.ump.core.base.entity.BaseObject;
+import com.ump.core.base.entity.BaseEntity;
 import com.ump.core.util.page.Page;
 
-public interface BaseDao<T extends BaseObject> {
+public interface BaseDao<T extends BaseEntity> {
 
 	/**
 	 * 实体保存

@@ -1,5 +1,8 @@
 package com.ump.core.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ump.commons.esb.EsbCommunicator;
@@ -19,5 +22,14 @@ public class EsbUtil {
 		int connTimeout = esbCfgProps.getConnTimeout();
 		EsbCommunicator esbCommunicator = new EsbCommunicator(host, port, timeout, connTimeout);
 		return esbCommunicator.requestMessage(reqXml);
+	}
+
+	public Map<String, Object> getEsbGlobalHeader(Map<String, Object> soapMap) {
+		Map<String, Object> header = (Map<String, Object>) soapMap.get("Header");
+		Map<String, Object> rspHeader = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		;
+		rspHeader.put("RspHeader", result);
+		return rspHeader;
 	}
 }

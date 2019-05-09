@@ -91,10 +91,8 @@
 			<artifactId>jsoup</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>edu.uci.ics</groupId>
-			<artifactId>crawler4j</artifactId>
-		</dependency>
+		<!-- <dependency> <groupId>edu.uci.ics</groupId> <artifactId>crawler4j</artifactId> 
+			</dependency> -->
 
 		<dependency>
 			<groupId>com.geccocrawler</groupId>
@@ -104,5 +102,12 @@
 			<groupId>net.sourceforge.javacsv</groupId>
 			<artifactId>javacsv</artifactId>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>

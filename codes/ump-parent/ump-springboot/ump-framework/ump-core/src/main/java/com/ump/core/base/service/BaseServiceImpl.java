@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ump.core.base.dao.BaseDao;
-import com.ump.core.base.entity.BaseObject;
+import com.ump.core.base.entity.BaseEntity;
 
 /**
  * 
@@ -14,7 +14,7 @@ import com.ump.core.base.entity.BaseObject;
  * @version 1.0
  * @param <T>
  */
-public abstract class BaseServiceImpl<T extends BaseObject> implements BaseService<T> {
+public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	protected BaseDao<T> baseDao;

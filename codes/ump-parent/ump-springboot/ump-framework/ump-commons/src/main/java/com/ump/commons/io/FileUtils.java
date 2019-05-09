@@ -2,6 +2,7 @@ package com.ump.commons.io;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 import javax.imageio.stream.FileImageInputStream;
@@ -60,6 +61,23 @@ public class FileUtils {
 			imageOutput.write(data, 0, data.length);
 		} catch (Exception ex) {
 			logger.error("Exception: ", ex);
+		}
+	}
+
+	public static class SuffixFilter implements FilenameFilter {
+		private String suffix;
+
+		public SuffixFilter(String extensionname) {
+			super();
+			this.suffix = extensionname;
+		}
+
+		@Override
+		public boolean accept(File dir, String name) {
+			if (name.endsWith(suffix)) {
+				return true;
+			}
+			return false;
 		}
 	}
 }

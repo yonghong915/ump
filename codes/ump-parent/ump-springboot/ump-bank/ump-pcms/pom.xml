@@ -12,4 +12,15 @@
 	<artifactId>ump-pcms</artifactId>
 	<name>ump-pcms</name>
 	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>1.4</version>
+		</dependency>
+	</dependencies>
 </project>

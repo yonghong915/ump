@@ -2,12 +2,11 @@ package com.ump.commons.web;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.ump.commons.web.RestStatus;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * 
@@ -16,6 +15,7 @@ import lombok.Setter;
  * @version 1.0
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Data
 public class ResultRsp<T> implements Serializable {
 
 	/**
@@ -25,90 +25,45 @@ public class ResultRsp<T> implements Serializable {
 	/**
 	 * 返回码值,默认值Const.FAI
 	 */
-	@Setter
-	@Getter
 	@JsonProperty("rspCode")
-	private String rspCode;
+	private String rspCode = StatusCode.SUCCESS.code();
 	/**
 	 * 返回码值解析
 	 */
-	@Setter
-	@Getter
 	@JsonProperty("rspMsg")
-	private String rspMsg;
+	private String rspMsg = StatusCode.SUCCESS.message();
 	/**
 	 * 返回对象
 	 */
-	@Setter
-	@Getter
 	@JsonProperty("data")
 	private transient T rspObj;
+
+	/**
+	 * 时间戳
+	 */
+	@JsonProperty("timestamp")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSSZ", timezone = "GMT+8")
+	private long timestamp = System.currentTimeMillis();
 
 	public ResultRsp() {
 	}
 
-	public ResultRsp(RestStatus statusCodes) {
-		this(statusCodes, null);
-	}
-
-	public ResultRsp(RestStatus statusCodes, T details) {
-		this.rspCode = statusCodes.code();
-		this.rspMsg = statusCodes.message();
-		if (details != null) {
-			this.rspObj = details;
+	public ResultRsp<T> setRsp(String code, String msg, T data) {
+		this.setRspCode(code);
+		this.setRspMsg(msg);
+		if (null != data) {
+			this.setRspObj(data);
 		}
+		return this;
 	}
 
-	public ResultRsp(String code, String msg) {
-		this.rspCode = code;
-		this.rspMsg = msg;
-	}
-
-	/**
-	 * 设置成功值
-	 * 
-	 * @param obj
-	 *            设置对象
-	 * @param resMsg
-	 *            设置码值解析
-	 */
-	public void setSucceed(T rspObj, String rspMsg) {
-		this.setRspCode(StatusCode.SUCCESS.code());
-		this.setRspMsg(rspMsg);
-		this.setRspObj(rspObj);
-	}
-
-	/**
-	 * 设置成功值
-	 * 
-	 * @param obj
-	 *            设置对象
-	 */
-	public void setSucceed(T rspObj) {
-		setSucceed(rspObj, StatusCode.SUCCESS.message());
-	}
-
-	/**
-	 * 设置成功值
-	 * 
-	 * @param resMsg
-	 *            返回码值解析
-	 */
-	public void setSucceedMsg(String rspMsg) {
-		this.setRspCode(StatusCode.SUCCESS.code());
-		this.setRspMsg(rspMsg);
-	}
-
-	/**
-	 * 设置失败值
-	 * 
-	 * @param resMsg
-	 *            返回码值解析
-	 */
-	public void setFailMsg(String resMsg) {
-		this.rspObj = null;
-		this.setRspCode(StatusCode.FAIL.code());
-		this.setRspMsg(resMsg);
+	public ResultRsp<T> message(RestStatus statusCodes, T data) {
+		this.setRspCode(statusCodes.code());
+		this.setRspMsg(statusCodes.message());
+		if (null != data) {
+			this.setRspObj(data);
+		}
+		return this;
 	}
 
 	@Override
