@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ump.uias.modules.system.service.impl;
+package com.ump.core.modules.system.service.impl;
 
 import javax.annotation.Resource;
 
@@ -28,9 +28,9 @@ import com.baidu.fsg.uid.utils.NetUtils;
 import com.baidu.fsg.uid.worker.WorkerIdAssigner;
 import com.baidu.fsg.uid.worker.WorkerNodeType;
 import com.baidu.fsg.uid.worker.entity.WorkerNodeEntity;
-import com.ump.uias.datasource.DS;
-import com.ump.uias.datasource.DataSourceContextHolder;
-import com.ump.uias.modules.system.mapper.WorkerNodeMapper;
+import com.ump.commons.constant.ConstantUtil;
+import com.ump.core.base.datasource.DS;
+import com.ump.core.modules.system.mapper.WorkerNodeMapper;
 
 /**
  * Represents an implementation of {@link WorkerIdAssigner}, 
@@ -53,7 +53,7 @@ public class DisposableWorkerIdAssigner implements WorkerIdAssigner {
      * @return assigned worker id
      */
     @Transactional
-    @DS(DataSourceContextHolder.DATASOURCE_UMPDB)
+    @DS(ConstantUtil.DSType.DS_TYPE_SYSDB)
     public long assignWorkerId() {
         // build worker node entity
         WorkerNodeEntity workerNodeEntity = buildWorkerNode();

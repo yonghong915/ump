@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 import com.google.code.kaptcha.Producer;
 import com.ump.commons.constant.Constant;
+import com.ump.commons.constant.ConstantUtil;
 import com.ump.commons.web.ResultRsp;
 import com.ump.commons.web.ResultUtil;
 import com.ump.core.common.aspect.annotation.AutoLog;
@@ -46,7 +47,7 @@ public class SysLoginCtrler {
 //	}
 
 	@PostMapping("/login")
-	@AutoLog(value = "login", logType = Constant.LOGIN_LOG_TYPE)
+	@AutoLog(value = "login", logType = ConstantUtil.LogType.LOGIN_TYPE)
 	public ResultRsp<?> login(@RequestParam String username, @RequestParam String password) {
 		ResultRsp<?> rsp = ResultUtil.success();
 		Assert.notNull(username, "用户名不能为空");

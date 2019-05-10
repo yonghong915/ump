@@ -1,5 +1,5 @@
 server:
-  port: 9190
+  port: 5000
   
 spring:
   datasource:
@@ -8,11 +8,18 @@ spring:
      password: ump@2019
      driverClassName: com.mysql.cj.jdbc.Driver
      type: com.alibaba.druid.pool.DruidDataSource
-     primary:
+     master:
+        url: jdbc:mysql://localhost:3306/sysdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: umpapp
+        password: ump@2019
+        driverClassName: com.mysql.cj.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+     slave:
         url: jdbc:mysql://localhost:3306/umpdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
         username: umpapp
         password: ump@2019
         driverClassName: com.mysql.cj.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
   thymeleaf:
      cache: false
      prefix: classpath:/templates/
@@ -21,6 +28,7 @@ spring:
      basename: i18n.messages
 #mybatis plus        
 mybatis-plus:
+  mapper-locations: classpath*:com/ump/**/*Mapper.xml
   configuration:
      map-underscore-to-camel-case: true
      cache-enabled: false

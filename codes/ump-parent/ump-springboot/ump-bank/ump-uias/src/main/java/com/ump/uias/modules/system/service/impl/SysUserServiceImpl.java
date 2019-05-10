@@ -10,8 +10,8 @@ import org.springframework.util.Assert;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ump.uias.datasource.DS;
-import com.ump.uias.datasource.DataSourceContextHolder;
+import com.ump.commons.constant.ConstantUtil;
+import com.ump.core.base.datasource.DS;
 import com.ump.uias.modules.system.entity.SysResource;
 import com.ump.uias.modules.system.entity.SysRole;
 import com.ump.uias.modules.system.entity.SysUser;
@@ -46,7 +46,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	}
 
 	@Cacheable(value = "umpUserCache", key = "targetClass + methodName +#p0")
-	@DS(DataSourceContextHolder.DATASOURCE_JEECG)
+	@DS(value = ConstantUtil.DSType.DS_TYPE_SYSDB)
 	@Override
 	public SysUser queryUserByUserName(String userName) {
 		SysUser entity = new SysUser();

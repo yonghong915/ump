@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ump.uias.modules.system.mapper;
+package com.ump.core.modules.system.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
