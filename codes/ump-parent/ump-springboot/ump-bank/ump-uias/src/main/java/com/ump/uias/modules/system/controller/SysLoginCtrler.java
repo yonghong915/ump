@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.code.kaptcha.Producer;
-import com.ump.commons.constant.Constant;
 import com.ump.commons.constant.ConstantUtil;
 import com.ump.commons.web.ResultRsp;
 import com.ump.commons.web.ResultUtil;

@@ -9,12 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ump.uias.modules.system.entity.SysRole;
-import com.ump.uias.modules.system.entity.SysUser;
 import com.ump.uias.modules.system.entity.SysUserRole;
 import com.ump.uias.modules.system.mapper.SysUserRoleMapper;
-import com.ump.uias.modules.system.service.ISysRoleService;
 import com.ump.uias.modules.system.service.ISysUserRoleService;
-import com.ump.uias.modules.system.service.ISysUserService;
 
 /**
  * <p>
@@ -27,10 +24,11 @@ import com.ump.uias.modules.system.service.ISysUserService;
 @Service
 public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUserRole> implements ISysUserRoleService {
 
-	@Autowired
-	private ISysUserService userService;
-	@Autowired
-	private ISysRoleService roleService;
+	//@Autowired
+	//private ISysUserService userService;
+	
+	//@Autowired
+	//private ISysRoleService roleService;
 
 	@Autowired
 	private SysUserRoleMapper userRoleMapper;

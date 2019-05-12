@@ -68,11 +68,12 @@ public class DictAspect {
 	 * 
 	 * @param result
 	 */
+	@SuppressWarnings("unchecked")
 	private void parseDictText(Object result) {
 		if (result instanceof ResultRsp<?>) {
-			if (((ResultRsp) result).getRspObj() instanceof IPage) {
+			if (((ResultRsp<?>) result).getRspObj() instanceof IPage) {
 				List<JSONObject> items = new ArrayList<>();
-				for (Object record : ((IPage) ((ResultRsp) result).getRspObj()).getRecords()) {
+				for (Object record : ((IPage<?>) ((ResultRsp<?>) result).getRspObj()).getRecords()) {
 					ObjectMapper mapper = new ObjectMapper();
 					String json = "{}";
 					try {
@@ -85,10 +86,10 @@ public class DictAspect {
 					JSONObject item = JSONObject.parseObject(json);
 					for (Field field : record.getClass().getDeclaredFields()) {
 						if (field.getAnnotation(Dict.class) != null) {
-							String code = field.getAnnotation(Dict.class).dicCode();
-							String text = field.getAnnotation(Dict.class).dicText();
+							//String code = field.getAnnotation(Dict.class).dicCode();
+							//String text = field.getAnnotation(Dict.class).dicText();
 							String table = field.getAnnotation(Dict.class).dictTable();
-							String key = String.valueOf(item.get(field.getName()));
+							//String key = String.valueOf(item.get(field.getName()));
 							String textValue = null;
 							if (!StringUtils.isEmpty(table)) {
 								//textValue = dictService.queryTableDictTextByKey(table, text, code, key);
@@ -106,7 +107,7 @@ public class DictAspect {
 					}
 					items.add(item);
 				}
-				((IPage) ((ResultRsp) result).getRspObj()).setRecords(items);
+				((IPage<JSONObject>) ((ResultRsp<?>) result).getRspObj()).setRecords(items);
 			}
 
 		}

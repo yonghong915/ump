@@ -25,8 +25,8 @@ import com.ump.uias.shiro.JWTUtil;
 @Service("userService")
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
 
-	@Autowired
-	private SysUserMapper userMapper;
+	//@Autowired
+	//private SysUserMapper userMapper;
 
 	@Autowired
 	private ISysUserRoleService userRoleService;
@@ -81,6 +81,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		return JWTUtil.sign(username, encodePassword);
 	}
 
+	@DS(ConstantUtil.DSType.DS_TYPE_SYSDB)
 	@Override
 	public List<SysRole> queryRolesByUserName(String username) {
 		return userRoleService.queryRolesByUserName(username);

@@ -26,9 +26,11 @@ spring:
      suffix: .html
   messages:
      basename: i18n.messages
-#mybatis plus        
+#mybatis plus
+mybatis:
+  mapperLocations:classpath*:*com/ump/**/mapper/**/*.xml
+  typeAliasesPackage:com.ump.**.entity
 mybatis-plus:
-  mapper-locations: classpath*:org/jeecg/modules/**/xml/*Mapper.xml
   configuration:
      map-underscore-to-camel-case: true
      cache-enabled: false
@@ -44,5 +46,4 @@ mybatis-plus:
 #logging
 logging:
   level:
-     com.ump.uias.modules.system.mapper: DEBUG
      com.ump.core.modules.system.mapper: DEBUG

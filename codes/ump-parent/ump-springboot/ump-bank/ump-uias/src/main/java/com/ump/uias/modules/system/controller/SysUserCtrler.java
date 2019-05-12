@@ -3,6 +3,8 @@ package com.ump.uias.modules.system.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ import com.ump.uias.modules.system.service.ISysUserService;
 @RestController
 @RequestMapping("/user")
 public class SysUserCtrler {
+	private Logger logger = LoggerFactory.getLogger(getClass());
+
 	@Autowired
 	private ISysUserService userService;
 
@@ -30,6 +34,7 @@ public class SysUserCtrler {
 	public ResultRsp<SysUser> get(String userId) {
 		ResultRsp<?> result = ResultUtil.success();
 		SysUser user = userService.get(userId);
+		logger.info("user={}", user);
 		// result.setRspObj(user);
 		return (ResultRsp<SysUser>) result;
 	}
@@ -51,7 +56,6 @@ public class SysUserCtrler {
 
 	@GetMapping("/uid")
 	public String uid() {
-		SysUser user = userService.queryUserByUserName("aaa");
 		long time1 = System.nanoTime();
 		long uid = uidGenerator.getUID();
 		long time2 = System.nanoTime();

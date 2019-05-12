@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ump.uias.modules.system.entity.SysRole;
-import com.ump.uias.modules.system.entity.SysUserRole;
 import com.ump.uias.modules.system.mapper.SysRoleMapper;
 import com.ump.uias.modules.system.service.ISysRoleService;
 

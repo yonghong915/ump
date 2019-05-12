@@ -24,11 +24,13 @@ public class EsbUtil {
 		return esbCommunicator.requestMessage(reqXml);
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> getEsbGlobalHeader(Map<String, Object> soapMap) {
+
 		Map<String, Object> header = (Map<String, Object>) soapMap.get("Header");
 		Map<String, Object> rspHeader = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
-		;
+		result.put("header", header);
 		rspHeader.put("RspHeader", result);
 		return rspHeader;
 	}

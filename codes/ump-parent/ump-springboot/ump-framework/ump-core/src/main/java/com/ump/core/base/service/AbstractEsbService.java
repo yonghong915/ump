@@ -23,6 +23,7 @@ public abstract class AbstractEsbService implements IEsbService {
 	public void setReqBody(Map<String, Object> reqBody) {
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> setRtnBody(Map<String, Object> result) {
 		Map<String, Object> svcBody = new HashMap<>();
 		if (null == result) {

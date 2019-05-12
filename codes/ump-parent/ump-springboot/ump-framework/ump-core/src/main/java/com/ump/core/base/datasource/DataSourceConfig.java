@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,11 +21,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
-import com.baomidou.mybatisplus.autoconfigure.SpringBootVFS;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.ump.commons.constant.ConstantUtil;
 
 @Configuration
-@MapperScan(basePackages = { "com.ump.**.mapper" })
 public class DataSourceConfig {
 	private Logger logger = LoggerFactory.getLogger(DataSourceConfig.class);
 
@@ -79,13 +78,15 @@ public class DataSourceConfig {
 	@Primary
 	public SqlSessionFactory masterSqlSessionFactory(DynamicDataSource dataSource,
 			org.apache.ibatis.session.Configuration config) throws Exception {
-		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
 		VFS.addImplClass(SpringBootVFS.class);
+		final SqlSessionFactoryBean sessionFactory = new PackagesSqlSessionFactoryBean();
+		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setConfiguration(config);
-		sessionFactory.setMapperLocations(
-				new PathMatchingResourcePatternResolver().getResources("classpath*:*com/ump/**/mapper/**/*.xml"));
-		sessionFactory.setTypeAliasesPackage("com.ump.**.mapper");
+
+		String mapperLocations = "classpath*:*com/ump/**/mapper/**/*.xml";
+		String typeAliasesPackage = "com.ump.**.entity";
+		sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
+		sessionFactory.setTypeAliasesPackage(typeAliasesPackage);
 		return sessionFactory.getObject();
 	}
 
@@ -120,5 +121,12 @@ public class DataSourceConfig {
 	@ConfigurationProperties(prefix = "mybatis-plus.configuration")
 	public org.apache.ibatis.session.Configuration globalConfiguration() {
 		return new org.apache.ibatis.session.Configuration();
+	}
+
+	@Bean
+	public PaginationInterceptor paginationInterceptor() {
+		PaginationInterceptor page = new PaginationInterceptor();
+		page.setDialectType("mysql");
+		return page;
 	}
 }

@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableCaching // 开启缓存
 //@EnableTransactionManagement
 @ComponentScan({"com.ump.core","com.ump.uias"})
-@MapperScan({"com.ump.core.modules.system.mapper"})
+@MapperScan(basePackages = { "com.ump.**.mapper" })
 public class UiasApplication {
 	private static Logger logger = LoggerFactory.getLogger(UiasApplication.class);
 

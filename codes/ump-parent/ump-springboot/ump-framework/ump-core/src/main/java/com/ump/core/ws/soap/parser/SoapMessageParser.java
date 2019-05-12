@@ -7,7 +7,6 @@ import java.util.Map;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
-import com.ump.core.util.constants.WSContants;
 import com.ump.core.ws.entity.Parameter;
 
 public class SoapMessageParser {
@@ -31,9 +30,9 @@ public class SoapMessageParser {
 		}
 		if (null != soapHeaderParamList && !soapHeaderParamList.isEmpty()) {
 			// SoapHeader
-			Element headerElement = root.element(WSContants.SOAP_HEADER);
+			//Element headerElement = root.element(WSContants.SOAP_HEADER);
 		}
-		return null;
+		return parseResult;
 	}
 
 	private static Document xmlString2Document(String soapMsg) {

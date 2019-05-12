@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ump.core.util.KaptchaUtil;
 import com.ump.core.util.UidUtil;
 
 @RunWith(SpringRunner.class)
@@ -21,5 +22,12 @@ public class ServiceTest {
 		long uid = UidUtil.getUid();
 		logger.info("uid={}", uid);
 		assertNotNull(uid);
+	}
+
+	@Test
+	public void getKaptcha() {
+		String imgText = KaptchaUtil.getImgText();
+		logger.info("imgText={}", imgText);
+		assertNotNull(imgText);
 	}
 }

@@ -17,7 +17,6 @@
 		<module>ump-core</module>
 		<module>ump-workflow</module>
 		<module>ump-hystrix</module>
-		<module>ump-security</module>
 		<module>ump-codegenerate</module>
 	</modules>
 	<dependencies>
