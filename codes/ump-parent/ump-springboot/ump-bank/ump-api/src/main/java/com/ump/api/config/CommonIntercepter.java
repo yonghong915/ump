@@ -16,6 +16,7 @@ public class CommonIntercepter implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		logger.info("");
 		// 允许跨域,不能放在postHandle内
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		if (request.getMethod().equals("OPTIONS")) {

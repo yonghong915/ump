@@ -22,12 +22,12 @@ public class LoginCtrler {
 	@ApiOperation("登录")
 	public ResultRsp<?> login(String username, String password) {
 		logger.info("login......");
-		ResultRsp<?> ar = ResultUtil.getSuccess();
+		ResultRsp<?> ar = ResultUtil.success();
 		// 3DES 解密
 
 		// RSA加密->解密->携带TOKEN及3DES密钥
 		// ar.setSucceed(cust);
-		
+
 		return ar;
 	}
 }

@@ -15,6 +15,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -39,9 +40,10 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
+		Contact contact = new Contact(null, null, null);
 		return new ApiInfoBuilder().title("基础平台 RESTful APIs")
 				.description("基础平台 RESTful 风格的接口文档，内容详细，极大的减少了前后端的沟通成本，同时确保代码与文档保持高度一致，极大的减少维护文档的时间。")
-				.termsOfServiceUrl("http://www.jeeecg.org").contact("JEECG").version("1.0.0").build();
+				.termsOfServiceUrl("http://www.jeeecg.org").contact(contact).version("1.0.0").build();
 	}
 
 	private List<Parameter> setHeaderToken() {
