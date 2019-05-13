@@ -16,6 +16,10 @@
 
 	<properties>
 		<dom4j.version>1.6.1</dom4j.version>
+		<mybatis-spring.version>1.3.2</mybatis-spring.version>
+		<jsqlparser.version>1.4</jsqlparser.version>
+		<druid-spring.version>1.1.14</druid-spring.version>
+		<kaptcha.version>2.3.2</kaptcha.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -26,11 +30,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-core</artifactId> 
-			</dependency> -->
-
-		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-web</artifactId> 
-			</dependency> -->
 
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -53,68 +52,18 @@
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-context</artifactId> 
-			</dependency> -->
-
-		<!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
-		<!-- <dependency> <groupId>commons-cli</groupId> <artifactId>commons-cli</artifactId> 
-			<version>1.4</version> </dependency> -->
-
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-jpa</artifactId> 
-			<exclusions> <exclusion> <artifactId>slf4j-api</artifactId> <groupId>org.slf4j</groupId> 
-			</exclusion> <exclusion> <artifactId>jboss-logging</artifactId> <groupId>org.jboss.logging</groupId> 
-			</exclusion> </exclusions> </dependency> -->
-
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-batch</artifactId> 
-			</dependency> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-quartz</artifactId> 
-			</dependency> -->
-		<!-- <dependency> <groupId>org.quartz-scheduler</groupId> <artifactId>quartz</artifactId> 
-			<exclusions> <exclusion> <artifactId>slf4j-api</artifactId> <groupId>org.slf4j</groupId> 
-			</exclusion> </exclusions> </dependency> -->
-		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz-jobs -->
-		<!-- <dependency> <groupId>org.quartz-scheduler</groupId> <artifactId>quartz-jobs</artifactId> 
-			</dependency> -->
-		<!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
-		<!-- <dependency> <groupId>com.jcraft</groupId> <artifactId>jsch</artifactId> 
-			</dependency> -->
-
-
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
-		<!-- <dependency> <groupId>org.hibernate.validator</groupId> <artifactId>hibernate-validator</artifactId> 
-			</dependency> -->
-		<!-- https://mvnrepository.com/artifact/com.github.jsqlparser/jsqlparser -->
-		<!-- <dependency> <groupId>com.github.jsqlparser</groupId> <artifactId>jsqlparser</artifactId> 
-			<version>1.4</version> </dependency> -->
-		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
-		<!-- <dependency> <groupId>com.baomidou</groupId> <artifactId>mybatis-plus-boot-starter</artifactId> 
-			</dependency> -->
-
-		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>druid-spring-boot-starter</artifactId> 
-			<version>1.1.10</version> </dependency> -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>1.3.2</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.baidu.fsg</groupId>
 			<artifactId>uid-generator</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<exclusions>
 				<exclusion>
-					<dependency>
-						<groupId>org.mybatis</groupId>
-						<artifactId>mybatis-spring</artifactId>
-					</dependency>
+					<groupId>org.mybatis</groupId>
+					<artifactId>mybatis-spring</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>vue</artifactId>
-			<version>2.5.16</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -146,7 +95,13 @@
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-autoconfigure</artifactId>
-			<version>1.3.2</version>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
 		</dependency>
 
 		<dependency>
@@ -157,19 +112,19 @@
 		<dependency>
 			<groupId>com.github.jsqlparser</groupId>
 			<artifactId>jsqlparser</artifactId>
-			<version>1.4</version>
+			<version>${jsqlparser.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.1.14</version>
+			<version>${druid-spring.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<version>2.1.0.RELEASE</version>
+			<version>${springboot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -185,7 +140,12 @@
 		<dependency>
 			<groupId>com.google.code</groupId>
 			<artifactId>kaptcha</artifactId>
-			<version>2.3.2</version>
+			<version>${kaptcha.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
 </project>

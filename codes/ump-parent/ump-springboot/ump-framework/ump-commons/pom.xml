@@ -13,6 +13,9 @@
 		<artifactId>ump-framework</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
+	<properties>
+		<commons-io.version>2.6</commons-io.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -50,7 +53,7 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.6</version>
+			<version>${commons-io.version}</version>
 		</dependency>
 
 		<dependency>
@@ -91,9 +94,6 @@
 			<artifactId>jsoup</artifactId>
 		</dependency>
 
-		<!-- <dependency> <groupId>edu.uci.ics</groupId> <artifactId>crawler4j</artifactId> 
-			</dependency> -->
-
 		<dependency>
 			<groupId>com.geccocrawler</groupId>
 			<artifactId>gecco</artifactId>
@@ -103,11 +103,9 @@
 			<artifactId>javacsv</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
-
 	</dependencies>
 </project>

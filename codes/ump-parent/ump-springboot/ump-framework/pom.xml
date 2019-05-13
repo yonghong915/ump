@@ -16,18 +16,6 @@
 		<module>ump-commons</module>
 		<module>ump-core</module>
 		<module>ump-workflow</module>
-		<module>ump-hystrix</module>
 		<module>ump-codegenerate</module>
 	</modules>
-	<dependencies>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-
-	</dependencies>
 </project>
