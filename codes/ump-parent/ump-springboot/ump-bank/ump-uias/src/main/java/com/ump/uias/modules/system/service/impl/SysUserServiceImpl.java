@@ -35,11 +35,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	private ISysResourceService resourceService;
 
 	@Override
-	public SysUser get(String userId) {
-		return this.getOne(new QueryWrapper(userId));
-	}
-
-	@Override
 	public List<SysUser> selectAll() {
 		List<SysUser> userList = this.list(null);
 		return userList;

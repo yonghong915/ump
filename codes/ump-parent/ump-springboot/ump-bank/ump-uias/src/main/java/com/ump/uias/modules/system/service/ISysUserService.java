@@ -15,7 +15,6 @@ import com.ump.uias.modules.system.entity.SysUser;
  * @since 1.0
  */
 public interface ISysUserService extends IService<SysUser> {
-	SysUser get(String userId);
 
 	List<SysUser> selectAll();
 

@@ -33,8 +33,8 @@ public class SysUserCtrler {
 	@RequestMapping(value = "/getUser/{userId}", method = RequestMethod.GET)
 	public ResultRsp<SysUser> get(String userId) {
 		ResultRsp<?> result = ResultUtil.success();
-		SysUser user = userService.get(userId);
-		logger.info("user={}", user);
+//		SysUser user = userService.get(userId);
+//		logger.info("user={}", user);
 		// result.setRspObj(user);
 		return (ResultRsp<SysUser>) result;
 	}
