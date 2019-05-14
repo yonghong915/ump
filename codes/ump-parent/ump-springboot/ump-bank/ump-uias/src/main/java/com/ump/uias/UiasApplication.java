@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  *
@@ -20,6 +23,8 @@ import org.springframework.context.annotation.ComponentScan;
 //@EnableTransactionManagement
 @ComponentScan({"com.ump.core","com.ump.uias"})
 @MapperScan(basePackages = { "com.ump.**.mapper" })
+@EnableWebMvc
+@EnableSwagger2
 public class UiasApplication {
 	private static Logger logger = LoggerFactory.getLogger(UiasApplication.class);
 

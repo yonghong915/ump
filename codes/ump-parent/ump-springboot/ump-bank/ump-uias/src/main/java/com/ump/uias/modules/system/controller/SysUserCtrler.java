@@ -19,8 +19,12 @@ import com.ump.commons.web.ResultUtil;
 import com.ump.uias.modules.system.entity.SysUser;
 import com.ump.uias.modules.system.service.ISysUserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/user")
+@Api(tags="测试类",value="测试类")
 public class SysUserCtrler {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -30,6 +34,7 @@ public class SysUserCtrler {
 	@Autowired
 	private UidGenerator uidGenerator;
 
+	@ApiOperation(value="【PC端】提交订单", notes="提交一组识别的标签id，返回生成的订单详情")
 	@RequestMapping(value = "/getUser/{userId}", method = RequestMethod.GET)
 	public ResultRsp<SysUser> get(String userId) {
 		ResultRsp<?> result = ResultUtil.success();

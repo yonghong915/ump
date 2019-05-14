@@ -1,5 +1,6 @@
 package com.ump.commons;
 
+import java.lang.reflect.Array;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -14,7 +15,14 @@ public class CommUtils {
 		if (obj instanceof String) {
 			return "".equals(obj);
 		}
+		if (obj instanceof Array) {
+			return Array.getLength(obj) == 0;
+		}
 		return false;
+	}
+
+	public static boolean isNotEmpty(Object obj) {
+		return !isEmpty(obj);
 	}
 
 	public static ResourceBundle getLocalResourceBundle(String resFile) {
