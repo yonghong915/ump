@@ -30,20 +30,30 @@ public class BaseEntity implements Serializable {
 	private Long pkId;
 
 	/***/
-	private String createBy;
+	@CreateOnFuncation
+	private Integer createBy;
 
 	/***/
 	@JsonDeserialize(using = DateJsonDeserializer.class)
 	@JsonSerialize(using = DateJsonSerializer.class)
+	@CreateOnFuncation
 	private Timestamp createDt;
 
+	@CreateOnFuncation
+	private Integer createDept;
+
 	/***/
-	private String updateBy;
+	@CreateOnFuncation
+	private Integer updateBy;
 
 	/***/
 	@JsonDeserialize(using = DateJsonDeserializer.class)
 	@JsonSerialize(using = DateJsonSerializer.class)
+	@CreateOnFuncation
 	private Timestamp updateDt;
+
+	@CreateOnFuncation
+	private Integer updateDept;
 
 	/**
 	 * 1deleted,0 no delete

@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +21,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.ump.commons.constant.ConstantUtil;
 
 @Configuration
@@ -79,9 +79,10 @@ public class DataSourceConfig {
 	public SqlSessionFactory masterSqlSessionFactory(DynamicDataSource dataSource,
 			org.apache.ibatis.session.Configuration config) throws Exception {
 		VFS.addImplClass(SpringBootVFS.class);
-		final SqlSessionFactoryBean sessionFactory = new PackagesSqlSessionFactoryBean();
+		//final SqlSessionFactoryBean sessionFactory = new PackagesSqlSessionFactoryBean();
+		final MybatisSqlSessionFactoryBean  sessionFactory = new MybatisSqlSessionFactoryBean ();
 		sessionFactory.setDataSource(dataSource);
-		sessionFactory.setConfiguration(config);
+		//sessionFactory.setConfiguration(config);
 
 		String mapperLocations = "classpath*:*com/ump/**/mapper/**/*.xml";
 		String typeAliasesPackage = "com.ump.**.entity";

@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ump.commons.io.FileUtils;
 import com.ump.commons.util.ClassUtils;
+import com.ump.core.util.ValidateUtils;
 
 public class WsdlConfigManager {
 	private static Logger logger = LoggerFactory.getLogger(WsdlConfigManager.class);
@@ -22,7 +23,7 @@ public class WsdlConfigManager {
 	public static void init() {
 		ClassLoader classLoader = ClassUtils.getClassLoader();
 		URL url = classLoader.getResource(DEFAULT_CONFIG_NAME);
-		if (null == url) {
+		if (ValidateUtils.isEmpty(url)) {
 			logger.error("WsdlConfigManager load {} is null!", DEFAULT_CONFIG_NAME);
 			return;
 		}
@@ -37,12 +38,12 @@ public class WsdlConfigManager {
 	}
 
 	private static void loadWsdl(URL url) {
-		if (null == url) {
+		if (ValidateUtils.isEmpty(url)) {
 			return;
 		}
-		
-		logger.info("urlPath={}",url.getPath());
-		
+
+		logger.info("urlPath={}", url.getPath());
+
 		if (!url.getPath().contains("!")) {
 			File dir = new File(url.getPath());
 			if (!dir.exists() || dir.isFile()) {
@@ -69,7 +70,7 @@ public class WsdlConfigManager {
 	}
 
 	public static String getWsdlPath(String wsdlFileName) {
-		if (wsdlFileCache.isEmpty()) {
+		if (ValidateUtils.isEmpty(wsdlFileCache)) {
 			init();
 		}
 		return wsdlFileCache.get(wsdlFileName);

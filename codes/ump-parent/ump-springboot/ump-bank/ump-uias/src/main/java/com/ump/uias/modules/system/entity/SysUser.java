@@ -16,8 +16,6 @@ public class SysUser extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String userCode;
-
 	private String userName;
 
 	private String realName;
@@ -28,7 +26,5 @@ public class SysUser extends BaseEntity {
 
 	/***/
 	private String userStatus;
-
-	private String salt;
 
 }

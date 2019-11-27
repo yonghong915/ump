@@ -7,11 +7,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 数据权限注解
  * 
  * @author fangyh
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0
+ * @since 2019-07-13
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE, ElementType.METHOD })

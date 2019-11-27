@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.baidu.fsg.uid.UidGenerator;
 
-@Component
+//@Component
 public class UidUtil {
 
 	@Autowired

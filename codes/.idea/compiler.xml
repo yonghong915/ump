@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ump" />
+        <module name="ump-api" />
+        <module name="ump-bip" />
+        <module name="ump-blockchain" />
+        <module name="ump-cfn" />
+        <module name="ump-codegenerate" />
+        <module name="ump-commons" />
+        <module name="ump-config" />
+        <module name="ump-core" />
+        <module name="ump-crm" />
+        <module name="ump-ecif" />
+        <module name="ump-esb" />
+        <module name="ump-eureka" />
+        <module name="ump-gateway" />
+        <module name="ump-oims" />
+        <module name="ump-pcms" />
+        <module name="ump-uias" />
+        <module name="ump-workflow" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ump" target="1.5" />
+      <module name="ump-api" target="1.8" />
+      <module name="ump-bank" target="1.8" />
+      <module name="ump-bip" target="1.8" />
+      <module name="ump-blockchain" target="1.8" />
+      <module name="ump-cfn" target="1.5" />
+      <module name="ump-cloud" target="1.8" />
+      <module name="ump-codegenerate" target="1.8" />
+      <module name="ump-commons" target="1.8" />
+      <module name="ump-config" target="1.8" />
+      <module name="ump-core" target="1.8" />
+      <module name="ump-crm" target="1.8" />
+      <module name="ump-ecif" target="1.8" />
+      <module name="ump-esb" target="1.8" />
+      <module name="ump-eureka" target="1.8" />
+      <module name="ump-framework" target="1.8" />
+      <module name="ump-gateway" target="1.8" />
+      <module name="ump-oims" target="1.8" />
+      <module name="ump-parent" target="1.5" />
+      <module name="ump-parentweb" target="1.5" />
+      <module name="ump-pcms" target="1.8" />
+      <module name="ump-springboot" target="1.8" />
+      <module name="ump-uias" target="1.8" />
+      <module name="ump-workflow" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

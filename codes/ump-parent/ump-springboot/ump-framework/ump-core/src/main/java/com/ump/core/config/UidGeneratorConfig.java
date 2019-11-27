@@ -12,7 +12,7 @@ import com.ump.core.modules.system.service.impl.DisposableWorkerIdAssigner;
  * DefaultUidGenerator、CachedUidGenerator。如对UID生成性能有要求, 请使用CachedUidGenerator 对应Spring配置分别为:
  * default-uid-spring.xml、cached-uid-spring.xml
  */
-@Configuration
+//@Configuration
 public class UidGeneratorConfig {
 
 	@Autowired

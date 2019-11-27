@@ -21,8 +21,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ServletComponentScan
 @EnableCaching // 开启缓存
 //@EnableTransactionManagement
-@ComponentScan({"com.ump.core","com.ump.uias"})
-@MapperScan(basePackages = { "com.ump.**.mapper" })
+@ComponentScan({"com.ump.core","com.ump.uias","com.baomidou.mybatisplus.extension.service"})
+@MapperScan(basePackages = { "com.ump.**.mapper","com.baomidou.**.mapper" })
 @EnableWebMvc
 @EnableSwagger2
 public class UiasApplication {

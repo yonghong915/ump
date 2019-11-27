@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/codes.iml" filepath="$PROJECT_DIR$/.idea/codes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-parentweb/ump/ump.iml" filepath="$PROJECT_DIR$/ump-parent/ump-parentweb/ump/ump.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-api/ump-api.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-api/ump-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-bank.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-bank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-bip/ump-bip.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-bip/ump-bip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-blockchain/ump-blockchain.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-blockchain/ump-blockchain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-parentweb/ump-cfn/ump-cfn.iml" filepath="$PROJECT_DIR$/ump-parent/ump-parentweb/ump-cfn/ump-cfn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-cloud/ump-cloud.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-cloud/ump-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-codegenerate/ump-codegenerate.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-codegenerate/ump-codegenerate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-commons/ump-commons.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-commons/ump-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-cloud/ump-config/ump-config.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-cloud/ump-config/ump-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-core/ump-core.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-core/ump-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-crm/ump-crm.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-crm/ump-crm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-ecif/ump-ecif.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-ecif/ump-ecif.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-esb/ump-esb.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-esb/ump-esb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-cloud/ump-eureka/ump-eureka.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-cloud/ump-eureka/ump-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-framework.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-cloud/ump-gateway/ump-gateway.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-cloud/ump-gateway/ump-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-oims/ump-oims.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-oims/ump-oims.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-parent.iml" filepath="$PROJECT_DIR$/ump-parent/ump-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-parentweb/ump-parentweb.iml" filepath="$PROJECT_DIR$/ump-parent/ump-parentweb/ump-parentweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-pcms/ump-pcms.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-pcms/ump-pcms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-springboot.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-uias/ump-uias.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-bank/ump-uias/ump-uias.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-workflow/ump-workflow.iml" filepath="$PROJECT_DIR$/ump-parent/ump-springboot/ump-framework/ump-workflow/ump-workflow.iml" />
+    </modules>
+  </component>
+</project>

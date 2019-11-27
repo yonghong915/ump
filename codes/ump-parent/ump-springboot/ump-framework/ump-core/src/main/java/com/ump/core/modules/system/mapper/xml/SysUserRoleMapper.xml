@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper
+	namespace="com.ump.core.modules.system.mapper.SysUserRoleMapper">
+	<resultMap id="UserRoleResultMap"
+		type="com.ump.core.modules.system.entity.SysUserRole"
+		extends="com.ump.core.base.entity.BaseEntity.BaseResultMap">
+	</resultMap>
+	<select id="queryRolesByUserName" parameterType="string"
+		resultType="com.ump.core.modules.system.entity.SysRole">
+	  SELECT sr.pk_id,sr.role_code,sr.role_name,sr.role_desc,sr.role_type 
+		FROM sys_user su
+		JOIN sys_user_role sur ON su.pk_id = sur.user_id
+		JOIN sys_role sr ON sur.role_id = sr.pk_id
+	   WHERE su.user_name = #{username}
+		 AND su.del_flag = 0
+		 AND sr.del_flag = 0
+	</select>
+</mapper>

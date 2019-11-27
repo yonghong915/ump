@@ -6,11 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 字典注解
  * 
  * @author fangyh
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0
+ * @since 1.0.0
+ * @date 2019-07-16 22:02:04
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)

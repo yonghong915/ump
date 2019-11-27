@@ -8,11 +8,10 @@ import java.lang.annotation.Target;
 import com.ump.commons.constant.ConstantUtil;
 
 /**
- * 系统日志注解
  * 
  * @author fangyh
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0
+ * @since 2019-07-13
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

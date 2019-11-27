@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.ump.mapper.biz.UserMapper">
+	<resultMap id="UserResultMap" type="com.ump.entity.sys.UserEntity"
+		extends="com.ump.entity.BaseEntity.BaseResultMap">
+	</resultMap>
+	<select id="queryUserList"
+		parameterType="com.ump.entity.sys.UserEntity"
+		resultType="com.ump.entity.sys.UserEntity">
+	SELECT *
+      FROM s_dict su
+	</select>
+    
+
+</mapper>

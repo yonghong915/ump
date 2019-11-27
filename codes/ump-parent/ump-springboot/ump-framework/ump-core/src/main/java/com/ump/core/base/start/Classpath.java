@@ -30,157 +30,175 @@ import java.util.List;
 
 /**
  * A class path accumulator.
- * <p>You can build a class path by repeatedly calling the addXxx methods,
- * then use the getXxx methods to get the accumulated class path.</p>
+ * <p>
+ * You can build a class path by repeatedly calling the addXxx methods, then use the getXxx methods to get the
+ * accumulated class path.
+ * </p>
  */
 public final class Classpath {
 
-    private static final String nativeLibExt = System.mapLibraryName("someLib").replace("someLib", "").toLowerCase();
-    private List<File> elements = new ArrayList<File>();
-    private final List<File> nativeFolders = new ArrayList<File>();
+	private static final String nativeLibExt = System.mapLibraryName("someLib").replace("someLib", "").toLowerCase();
+	private List<File> elements = new ArrayList<File>();
+	private final List<File> nativeFolders = new ArrayList<File>();
 
-    /**
-     * Default constructor.
-     */
-    public Classpath() {
-    }
+	/**
+	 * Default constructor.
+	 */
+	public Classpath() {
+	}
 
-    /**
-     * Adds a class path component. The component may be a directory or a file.
-     * If <code>component</code> does not exist, the method does nothing.
-     * 
-     * @param component The class path component to add
-     * @return <code>true</code> if the component was added
-     * @throws IOException if there was a problem parsing the component
-     * @throws IllegalArgumentException if <code>component</code> is null
-     */
-    public boolean addComponent(File component) throws IOException {
-        if (component == null) {
-            throw new IllegalArgumentException("component cannot be null");
-        }
-        if (component.exists()) {
-            File key = component.getCanonicalFile();
-            synchronized (elements) {
-                if (!elements.contains(key)) {
-                    elements.add(key);
-                    return true;
-                }
-            }
-        } else {
-            System.out.println("Warning : Module classpath component '" + component + "' is not valid and will be ignored...");
-        }
-        return false;
-    }
+	public Classpath(String property) {
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
-     * Adds a class path component. The component may be a directory or a file.
-     * If <code>component</code> does not exist, the method does nothing.
-     * 
-     * @param component The class path component to add
-     * @return <code>true</code> if the component was added
-     * @throws IOException if there was a problem parsing the component
-     * @throws IllegalArgumentException if <code>component</code> is null or empty
-     */
-    public boolean addComponent(String component) throws IOException {
-        if (component == null || component.isEmpty()) {
-            throw new IllegalArgumentException("component cannot be null or empty");
-        }
-        return addComponent(new File(component));
-    }
+	/**
+	 * Adds a class path component. The component may be a directory or a file. If <code>component</code> does not
+	 * exist, the method does nothing.
+	 * 
+	 * @param component The class path component to add
+	 * @return <code>true</code> if the component was added
+	 * @throws IOException              if there was a problem parsing the component
+	 * @throws IllegalArgumentException if <code>component</code> is null
+	 */
+	public boolean addComponent(File component) throws IOException {
+		if (component == null) {
+			throw new IllegalArgumentException("component cannot be null");
+		}
+		if (component.exists()) {
+			File key = component.getCanonicalFile();
+			synchronized (elements) {
+				if (!elements.contains(key)) {
+					elements.add(key);
+					return true;
+				}
+			}
+		} else {
+			System.out.println(
+					"Warning : Module classpath component '" + component + "' is not valid and will be ignored...");
+		}
+		return false;
+	}
 
-    /**
-     * Scans a directory and adds all files ending with ".jar" or ".zip" to
-     * the class path.
-     * If <code>path</code> is not a directory, the method does nothing.
-     * 
-     * @param path the directory to scan
-     * @throws IOException if there was a problem processing the directory
-     * @throws IllegalArgumentException if <code>path</code> is null
-     */
-    public void addFilesFromPath(File path) throws IOException {
-        if (path == null) {
-            throw new IllegalArgumentException("path cannot be null");
-        }
-        if (path.isDirectory() && path.exists()) {
-            // load all .jar, .zip files and native libs in this directory
-            boolean containsNativeLibs = false;
-            for (File file : path.listFiles()) {
-                String fileName = file.getName().toLowerCase();
-                if (fileName.endsWith(".jar") || fileName.endsWith(".zip")) {
-                    File key = file.getCanonicalFile();
-                    synchronized (elements) {
-                        if (!elements.contains(key)) {
-                            elements.add(key);
-                        }
-                    }
-                } else if (fileName.endsWith(nativeLibExt)) {
-                    containsNativeLibs = true;
-                }
-            }
-            if (containsNativeLibs) {
-                File key = path.getCanonicalFile();
-                synchronized (nativeFolders) {
-                    if (!nativeFolders.contains(key)) {
-                        nativeFolders.add(key);
-                    }
-                }
-            }
-        } else {
-            System.out.println("Warning : Module classpath component '" + path + "' is not valid and will be ignored...");
-        }
-    }
+	/**
+	 * Adds a class path component. The component may be a directory or a file. If <code>component</code> does not
+	 * exist, the method does nothing.
+	 * 
+	 * @param component The class path component to add
+	 * @return <code>true</code> if the component was added
+	 * @throws IOException              if there was a problem parsing the component
+	 * @throws IllegalArgumentException if <code>component</code> is null or empty
+	 */
+	public boolean addComponent(String component) throws IOException {
+		if (component == null || component.isEmpty()) {
+			throw new IllegalArgumentException("component cannot be null or empty");
+		}
+		return addComponent(new File(component));
+	}
 
-    private void appendPath(StringBuilder cp, String path) {
-        if (path.indexOf(' ') >= 0) {
-            cp.append('\"');
-            cp.append(path);
-            cp.append('"');
-        } else {
-            cp.append(path);
-        }
-    }
+	/**
+	 * Scans a directory and adds all files ending with ".jar" or ".zip" to the class path. If <code>path</code> is not
+	 * a directory, the method does nothing.
+	 * 
+	 * @param path the directory to scan
+	 * @throws IOException              if there was a problem processing the directory
+	 * @throws IllegalArgumentException if <code>path</code> is null
+	 */
+	public void addFilesFromPath(File path) throws IOException {
+		if (path == null) {
+			throw new IllegalArgumentException("path cannot be null");
+		}
+		if (path.isDirectory() && path.exists()) {
+			// load all .jar, .zip files and native libs in this directory
+			boolean containsNativeLibs = false;
+			for (File file : path.listFiles()) {
+				String fileName = file.getName().toLowerCase();
+				if (fileName.endsWith(".jar") || fileName.endsWith(".zip")) {
+					File key = file.getCanonicalFile();
+					synchronized (elements) {
+						if (!elements.contains(key)) {
+							elements.add(key);
+						}
+					}
+				} else if (fileName.endsWith(nativeLibExt)) {
+					containsNativeLibs = true;
+				}
+			}
+			if (containsNativeLibs) {
+				File key = path.getCanonicalFile();
+				synchronized (nativeFolders) {
+					if (!nativeFolders.contains(key)) {
+						nativeFolders.add(key);
+					}
+				}
+			}
+		} else {
+			System.out
+					.println("Warning : Module classpath component '" + path + "' is not valid and will be ignored...");
+		}
+	}
 
-    /**
-     * Returns a list of folders containing native libraries.
-     * 
-     * @return A list of folders containing native libraries
-     */
-    public List<File> getNativeFolders() {
-        synchronized (nativeFolders) {
-            return new ArrayList<File>(nativeFolders);
-        }
-    }
+	private void appendPath(StringBuilder cp, String path) {
+		if (path.indexOf(' ') >= 0) {
+			cp.append('\"');
+			cp.append(path);
+			cp.append('"');
+		} else {
+			cp.append(path);
+		}
+	}
 
-    /**
-     * Returns a list of class path component URLs.
-     * 
-     * @return A list of class path component URLs
-     * @throws MalformedURLException
-     */
-    public URL[] getUrls() throws MalformedURLException {
-        synchronized (elements) {
-            int cnt = elements.size();
-            URL[] urls = new URL[cnt];
-            for (int i = 0; i < cnt; i++) {
-                urls[i] = elements.get(i).toURI().toURL();
-            }
-            return urls;
-        }
-    }
+	/**
+	 * Returns a list of folders containing native libraries.
+	 * 
+	 * @return A list of folders containing native libraries
+	 */
+	public List<File> getNativeFolders() {
+		synchronized (nativeFolders) {
+			return new ArrayList<File>(nativeFolders);
+		}
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder cp = new StringBuilder(1024);
-        synchronized (elements) {
-            int cnt = elements.size();
-            if (cnt >= 1) {
-                cp.append(elements.get(0).getPath());
-            }
-            for (int i = 1; i < cnt; i++) {
-                cp.append(File.pathSeparatorChar);
-                appendPath(cp, elements.get(i).getPath());
-            }
-        }
-        return cp.toString();
-    }
+	/**
+	 * Returns a list of class path component URLs.
+	 * 
+	 * @return A list of class path component URLs
+	 * @throws MalformedURLException
+	 */
+	public URL[] getUrls() throws MalformedURLException {
+		synchronized (elements) {
+			int cnt = elements.size();
+			URL[] urls = new URL[cnt];
+			for (int i = 0; i < cnt; i++) {
+				urls[i] = elements.get(i).toURI().toURL();
+			}
+			return urls;
+		}
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder cp = new StringBuilder(1024);
+		synchronized (elements) {
+			int cnt = elements.size();
+			if (cnt >= 1) {
+				cp.append(elements.get(0).getPath());
+			}
+			for (int i = 1; i < cnt; i++) {
+				cp.append(File.pathSeparatorChar);
+				appendPath(cp, elements.get(i).getPath());
+			}
+		}
+		return cp.toString();
+	}
+
+	public static ClassLoader getClassLoader() {
+		ClassLoader parent = Thread.currentThread().getContextClassLoader();
+		if (null == parent) {
+			parent = Classpath.class.getClassLoader();
+		}
+		if (null == parent) {
+			parent = ClassLoader.getSystemClassLoader();
+		}
+		return parent;
+	}
 }

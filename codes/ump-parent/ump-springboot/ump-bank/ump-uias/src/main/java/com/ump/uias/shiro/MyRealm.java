@@ -75,7 +75,7 @@ public class MyRealm extends AuthorizingRealm {
 			throw new AuthenticationException("用户不存在!");
 		}
 
-		if (!JWTUtil.verify(token, username, user.getUserPwd() + "{" + user.getSalt() + "}")) {
+		if (!JWTUtil.verify(token, username, user.getUserPwd() + "{"  + "}")) {
 			throw new AuthenticationException("用户名或密码错误");
 		}
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<containers>
+	<container name="ext-container"
+		class="com.ump.core.base.container.ExtContainer">
+		<property name="app-name" value="0459" />
+	</container>
+	<container name="webservice-container"
+		class="com.ump.core.base.container.WebserviceContainer">
+		<property name="app-name" value="0459" />
+	</container>
+</containers>

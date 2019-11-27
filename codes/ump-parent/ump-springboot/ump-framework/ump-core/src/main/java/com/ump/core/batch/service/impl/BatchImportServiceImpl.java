@@ -8,7 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.ump.commons.batch.imp.IHandler;
+import com.ump.core.batch.imp.IHandler;
+
 
 @Service("batchImportService")
 public class BatchImportServiceImpl implements IHandler {

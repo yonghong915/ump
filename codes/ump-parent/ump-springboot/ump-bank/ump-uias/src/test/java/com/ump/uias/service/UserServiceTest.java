@@ -12,9 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.alibaba.fastjson.JSON;
+import com.baidu.fsg.uid.UidGenerator;
 import com.ump.uias.UiasApplication;
 import com.ump.uias.modules.system.entity.SysResource;
 import com.ump.uias.modules.system.entity.SysRole;
+import com.ump.uias.modules.system.entity.SysUser;
 import com.ump.uias.modules.system.service.ISysUserService;
 
 @RunWith(SpringRunner.class)
@@ -25,10 +27,26 @@ public class UserServiceTest {
 	@Autowired
 	private ISysUserService userService;
 
+	@Autowired
+	private UidGenerator uidGenerator;
+
+	@Test
+	public void testSaveUser() {
+		SysUser entity = new SysUser();
+		long uid = uidGenerator.getUID();
+		entity.setPkId(uid);
+		entity.setUserName("fyy1");
+		entity.setRealName("方明");
+		entity.setUserDesc("aaaa");
+		userService.save(entity);
+		System.out.println("test hello 1");
+	}
+
 	@Test
 	@Ignore
 	public void testOne() {
-		userService.queryUserByUserName("aaaa");
+		userService.getById("");
+		//userService.queryUserByUserName("aaaa");
 		System.out.println("test hello 1");
 	}
 
@@ -42,6 +60,7 @@ public class UserServiceTest {
 	}
 
 	@Test
+	@Ignore
 	public void queryResources() {
 		List<SysResource> resources = userService.queryResourcesByUserName(username);
 		resources.forEach(res -> {

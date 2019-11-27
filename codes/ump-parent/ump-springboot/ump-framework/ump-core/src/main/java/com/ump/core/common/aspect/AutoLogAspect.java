@@ -23,7 +23,7 @@ import com.ump.core.modules.system.service.ISysLogService;
  * @since 1.0
  */
 @Aspect
-@Component
+//@Component
 public class AutoLogAspect {
 	@Autowired
 	private ISysLogService sysLogService;

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+	targetNamespace="http://www.lzg.test.com/services/S090000002/wsdl"
+	xmlns:s="http://www.lzg.test.com/services/S090000002"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://www.lzg.test.com"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="lzgWebService">
+	<wsdl:types>
+		<xsd:schema
+			targetNamespace="http://www.lzg.test.com/services/S090000002/wsdl"
+			elementFormDefault="unqualified" attributeFormDefault="unqualified">
+			<xsd:import
+				namespace="http://www.lzg.test.com/services/S090000002"
+				schemaLocation="S090000002.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="ReqHeader">
+		<wsdl:part name="ReqHeader" element="s:ReqHeader"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="RspHeader">
+		<wsdl:part name="RspHeader" element="s:RspHeader"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ReqRateSync">
+		<wsdl:part name="ReqRateSync" element="s:ReqRateSync"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RspRateSync">
+		<wsdl:part name="RspRateSync" element="s:RspRateSync"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="ESBServerPortType">
+		<wsdl:operation name="RateSync">
+			<wsdl:input message="tns:ReqRateSync"></wsdl:input>
+			<wsdl:output message="tns:RspRateSync"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ESBServerSoapBinding"
+		type="tns:ESBServerPortType">
+		<soap:binding
+			transport="http://schemas.xml.soap.org/soap/http" style="document" />
+		<wsdl:operation name="RateSync">
+			<soap:operation soapAction="urn:/RateSync" />
+			<wsdl:input>
+				<soap:header use="literal" part="ReqHeader"
+					message="tns:ReqHeader"></soap:header>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header use="literal" part="RspHeader"
+					message="tns:RspHeader"></soap:header>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="S090000002">
+		<wsdl:port name="ESBServerSoapEndpoint"
+			binding="tns:ESBServerSoapBinding">
+			<soap:address
+				location="http://esb.spdbbiz.com:7701/servies/S090000002" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
