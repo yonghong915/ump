@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ump.entity.sys.DictEntity;
-import com.ump.mapper.biz.DictMapper;
+import com.ump.mapper.sys.DictMapper;
 import com.ump.service.IDictService;
 
 /**

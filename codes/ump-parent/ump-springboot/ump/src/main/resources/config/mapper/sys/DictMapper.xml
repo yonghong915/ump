@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
-<mapper namespace="com.ump.mapper.biz.DictMapper">
+<mapper namespace="com.ump.mapper.sys.DictMapper">
 	<resultMap id="DictResultMap"
 		type="com.ump.entity.sys.DictEntity"
 		extends="com.ump.entity.BaseEntity.BaseResultMap">

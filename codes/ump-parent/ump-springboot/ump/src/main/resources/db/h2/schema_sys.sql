@@ -30,3 +30,31 @@ comment on column s_dict.crt_time is '创建时间';
 comment on column s_dict.mod_user is '修改人员';
 comment on column s_dict.mod_dept is '修改部门';
 comment on column s_dict.mod_time is '修改时间';
+
+drop table if exists s_log;
+create table s_log(
+  log_id varchar(50) not null,
+  log_name varchar(50),
+  ip_address varchar(50),
+  log_type varchar(5) not null,
+  log_moudle varchar(50) not null,
+  request_url varchar(200),
+  request_type varchar(50),
+  request_method  varchar(500),
+  request_params varchar(500),
+  result varchar(500),
+  cost_time bigint(20),
+  remark varchar(2000),
+  is_del smallint default 0,
+  crt_user bigint(20),
+  crt_dept bigint(20),
+  crt_time timestamp,
+  mod_user bigint(20),
+  mod_dept bigint(20),
+  mod_time timestamp
+);
+comment on table s_log is '字典项';
+comment on column s_log.log_id is '主键';
+
+
+
