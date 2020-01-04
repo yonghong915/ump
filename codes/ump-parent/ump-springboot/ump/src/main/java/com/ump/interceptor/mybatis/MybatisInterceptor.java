@@ -21,9 +21,7 @@ import org.apache.ibatis.plugin.Signature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
 import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author fangyh
@@ -119,7 +117,7 @@ public class MybatisInterceptor implements Interceptor {
 		return (false);
 	}
 
-	public List<Field> getAllFields(Class tempClass) {
+	public List<Field> getAllFields(Class<?> tempClass) {
 		List<Field> fieldList = new ArrayList<>();
 		while (tempClass != null) {// 当父类为null的时候说明到达了最上层的父类(Object类).
 			fieldList.addAll(Arrays.asList(tempClass.getDeclaredFields()));

@@ -1,7 +1,6 @@
 package com.ump.commons.thread;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -13,12 +12,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class PutDataToFile implements Runnable {
 	private ConcurrentLinkedQueue<String> queue;
-	private BufferedWriter buff;
-
 	public PutDataToFile(ConcurrentLinkedQueue<String> queue, BufferedWriter buff) {
 		super();
 		this.queue = queue;
-		this.buff = buff;
 	}
 
 	@Override

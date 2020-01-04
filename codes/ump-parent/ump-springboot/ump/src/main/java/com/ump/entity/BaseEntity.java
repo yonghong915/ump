@@ -6,6 +6,8 @@ package com.ump.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.ump.util.constant.Constants;
+
 import lombok.Data;
 
 /**
@@ -26,6 +28,9 @@ public class BaseEntity implements Serializable {
 
 	/** 是否删除 */
 	private Integer isDel = 0;
+
+	/** 系统编码 */
+	private String systemCode = Constants.SYSTEM_CODE;
 
 	/** 创建人员 */
 	private Long crtUser;

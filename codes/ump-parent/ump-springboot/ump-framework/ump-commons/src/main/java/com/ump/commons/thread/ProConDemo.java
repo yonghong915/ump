@@ -6,11 +6,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 class ProducerThread extends Thread {
-	private BlockingQueue queue;
+	private BlockingQueue<String> queue;
 	private volatile boolean flag = true;
 	private static AtomicInteger count = new AtomicInteger();
 
-	public ProducerThread(BlockingQueue queue) {
+	public ProducerThread(BlockingQueue<String> queue) {
 		this.queue = queue;
 	}
 
@@ -43,11 +43,9 @@ class ProducerThread extends Thread {
 }
 
 class ConsumerThread extends Thread {
-	private BlockingQueue queue;
+	private BlockingQueue<String> queue;
 	private volatile boolean flag = true;
-	private static AtomicInteger count = new AtomicInteger();
-
-	public ConsumerThread(BlockingQueue queue) {
+	public ConsumerThread(BlockingQueue<String> queue) {
 		this.queue = queue;
 	}
 

@@ -27,8 +27,9 @@ public class ReflectUtil {
 			return null;
 		}
 		try {
-			return Class.forName(className).newInstance();
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			return Class.forName(className).getDeclaredConstructor().newInstance();
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			throw new BusinessException("Reflect Object error:", e);
 		}
 	}
@@ -36,10 +37,8 @@ public class ReflectUtil {
 	/**
 	 * 利用反射获取指定对象的指定属性
 	 * 
-	 * @param obj
-	 *            目标对象
-	 * @param fieldName
-	 *            目标属性
+	 * @param obj       目标对象
+	 * @param fieldName 目标属性
 	 * @return 目标属性的值
 	 */
 	public static Object getFieldValue(Object obj, String fieldName) {
@@ -59,10 +58,8 @@ public class ReflectUtil {
 	/**
 	 * 利用反射获取指定对象里面的指定属性
 	 * 
-	 * @param obj
-	 *            目标对象
-	 * @param fieldName
-	 *            目标属性
+	 * @param obj       目标对象
+	 * @param fieldName 目标属性
 	 * @return 目标字段
 	 */
 	private static Field getField(Object obj, String fieldName) {
@@ -81,12 +78,9 @@ public class ReflectUtil {
 	/**
 	 * 利用反射设置指定对象的指定属性为指定的值
 	 * 
-	 * @param obj
-	 *            目标对象
-	 * @param fieldName
-	 *            目标属性
-	 * @param fieldValue
-	 *            目标值
+	 * @param obj        目标对象
+	 * @param fieldName  目标属性
+	 * @param fieldValue 目标值
 	 */
 	public static void setFieldValue(Object obj, String fieldName, String fieldValue) {
 		Field field = ReflectUtil.getField(obj, fieldName);
@@ -186,8 +180,9 @@ public class ReflectUtil {
 		}
 		try {
 			Class<?> clazz = Class.forName(className);
-			return clazz.newInstance();
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			return clazz.getDeclaredConstructor().newInstance();
+		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			logger.error("obtain object instance error:{}", e);
 		}
 		return null;

@@ -8,6 +8,7 @@ create table s_dict(
   dict_level smallint not null default 1,
   dict_index smallint,
   is_del smallint default 0,
+  system_code varchar(20),
   crt_user bigint(20),
   crt_dept bigint(20),
   crt_time timestamp,
@@ -46,6 +47,7 @@ create table s_log(
   cost_time bigint(20),
   remark varchar(2000),
   is_del smallint default 0,
+  system_code varchar(20),
   crt_user bigint(20),
   crt_dept bigint(20),
   crt_time timestamp,
@@ -57,4 +59,72 @@ comment on table s_log is '字典项';
 comment on column s_log.log_id is '主键';
 
 
+drop table if exists s_user;
+create table s_user(
+  pk_id bigint not null,
+  user_code varchar(50),
+  user_name varchar(50),
+  user_pwd varchar(255),
+  salt varchar(255),
+  is_del smallint default 0,
+  system_code varchar(20),
+  crt_user bigint(20),
+  crt_dept bigint(20),
+  crt_time timestamp,
+  mod_user bigint(20),
+  mod_dept bigint(20),
+  mod_time timestamp
+);
+comment on table s_user is '用户';
+comment on column s_user.pk_id is '主键';
 
+
+drop table if exists s_role;
+create table s_role(
+  pk_id bigint not null,
+  role_name varchar(50),
+  is_del smallint default 0,
+  system_code varchar(20),
+  crt_user bigint(20),
+  crt_dept bigint(20),
+  crt_time timestamp,
+  mod_user bigint(20),
+  mod_dept bigint(20),
+  mod_time timestamp
+);
+comment on table s_role is '角色';
+comment on column s_role.pk_id is '主键';
+
+drop table if exists s_user_role;
+create table s_user_role(
+  pk_id bigint not null,
+  user_id varchar(50),
+  role_id varchar(50),
+  is_del smallint default 0,
+  crt_user bigint(20),
+  crt_dept bigint(20),
+  crt_time timestamp,
+  mod_user bigint(20),
+  mod_dept bigint(20),
+  mod_time timestamp
+);
+comment on table s_user_role is '用户角色';
+comment on column s_user_role.pk_id is '主键';
+
+
+drop table if exists s_resource;
+create table s_resource(
+  pk_id bigint not null,
+  user_id varchar(50),
+  role_id varchar(50),
+  is_del smallint default 0,
+  system_code varchar(20),
+  crt_user bigint(20),
+  crt_dept bigint(20),
+  crt_time timestamp,
+  mod_user bigint(20),
+  mod_dept bigint(20),
+  mod_time timestamp
+);
+comment on table s_resource is '资源';
+comment on column s_resource.pk_id is '主键';

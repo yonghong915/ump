@@ -42,7 +42,7 @@ public class DictCtrler {
 	@RequestMapping("/save")
 	@ResponseBody
 	@AutoLog(logCode = LogCodeEnum.LOGIN)
-	public ResultRsp save(String logId) {
+	public ResultRsp<DictEntity> save(String logId) {
 		DictEntity entity = new DictEntity();
 		entity.setDictId(UUID.randomUUID().toString().replace("-", ""));
 		entity.setParentId("999999");
@@ -53,7 +53,7 @@ public class DictCtrler {
 		entity.setDictIndex(1);
 		// int a = 4/0;
 		dictService.saveDict(entity);
-		ResultRsp rsp = new ResultRsp<>();
+		ResultRsp<DictEntity> rsp = new ResultRsp<>();
 		rsp.message(StatusCode.SUCCESS, entity);
 		return rsp;
 	}

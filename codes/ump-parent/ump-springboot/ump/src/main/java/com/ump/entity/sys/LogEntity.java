@@ -3,6 +3,7 @@
  */
 package com.ump.entity.sys;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.ump.entity.BaseEntity;
 
@@ -27,6 +28,7 @@ public class LogEntity extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -2180998803025982844L;
 
+	@TableId
 	private String logId;
 
 	private String logName;

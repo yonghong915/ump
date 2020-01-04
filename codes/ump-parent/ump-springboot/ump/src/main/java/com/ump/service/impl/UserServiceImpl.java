@@ -3,8 +3,11 @@
  */
 package com.ump.service.impl;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ump.entity.sys.UserEntity;
 import com.ump.service.IUserService;
 
 /**
@@ -16,5 +19,14 @@ import com.ump.service.IUserService;
  */
 @Service("userService")
 public class UserServiceImpl implements IUserService {
+	@Cacheable(value = "users")
+	public UserEntity selectUserById(int id) {
+		UserEntity user = null;// ;this.usermapper.selectUserById(id);
+		System.out.println("1111111111111111111111111");
+		return user;
+	}
 
+	@Transactional
+	public void save() {
+	}
 }

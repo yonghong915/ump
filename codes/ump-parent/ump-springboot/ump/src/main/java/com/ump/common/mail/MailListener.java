@@ -21,7 +21,7 @@ public class MailListener {
 	@Order
 	@EventListener(MailEvent.class)
 	public void saveSysLog(MailEvent event) {
-		MailInfo mailInfo = (MailInfo) event.getSource();
+		//MailInfo mailInfo = (MailInfo) event.getSource();
 		// 保存日志
 	}
 }

@@ -1,9 +1,6 @@
 package com.ump.commons.thread.monitor;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Producer implements Runnable {
 	private Queue<MonitorMessage> queue;

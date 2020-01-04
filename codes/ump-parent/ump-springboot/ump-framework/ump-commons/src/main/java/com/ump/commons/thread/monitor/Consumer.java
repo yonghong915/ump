@@ -1,8 +1,6 @@
 package com.ump.commons.thread.monitor;
 
-import java.io.BufferedWriter;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Consumer implements Runnable {
 	private Queue<MonitorMessage> queue;
