@@ -18,9 +18,4 @@
 		<module>ump-config</module>
 		<module>ump-gateway</module>
 	</modules>
-
-
-	<!-- <dependencyManagement> <dependencies> 引入的Eureka-server <dependency> 
-		<groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId> 
-		<version>${springboot.version}</version> </dependency> </dependencies> </dependencyManagement> -->
 </project>

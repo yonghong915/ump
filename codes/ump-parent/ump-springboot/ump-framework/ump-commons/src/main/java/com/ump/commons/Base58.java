@@ -2,6 +2,12 @@ package com.ump.commons;
 
 import com.ump.commons.exception.BusinessException;
 
+/**
+ * 
+ * @author fangyh
+ * @Date 2020-01-06 21:02:22
+ * @version 1.0
+ */
 public class Base58 {
 	private Base58() {
 	}
