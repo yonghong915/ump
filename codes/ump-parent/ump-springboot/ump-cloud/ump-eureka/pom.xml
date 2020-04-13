@@ -55,6 +55,7 @@
 				<configuration>
 					<repository>${docker.repostory}/${project.artifactId}</repository>
 					<tag>${project.version}</tag>
+					<!-- <dockerfile>docker/Dockerfile</dockerfile> -->
 					<buildArgs>
 						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
 					</buildArgs>
