@@ -5,21 +5,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.ump</groupId>
-		<artifactId>ump-bank</artifactId>
+		<groupId>com.fpg</groupId>
+		<artifactId>fpg-bank</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
-	<artifactId>ump-esb</artifactId>
-	<name>ump-esb</name>
+	<artifactId>fpg-esb</artifactId>
+	<name>fpg-esb</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 	</dependencies>
 </project>

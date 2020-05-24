@@ -193,4 +193,9 @@ public class WebServiceInterfaceManager {
 		return interfaceCache.get(qName);
 
 	}
+
+	public static WebServiceInterfaceInfo getInterfaceInfoByFullPath(String fullPath, OperationInfo option) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

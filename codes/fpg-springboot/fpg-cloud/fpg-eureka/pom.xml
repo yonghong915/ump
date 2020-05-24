@@ -5,12 +5,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.ump</groupId>
-		<artifactId>ump-cloud</artifactId>
+		<groupId>com.fpg</groupId>
+		<artifactId>fpg-cloud</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
-	<artifactId>ump-eureka</artifactId>
-	<name>ump-eureka</name>
+	<artifactId>fpg-eureka</artifactId>
+	<name>fpg-eureka</name>
 	<url>http://maven.apache.org</url>
 	<packaging>jar</packaging>
 	<properties>

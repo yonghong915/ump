@@ -5,22 +5,28 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.ump</groupId>
-		<artifactId>ump-bank</artifactId>
+		<groupId>com.fpg</groupId>
+		<artifactId>fpg-bank</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
-	<artifactId>ump-pcms</artifactId>
-	<name>ump-pcms</name>
+	<artifactId>fpg-pcms</artifactId>
+	<name>fpg-pcms</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
-			<groupId>com.ump</groupId>
-			<artifactId>ump-core</artifactId>
+			<groupId>com.fpg</groupId>
+			<artifactId>fpg-core</artifactId>
+			<version>${project.version}</version>
 		</dependency>
+
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 	</dependencies>
 </project>

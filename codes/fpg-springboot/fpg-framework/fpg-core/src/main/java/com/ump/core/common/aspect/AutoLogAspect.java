@@ -8,9 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSONObject;
 import com.ump.core.common.aspect.annotation.AutoLog;
 import com.ump.core.modules.system.entity.SysLog;
 import com.ump.core.modules.system.service.ISysLogService;
@@ -67,8 +65,8 @@ public class AutoLogAspect {
 		// 请求的参数
 		Object[] args = joinPoint.getArgs();
 		try {
-			String params = JSONObject.toJSONString(args);
-			sysLog.setRequestParam(params);
+			//String params = JSONObject.toJSONString(args);
+			//sysLog.setRequestParam(params);
 		} catch (Exception e) {
 
 		}

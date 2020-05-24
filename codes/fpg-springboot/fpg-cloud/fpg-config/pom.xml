@@ -4,14 +4,14 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>ump-config</artifactId>
-	<name>ump-config</name>
+	<artifactId>fpg-config</artifactId>
+	<name>fpg-config</name>
 	<description>ump project configuration center</description>
 	<url>http://maven.apache.org</url>
 	<packaging>jar</packaging>
 	<parent>
-		<groupId>com.ump</groupId>
-		<artifactId>ump-cloud</artifactId>
+		<groupId>com.fpg</groupId>
+		<artifactId>fpg-cloud</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
 	<dependencies>
@@ -48,12 +48,8 @@
 			</resource>
 		</resources>
 
-		<!-- <plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins> -->
+		<!-- <plugins> <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+			</plugin> </plugins> -->
 	</build>
 
 	<profiles>

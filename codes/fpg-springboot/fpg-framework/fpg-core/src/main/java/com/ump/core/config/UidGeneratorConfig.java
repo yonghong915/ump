@@ -2,7 +2,6 @@ package com.ump.core.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import com.baidu.fsg.uid.impl.CachedUidGenerator;
 import com.ump.core.modules.system.service.impl.DisposableWorkerIdAssigner;

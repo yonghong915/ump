@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.code.kaptcha.Producer;
 import com.ump.commons.constant.ConstantUtil;
 import com.ump.commons.web.ResultRsp;
@@ -73,9 +72,9 @@ public class SysLoginCtrler {
 			// redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token,
 			// JwtUtil.EXPIRE_TIME/1000);
 
-			JSONObject obj = new JSONObject();
-			obj.put("token", token);
-			obj.put("userInfo", sysUser);
+			//JSONObject obj = new JSONObject();
+			//obj.put("token", token);
+			//obj.put("userInfo", sysUser);
 			// result.setResult(obj);
 			// result.success("登录成功");
 			// sysBaseAPI.addLog("用户名: "+username+",登录成功！", CommonConstant.LOG_TYPE_1,

@@ -54,4 +54,9 @@ public class WebServiceInterfaceInfo extends InterfaceInfo implements Cloneable 
 		return (WebServiceInterfaceInfo) super.clone();
 	}
 
+	public List<Parameter> getInputParameters() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

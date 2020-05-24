@@ -3,20 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>ump-framework</artifactId>
-	<name>ump-framework</name>
+	<artifactId>fpg-framework</artifactId>
+	<name>fpg-framework</name>
 	<url>http://maven.apache.org</url>
 	<packaging>pom</packaging>
 	<parent>
-		<groupId>com.ump</groupId>
-		<artifactId>ump-springboot</artifactId>
+		<groupId>com.fpg</groupId>
+		<artifactId>fpg-springboot</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
 	<modules>
-		<module>ump-commons</module>
-		<module>ump-core</module>
-		<module>ump-workflow</module>
-		<module>ump-codegenerate</module>
-		<module>ump-mq</module>
+		<module>fpg-commons</module>
+		<module>fpg-core</module>
+		<module>fpg-workflow</module>
 	</modules>
 </project>

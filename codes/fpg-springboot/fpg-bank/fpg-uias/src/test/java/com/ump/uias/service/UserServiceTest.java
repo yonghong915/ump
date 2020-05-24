@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.alibaba.fastjson.JSON;
 import com.baidu.fsg.uid.UidGenerator;
 import com.ump.uias.UiasApplication;
 import com.ump.uias.modules.system.entity.SysResource;
@@ -55,7 +54,7 @@ public class UserServiceTest {
 	public void queryRoles() {
 		List<SysRole> roles = userService.queryRolesByUserName(username);
 		roles.forEach(role -> {
-			logger.info("role=" + JSON.toJSONString(role));
+			//logger.info("role=" + JSON.toJSONString(role));
 		});
 	}
 
@@ -64,7 +63,7 @@ public class UserServiceTest {
 	public void queryResources() {
 		List<SysResource> resources = userService.queryResourcesByUserName(username);
 		resources.forEach(res -> {
-			logger.info("res=" + JSON.toJSONString(res));
+			//logger.info("res=" + JSON.toJSONString(res));
 		});
 	}
 }

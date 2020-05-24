@@ -5,12 +5,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.ump</groupId>
-		<artifactId>ump-cloud</artifactId>
+		<groupId>com.fpg</groupId>
+		<artifactId>fpg-cloud</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
-	<artifactId>ump-gateway</artifactId>
-	<name>ump-gateway</name>
+	<artifactId>fpg-gateway</artifactId>
+	<name>fpg-gateway</name>
 	<url>http://maven.apache.org</url>
 	<packaging>jar</packaging>
 	<dependencies>
@@ -60,8 +60,8 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
+			<version>1.2.68</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -86,12 +86,8 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<!-- <configuration>
-					<skipMain>true</skipMain>
-					<skip>true</skip>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration> -->
+				<!-- <configuration> <skipMain>true</skipMain> <skip>true</skip> <source>1.8</source> 
+					<target>1.8</target> </configuration> -->
 			</plugin>
 		</plugins>
 	</build>

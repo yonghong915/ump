@@ -4,7 +4,6 @@
 package com.ump.core.util;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.dom4j.Document;
