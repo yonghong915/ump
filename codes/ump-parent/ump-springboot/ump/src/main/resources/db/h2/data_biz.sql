@@ -1,1 +1,0 @@
-insert into b_cust(pk_id,cust_no) values(1234565,'23333233');

@@ -1,0 +1,16 @@
+ump-springboot
+    ump-cloud
+	    ump-config
+		ump-eureka
+		ump-gateway
+	ump-framework
+	    ump-commons
+		ump-core
+	ump-bank
+	    ump-bip
+		ump-crm
+		ump-ecif
+		ump-esb
+		ump-oims
+		ump-pcms
+		ump-uias

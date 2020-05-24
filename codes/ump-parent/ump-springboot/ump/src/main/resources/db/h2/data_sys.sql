@@ -1,1 +1,0 @@
-insert into s_dict(dict_id,parent_id,dict_code,dict_value,dict_dsc,dict_level,dict_index,is_del,crt_user,crt_dept,crt_time,mod_user,mod_dept,mod_time) values('1234567890','999999','aaa','bbb','aaaa',1,1,0,11111,22222, CURRENT_TIMESTAMP,11111,22222, CURRENT_TIMESTAMP);

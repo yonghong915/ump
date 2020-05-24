@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.ump.uias.modules.system.mapper.SysUserMapper">
+	<resultMap id="UserResultMap" type="com.ump.uias.modules.system.entity.SysUser"
+		extends="com.ump.core.base.entity.BaseEntity.BaseResultMap">
+	</resultMap>
+	<select id="queryUserList"
+		parameterType="com.ump.uias.modules.system.entity.SysUser"
+		resultType="com.ump.uias.modules.system.entity.SysUser">
+	SELECT su.pk_id,su.user_name,su.real_name,su.user_desc,su.user_type,
+	       su.user_status,su.del_flag,
+	       su.create_dt,su.create_by,su.update_dt,su.update_by,
+           sua.user_pwd,sua.salt
+      FROM sys_user su
+INNER JOIN sys_user_auth sua ON  su.pk_id = sua.user_id
+     WHERE su.del_flag = 0
+	</select>
+    
+
+</mapper>
