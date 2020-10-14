@@ -35,12 +35,10 @@ public class SysUserCtrler {
 	private UidGenerator uidGenerator;
 
 	@ApiOperation(value="【PC端】提交订单", notes="提交一组识别的标签id，返回生成的订单详情")
-	@RequestMapping(value = "/getUser/{userId}", method = RequestMethod.GET)
+	@GetMapping(value = "/getUser/{userId}")
 	public ResultRsp<SysUser> get(String userId) {
 		ResultRsp<?> result = ResultUtil.success();
-//		SysUser user = userService.get(userId);
-//		logger.info("user={}", user);
-		// result.setRspObj(user);
+
 		return (ResultRsp<SysUser>) result;
 	}
 
@@ -61,19 +59,20 @@ public class SysUserCtrler {
 
 	@GetMapping("/uid")
 	public String uid() {
-		long time1 = System.nanoTime();
+		long time1 = System.currentTimeMillis();
 		long uid = uidGenerator.getUID();
-		long time2 = System.nanoTime();
-		System.out.println(time2 - time1);
-		System.out.println(uidGenerator.parseUID(uid));
-		System.out.println("-----------------------------");
+		long time2 = System.currentTimeMillis();
+		logger.info("duration={}",(time2 - time1));
+		String uuid = uidGenerator.parseUID(uid);
+		logger.info("getUUid={}",uuid);
+		logger.info("-----------------------------");
 		long timeMillis = System.currentTimeMillis();
 		for (int i = 0; i < 10; i++) {
 			long ssid = uidGenerator.getUID();
-			System.out.println("ssid=" + ssid);
+			logger.info("ssid={}" , ssid);
 		}
 		long timeMillis2 = System.currentTimeMillis();
-		System.out.println("耗时:" + (timeMillis2 - timeMillis));
+		logger.info("耗时:{}" , (timeMillis2 - timeMillis));
 		return String.valueOf(uid);
 	}
 }

@@ -5,12 +5,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.ump</groupId>
-		<artifactId>ump-framework</artifactId>
+		<groupId>com.fpg</groupId>
+		<artifactId>fpg-framework</artifactId>
 		<version>1.0.0.RELEASE</version>
 	</parent>
-	<artifactId>ump-mq</artifactId>
-	<name>ump-mq</name>
+	<artifactId>fpg-mq</artifactId>
+	<name>fpg-mq</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

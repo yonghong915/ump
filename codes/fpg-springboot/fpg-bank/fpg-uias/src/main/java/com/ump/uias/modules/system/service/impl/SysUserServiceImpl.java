@@ -2,6 +2,7 @@ package com.ump.uias.modules.system.service.impl;
 
 import java.util.List;
 
+import com.ump.uias.modules.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,7 +19,6 @@ import com.ump.uias.modules.system.entity.SysUser;
 import com.ump.uias.modules.system.mapper.SysUserMapper;
 import com.ump.uias.modules.system.service.ISysResourceService;
 import com.ump.uias.modules.system.service.ISysUserRoleService;
-import com.ump.uias.modules.system.service.ISysUserService;
 import com.ump.uias.shiro.JWTUtil;
 
 @CacheConfig(cacheNames = { "umpUserCache" })

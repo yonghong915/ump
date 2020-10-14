@@ -16,5 +16,6 @@
 		<module>fpg-commons</module>
 		<module>fpg-core</module>
 		<module>fpg-workflow</module>
+		<module>fpg-api</module>
 	</modules>
 </project>

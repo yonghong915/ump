@@ -10,7 +10,7 @@
 	</parent>
 	<packaging>pom</packaging>
 	<artifactId>fpg-bank</artifactId>
-	<name>ump-bank</name>
+	<name>fpg-bank</name>
 	<url>http://maven.apache.org</url>
 	<modules>
 		<module>fpg-esb</module>
@@ -20,7 +20,6 @@
 		<module>fpg-crm</module>
 		<module>fpg-ecif</module>
 		<module>fpg-pcms</module>
-		<module>fpg-api</module>
 		<module>fpg-upp</module>
 	</modules>
 	<dependencies>

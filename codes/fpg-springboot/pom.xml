@@ -20,7 +20,8 @@
 		<module>fpg-bank</module>
 		<module>fpg-cloud</module>
 		<module>fpg-framework</module>
-	</modules>
+
+    </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -37,7 +38,7 @@
 		<springboot.version>2.2.2.RELEASE</springboot.version>
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 		<powermock.version>1.7.4</powermock.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<jsr305.version>3.0.2</jsr305.version>
 		<mybatis-plus.version>3.3.0</mybatis-plus.version>
 		<cglib.version>3.3.0</cglib.version>
@@ -265,6 +266,20 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<dependencies>
+		<!-- 监控和管理生产环境的依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.200</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
