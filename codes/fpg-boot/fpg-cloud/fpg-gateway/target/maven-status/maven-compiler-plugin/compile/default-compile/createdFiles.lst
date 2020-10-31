@@ -1,0 +1,3 @@
+com\ump\gateway\GatewayApplication.class
+com\ump\gateway\fallback\ServerFallback.class
+com\ump\gateway\fallback\ServerFallback$1.class
