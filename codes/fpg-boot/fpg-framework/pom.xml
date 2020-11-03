@@ -17,5 +17,6 @@
 		<module>fpg-core</module>
 		<module>fpg-workflow</module>
 		<module>fpg-api</module>
+		<module>fpg-mq</module>
 	</modules>
 </project>

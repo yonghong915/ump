@@ -1,0 +1,19 @@
+package com.fpg.api.message;
+
+import lombok.Data;
+
+/**
+ * @author fangyh
+ * @version 1.0.0
+ * @date 2020-11-2
+ * @since 1.0.0
+ */
+@Data
+public class ReqHeader {
+    String globalId;
+    String systemId;
+    String signData;
+    String securityKey;
+    String nonce;
+    long timestamp;
+}

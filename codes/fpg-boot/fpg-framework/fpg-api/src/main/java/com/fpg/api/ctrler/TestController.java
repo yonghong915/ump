@@ -1,13 +1,11 @@
 package com.fpg.api.ctrler;
 
+import com.ump.commons.web.ResultRsp;
+import com.ump.commons.web.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +29,25 @@ public class TestController {
         ret.put("idleTimeout",environment.getProperty("idleTimeout"));
         ret.put("connectionTimeout",environment.getProperty("connectionTimeout"));
         return ret;
+    }
+    @RequestMapping("/getApi")
+    public String getApi(@RequestBody String params){
+       return "success";
+    }
+
+    @RequestMapping("/getMap")
+    public Map<String,String> getMap(@RequestBody String params){
+        Map<String,String> ret = new HashMap<>();
+        ret.put("aa","11");
+        ret.put("bb","22");
+        ret.put("cc","33");
+        ret.put("dd","44");
+        return ret;
+    }
+
+    @RequestMapping("/getRsp")
+    public ResultRsp getRsp(@RequestBody String params){
+         return ResultUtil.success("getResultRsp msg");
     }
 
 //    @Value("${key-11}")
