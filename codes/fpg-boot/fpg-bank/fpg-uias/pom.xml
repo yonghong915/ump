@@ -13,7 +13,7 @@
 	<name>fpg-uias</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<shiro.spring.version>1.4.0</shiro.spring.version>
+		<shiro.spring.version>1.7.1</shiro.spring.version>
 		<jwt.auth0.version>3.8.0</jwt.auth0.version>
 	</properties>
 	<dependencies>
