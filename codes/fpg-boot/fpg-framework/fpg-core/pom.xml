@@ -19,7 +19,7 @@
 		<jsqlparser.version>1.4</jsqlparser.version>
 		<druid-spring.version>1.1.14</druid-spring.version>
 		<kaptcha.version>2.3.2</kaptcha.version>
-		<shiro.spring.version>1.4.0</shiro.spring.version>
+		<shiro.spring.version>1.7.1</shiro.spring.version>
 		<jwt.auth0.version>3.8.0</jwt.auth0.version>
 	</properties>
 	<dependencies>
