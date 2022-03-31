@@ -36,7 +36,7 @@
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 		<commons-codec.version>1.11</commons-codec.version>
-		<springboot.version>2.2.2.RELEASE</springboot.version>
+		<springboot.version>2.5.12</springboot.version>
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 		<powermock.version>1.7.4</powermock.version>
 		<junit.version>4.13.1</junit.version>
